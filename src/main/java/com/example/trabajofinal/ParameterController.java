@@ -4,14 +4,19 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ParameterController implements Initializable {
+    @FXML
+    private Label welcomeText;
     @FXML
     private Slider sliderPorcentajereproduccion;
     @FXML
@@ -36,6 +41,38 @@ public class ParameterController implements Initializable {
     private Slider sliderProbabilidadPozo;
     @FXML
     private Slider sliderProbabilidadTesoro;
+    @FXML
+    private Label labelValorVidaSlider;
+    @FXML
+    private Label labelValorPorcentajeReproduccionSlider;
+    @FXML
+    private Label labelValorPorcentajeClonacionSlider;
+    @FXML
+    private Label labelValorPorcentajeTipoHijoSlider;
+    @FXML
+    private Label labelValorTiempoAparicionSlider;
+    @FXML
+    private Label labelValorProbabilidadAparicionSlider;
+    @FXML
+    private Label labelValorProbabilidaAguaSlider;
+    @FXML
+    private Label labelValorProbabilidaComidaSlider;
+    @FXML
+    private Label labelValorProbabilidaMontañaSlider;
+    @FXML
+    private Label labelValorProbabilidaPozoSlider;
+    @FXML
+    private Label labelValorProbabilidaTesoroSlider;
+    @FXML
+    private Label labelValorProbabilidaBibliotecaSlider;
+    @FXML
+    private Button BotonGuardar;
+    @FXML
+    private Button BotonCargar;
+    @FXML
+    private Button BotonCerrar;
+    @FXML
+    private Button Tablero;
     private ParameterDataModelProperties model;
     private ParameterDataModelPropertiesRecursos modelRecursos;
     private Stage scene;
@@ -54,6 +91,7 @@ public class ParameterController implements Initializable {
     @FXML protected void onBotonCerrarClick(){
         scene.close();
     }
+    @FXML private GridPane tableroDeJuego;
     protected IntegerProperty medidaVida = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaPorcentajereproduccion = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaPorcentahetipoHijo = new SimpleIntegerProperty(0);
@@ -66,6 +104,21 @@ public class ParameterController implements Initializable {
     protected IntegerProperty medidaProbabilidadPozo = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadMontaña = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadTesoro = new SimpleIntegerProperty(0);
+    @FXML
+    protected void onTableroButtonClick() {
+        welcomeText.setText("Cargando el tablero de juego");
+
+        // Mismo bucle que en el ejemplo de MainGridApplication
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+
+                Label placeholder = new Label("Celda " + i + "," + j);
+                placeholder.setMinSize(30, 30);
+                placeholder.setStyle("-fx-border-color: black; -fx-text-alignment: center;");
+                tableroDeJuego.add(placeholder, i, j);
+            }
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,6 +135,19 @@ public class ParameterController implements Initializable {
         sliderProbabilidadTesoro.valueProperty().bindBidirectional(medidaProbabilidadTesoro);
         sliderProbabilidadPozo.valueProperty().bindBidirectional(medidaProbabilidadPozo);
         sliderProbabilidadBiblioteca.valueProperty().bindBidirectional(medidaProbabilidadBiblioteca);
+        labelValorVidaSlider.textProperty().bind(medidaVida.asString());
+        labelValorPorcentajeClonacionSlider.textProperty().bind(medidaPorcentajeclonacion.asString());
+        labelValorPorcentajeReproduccionSlider.textProperty().bind(medidaPorcentajereproduccion.asString());
+        labelValorTiempoAparicionSlider.textProperty().bind(medidaTiempoAparicion.asString());
+        labelValorProbabilidadAparicionSlider.textProperty().bind(medidaProbabilidadAparicion.asString());
+        labelValorProbabilidaAguaSlider.textProperty().bind(medidaProbabilidadAgua.asString());
+        labelValorProbabilidaComidaSlider.textProperty().bind(medidaProbabilidadComida.asString());
+        labelValorProbabilidaMontañaSlider.textProperty().bind(medidaProbabilidadMontaña.asString());
+        labelValorProbabilidaTesoroSlider.textProperty().bind(medidaProbabilidadTesoro.asString());
+        labelValorProbabilidaPozoSlider.textProperty().bind(medidaProbabilidadPozo.asString());
+        labelValorProbabilidaBibliotecaSlider.textProperty().bind(medidaProbabilidadBiblioteca.asString());
+
+
 
         if (model != null) {
             this.updateGUIwithModel();

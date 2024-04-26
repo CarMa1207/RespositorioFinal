@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -15,7 +16,10 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
     @FXML
     private Label welcomeText;
-    protected IntegerProperty medida = new SimpleIntegerProperty(0);
+    @FXML
+    private Button nuevaPartida;
+    @FXML
+    private Button cargarPartida;
 
 
 
@@ -34,7 +38,7 @@ public class HelloController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
         try {
-            Scene scene = new Scene(fxmlLoader.load(), 420, 340);
+            Scene scene = new Scene(fxmlLoader.load(), 820, 640);
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(scene);
             stage.show();
@@ -48,7 +52,7 @@ public class HelloController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
         try {
-            Scene scene = new Scene(fxmlLoader.load(), 420, 340);
+            Scene scene = new Scene(fxmlLoader.load(), 820, 640);
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(scene);
             ParameterController p = fxmlLoader.getController();
