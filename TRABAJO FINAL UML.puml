@@ -1,0 +1,133 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+celdas*-left-Elementos
+Tablero*-left-GameOver
+Menú*-left-Tablero
+celdas*-left-Individuo
+celdas*-left-celda
+Tablero*-left-celdas
+
+class Menú{
+
++partida(elección en pantalla)
++cargarPartida()
++nuevaPartida()
+
+}
+
+
+
+class Tablero{
+-Fichero
++setTablero(x fila, y columnas)
++setEntorno(abria que sacar esto por pantalla )
++getDatosCasilla( x int , y int)
++Pausa(click)
++Actualizar
+
+
+}
+
+
+class Elementos{
++agua
++comida
++montaña
++tesoro
++biblioteca
++pozo
++TasaEvolucion
+
++getAgua():int
++getComida():int
++getMontaña():int
++getTesoro():int
++getBiblioteca():int
++getPozo():int
+
+
++setAgua(elección en pantalla)
++setComida()
++setMontaña()
++setTesoro()
++setBiblioteca()
++setPozo()
+
+
++reproduccion( a Individuo, b Individuo)
++getArbolGenealógico( i Individuo)
++getOperaciones(p Individuo)
++getGráfica()
+
+
+}
+class celdas{
++getInterior()
+
+}
+class celda{
++getInterior
++
+
+}
+
+class Individuo{
+
+
++ID
++vida
++reproduccion
++clonacion
++mutacion
++tipo
++muete
++coord
+
++getTipo()
++getID()
++getVida()
++getRepro()
++getClonacion()
++getMutacion()
++getMuerte()
++getCoordenadas()
+
++setTipo()
++setID()
++setVida()
++setRepro()
++setClonacion()
++setMutacion()
++setMuerte()
++setCoordenadas()
++setParametros()
+
+
+
+
+
+}
+
+class Simulador(){
++widht
++height
++board
++data
++Contructor de Simulador
++printeartablero
++bucle
+
+}
+
+class Individuo1 extends Individuo{
++getCamino()
+}
+class Individuo2 extends Individuo{
++getCamino()
+}
+class Individuo3 extends Individuo{
++getCamino()
+}
+
+@enduml
