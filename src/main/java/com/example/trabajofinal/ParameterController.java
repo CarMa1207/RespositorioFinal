@@ -71,8 +71,7 @@ public class ParameterController implements Initializable {
     private Button BotonCargar;
     @FXML
     private Button BotonCerrar;
-    @FXML
-    private Button Tablero;
+    @FXML private GridPane tableroDeJuego;
     private ParameterDataModelProperties model;
     private ParameterDataModelPropertiesRecursos modelRecursos;
     private Stage scene;
@@ -91,7 +90,6 @@ public class ParameterController implements Initializable {
     @FXML protected void onBotonCerrarClick(){
         scene.close();
     }
-    @FXML private GridPane tableroDeJuego;
     protected IntegerProperty medidaVida = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaPorcentajereproduccion = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaPorcentahetipoHijo = new SimpleIntegerProperty(0);
@@ -106,7 +104,6 @@ public class ParameterController implements Initializable {
     protected IntegerProperty medidaProbabilidadTesoro = new SimpleIntegerProperty(0);
     @FXML
     protected void onTableroButtonClick() {
-        welcomeText.setText("Cargando el tablero de juego");
 
         // Mismo bucle que en el ejemplo de MainGridApplication
         for (int i = 0; i < 10; i++) {
