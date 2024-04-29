@@ -1,4 +1,4 @@
-package com.example.trabajofinal.Recursos;
+package com.example.trabajofinal.PantallaRecursos;
 
 public class RecursoBiblioteca extends Recurso {
    private int ProbabilidadBiblioteca;

@@ -1,4 +1,4 @@
-package com.example.trabajofinal.Recursos;
+package com.example.trabajofinal.PantallaRecursos;
 
 abstract class Recurso {
     private int TiempoAparicion;
