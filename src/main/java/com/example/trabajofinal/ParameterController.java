@@ -103,6 +103,7 @@ public class ParameterController implements Initializable {
     protected IntegerProperty medidaProbabilidadMontaña = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadTesoro = new SimpleIntegerProperty(0);
     @FXML
+
     protected void onTableroButtonClick() {
 
         // Mismo bucle que en el ejemplo de MainGridApplication
