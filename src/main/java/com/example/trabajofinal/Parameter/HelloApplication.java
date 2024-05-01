@@ -1,4 +1,4 @@
-package com.example.trabajofinal;
+package com.example.trabajofinal.Parameter;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

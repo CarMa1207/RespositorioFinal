@@ -1,20 +1,15 @@
 package com.example.trabajofinal.Individuo;
 import java.util.Random;
-public class Individuo1 extends individuo{
+public class Individuo1 extends Individuo {
 
     public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo) {
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
     }
-
-
-    public void getCamino(int posicionIndividuox, int posicionIndividuoy){
-
-
-
-
-
-
+    public Individuo1() {
+        super(, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
     }
+
+
 
 
 
@@ -65,7 +60,7 @@ public class Individuo1 extends individuo{
         if(posicionIndividuoy+ y<1){
             y=Math.abs(y);
 
-        } else if (posicionIndividuoy +y> cantidadColumnas) {
+        } else if (posicionIndividuoy +y> cantidadFilas) {
             y=0-y;
 
         }

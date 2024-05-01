@@ -1,10 +1,10 @@
-package com.example.trabajofinal.PantallaRecursos;
+package com.example.trabajofinal.Recurso;
 
 public class RecursoPozo extends Recurso{
     private int probabilidadPozo;
 
-    public RecursoPozo(int tiempoAparicion, int probabilidadAparicion, int probabilidadRecurso, int probabilidadPozo) {
-        super(tiempoAparicion, probabilidadAparicion, probabilidadRecurso);
+    public RecursoPozo(int tiempoAparicion, int probabilidadAparicion, int probabilidadRecurso, int probabilidadPozo, int x, int y) {
+        super(tiempoAparicion, probabilidadAparicion, probabilidadRecurso,x,y);
         this.probabilidadPozo = probabilidadPozo;
     }
 
@@ -15,4 +15,10 @@ public class RecursoPozo extends Recurso{
     public void setProbabilidadPozo(int probabilidadPozo) {
         this.probabilidadPozo = probabilidadPozo;
     }
+
+    public void PropiedadP(){
+        individuo.setVida(-4);
+    }
+
+
 }

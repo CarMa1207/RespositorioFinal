@@ -1,4 +1,4 @@
-package com.example.trabajofinal;
+package com.example.trabajofinal.Parameter;
 
 public class ParameterDataModel {
     private int vida;

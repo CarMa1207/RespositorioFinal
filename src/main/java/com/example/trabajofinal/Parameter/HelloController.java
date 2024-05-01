@@ -1,7 +1,5 @@
-package com.example.trabajofinal;
+package com.example.trabajofinal.Parameter;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

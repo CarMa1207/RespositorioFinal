@@ -1,6 +1,6 @@
-package com.example.trabajofinal;
+package com.example.trabajofinal.Parameter;
 
-public class ParameterDataModelRecursos {
+public class  ParameterDataModelRecursos {
     private int TiempoAparicion;
     private int ProbabilidadAparicion;
     private int ProbabilidadAgua;
