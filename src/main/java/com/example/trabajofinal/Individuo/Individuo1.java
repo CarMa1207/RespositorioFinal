@@ -1,5 +1,6 @@
 package com.example.trabajofinal.Individuo;
 import java.util.Random;
+
 public class Individuo1 extends Individuo {
 
     public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo) {
@@ -75,3 +76,5 @@ public class Individuo1 extends Individuo {
 
 
 }
+
+

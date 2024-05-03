@@ -2,7 +2,7 @@ package com.example.trabajofinal.Recurso;
 
 import com.example.trabajofinal.Individuo.Individuo;
 
-abstract class Recurso  {
+public class Recurso  {
     private int TiempoAparicion;
     private int ProbabilidadAparicion;
     private int ProbabilidadRecurso;
