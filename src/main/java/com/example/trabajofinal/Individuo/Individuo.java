@@ -4,15 +4,36 @@ import com.example.trabajofinal.Parameter.ParameterDataModel;
 import java.util.Random;
 public class Individuo extends ParameterDataModel {
     public int tipo;
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo) {
+    //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
+    int individuox;
+
+    int individuoy;
+    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,int x, int y, int tipo) {
+
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
+        this.individuox=x;
+        this.individuoy=y;
+        this.tipo=tipo;
 
 
     }
+    public int getIndividuox() {
+        return individuox;
+    }
 
-/* La cosa esta en que individuo no deberia tener un constructor propio pq no van a existir individuos sin tipo pero entonces necesito que se me seteen los parametros de los tipos de individuos por pantalla
+    public void setIndividuox(int individuox) {
+        this.individuox = individuox;
+    }
 
- */
+    public int getIndividuoy() {
+        return individuoy;
+    }
+
+    public void setIndividuoy(int individuoy) {
+        this.individuoy = individuoy;
+    }
+
+
     public void setTipo(int  t){
         this.tipo=t;
     }

@@ -1,41 +1,32 @@
 package com.example.trabajofinal.Recurso;
 
 import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 
-public class Recurso  {
-    private int TiempoAparicion;
-    private int ProbabilidadAparicion;
-    private int ProbabilidadRecurso;
+public class Recurso extends ParameterDataModelRecursos {
+
 
     public Individuo individuo;
-
-
     public int coordxR;
-
-
     public int coordyR;
+    public String tipo;
 
 
-    public Recurso(int tiempoAparicion, int probabilidadAparicion, int probabilidadRecurso, int coordxR, int coordyR) {
-        TiempoAparicion = tiempoAparicion;
-        ProbabilidadAparicion = probabilidadAparicion;
+    public Recurso(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, int x, int y, String tipo)  {
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro);
+        this.coordxR=x;
+        this.coordyR=y;
+        this.tipo=tipo;
     }
 
-    public int getTiempoAparicion() {
-        return TiempoAparicion;
+
+    public void setTipo(String tip){
+        this.tipo=tipo;
+    }
+    public String getTipod(){
+        return tipo;
     }
 
-    public int getProbabilidadAparicion() {
-        return ProbabilidadAparicion;
-    }
-
-    public void setTiempoAparicion(int tiempoAparicion) {
-        TiempoAparicion = tiempoAparicion;
-    }
-
-    public void setProbabilidadAparicion(int probabilidadAparicion) {
-        ProbabilidadAparicion = probabilidadAparicion;
-    }
 
 
     public int getCoordxR() {

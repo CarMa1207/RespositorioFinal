@@ -1,20 +1,14 @@
 package com.example.trabajofinal.Recurso;
 
 public class RecursoComida extends Recurso{
-    private int probabilidadComida;
 
-    public RecursoComida(int tiempoAparicion, int probabilidadAparicion, int probabilidadRecurso, int probabilidadComida, int x, int y) {
-        super(tiempoAparicion, probabilidadAparicion, probabilidadRecurso,x,y);
-        this.probabilidadComida = probabilidadComida;
+
+    public RecursoComida(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, int x, int y, String tipo)  {
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,x,y,tipo);
+
     }
 
-    public int getProbabilidadComida() {
-        return probabilidadComida;
-    }
 
-    public void setProbabilidadComida(int probabilidadComida) {
-        this.probabilidadComida = probabilidadComida;
-    }
 
 
     public void PropiedadC(){

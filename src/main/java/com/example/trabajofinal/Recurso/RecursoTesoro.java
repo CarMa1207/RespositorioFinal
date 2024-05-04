@@ -1,22 +1,18 @@
 package com.example.trabajofinal.Recurso;
 
+import com.example.trabajofinal.Individuo.Individuo;
+
 import java.util.Random;
 
 public class RecursoTesoro extends Recurso {
-    private int probabilidadTesoro;
 
-    public RecursoTesoro(int tiempoAparicion, int probabilidadAparicion, int probabilidadRecurso, int probabilidadTesoro, int x, int y) {
-        super(tiempoAparicion, probabilidadAparicion, probabilidadRecurso,x,y);
-        this.probabilidadTesoro = probabilidadTesoro;
+
+    public RecursoTesoro(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, int x, int y, String tipo)  {
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,x,y,tipo);
+
     }
 
-    public int getProbabilidadTesoro() {
-        return probabilidadTesoro;
-    }
 
-    public void setProbabilidadTesoro(int probabilidadTesoro) {
-        this.probabilidadTesoro = probabilidadTesoro;
-    }
 
     public void PropiedadT(){
         Random random= new Random();

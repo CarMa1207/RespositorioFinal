@@ -2,20 +2,15 @@ package com.example.trabajofinal.Recurso;
 import java.util.Random;
 
 public class RecursoBiblioteca extends Recurso {
-   private int ProbabilidadBiblioteca;
 
-    public RecursoBiblioteca(int tiempoAparicion, int probabilidadAparicion, int probabilidadRecurso, int probabilidadBiblioteca, int x, int y) {
-        super(tiempoAparicion, probabilidadAparicion, probabilidadRecurso,x,y);
-        ProbabilidadBiblioteca = probabilidadBiblioteca;
+
+
+    public RecursoBiblioteca(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, int x, int y, String tipo)  {
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,x,y,tipo);
+
     }
 
-    public int getProbabilidadBiblioteca() {
-        return ProbabilidadBiblioteca;
-    }
 
-    public void setProbabilidadBiblioteca(int probabilidadBiblioteca) {
-        ProbabilidadBiblioteca = probabilidadBiblioteca;
-    }
     public void PropiedadB(){
         Random random= new Random();
         int Y= random.nextInt(101);
