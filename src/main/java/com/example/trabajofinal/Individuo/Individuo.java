@@ -1,8 +1,9 @@
 package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Recurso.Recurso;
 
 import java.util.Random;
-public class Individuo extends ParameterDataModel {
+public class Individuo extends ParameterDataModel   {
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
     int individuox;

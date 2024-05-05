@@ -3,7 +3,7 @@ package com.example.trabajofinal.Recurso;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 
-public class Recurso extends ParameterDataModelRecursos {
+public class Recurso extends ParameterDataModelRecursos  {
 
 
     public Individuo individuo;
