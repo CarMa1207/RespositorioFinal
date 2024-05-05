@@ -9,7 +9,7 @@ import com.example.trabajofinal.Individuo.Individuo3;
 import com.example.trabajofinal.Recurso.Recurso;
 
 public class FuncionesBucle {
-    //listas para recursos e individuos
+    //listas para recursos e individuos***
     //compruebe vida***
     //camino ***
     //repro/clonacion
@@ -93,6 +93,9 @@ public class FuncionesBucle {
 
     }
 
+    public void Reproduccion(){
+      //El planteamiento es hacer dos for anidados para comprobar las coordenadas de todos los individuos de todos los tipos
+    }
 }
 
 
