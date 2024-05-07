@@ -1,6 +1,7 @@
 package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Recurso.Recurso;
+import com.example.trabajofinal.Estructuras.ArbolAVL;
 
 import java.util.Random;
 public class Individuo extends ParameterDataModel   {
@@ -9,12 +10,20 @@ public class Individuo extends ParameterDataModel   {
     int individuox;
 
     int individuoy;
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,int x, int y, int tipo) {
+    int ID;
+
+
+    ArbolAVL<Integer> generacion= new ArbolAVL<>();
+
+
+    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,int x, int y, int tipo,int ID,ArbolAVL<Integer> generacion) {
 
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
         this.individuox=x;
         this.individuoy=y;
         this.tipo=tipo;
+        this.ID=ID;
+        this.generacion=generacion;
 
 
     }
@@ -41,6 +50,22 @@ public class Individuo extends ParameterDataModel   {
     public int getTipo(){
         return tipo;
     }
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public ArbolAVL<Integer> getGeneracion() {
+        return generacion;
+    }
+
+    public void setGeneracion(ArbolAVL<Integer> generacion) {
+        this.generacion = generacion;
+    }
+
     public boolean Reproduccion(){
         Random random= new Random();
         int probabilidad= random.nextInt(101);

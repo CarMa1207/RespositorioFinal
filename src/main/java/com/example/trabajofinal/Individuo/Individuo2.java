@@ -1,9 +1,13 @@
 package com.example.trabajofinal.Individuo;
 import java.lang.Math;
+import java.util.Random;
+
+import com.example.trabajofinal.Estructuras.ArbolAVL;
+import com.example.trabajofinal.Estructuras.ListaEnlazed;
 
 public class Individuo2 extends Individuo {
-    public Individuo2(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, int x, int y, int tipo) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,x,y,2);
+    public Individuo2(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, int x, int y, int tipo,int ID,ArbolAVL<Integer> generacion) {
+        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,x,y,2,ID,generacion);
     }
 
 
@@ -32,6 +36,7 @@ public class Individuo2 extends Individuo {
 
 
     }
+
 
 
 
