@@ -19,65 +19,33 @@ public class FuncionesBucle {
     //repro/clonacion
     //recursos
 
-    public ListaEnlazed<Individuo1> individuos1 = new ListaEnlazed<>();
-    public ListaEnlazed<Individuo2> individuos2 = new ListaEnlazed<>();
-    public ListaEnlazed<Individuo3> individuos3 = new ListaEnlazed<>();
+    public ListaEnlazed<Individuo1> individuos = new ListaEnlazed<>();
 
-
-    public ListaEnlazed<Recurso> recursoAgua = new ListaEnlazed<>();
-    public ListaEnlazed<Recurso> recursoBiblioteca = new ListaEnlazed<>();
-    public ListaEnlazed<Recurso> recursoComida = new ListaEnlazed<>();
-    public ListaEnlazed<Recurso> recursoMontaña= new ListaEnlazed<>();
-    public ListaEnlazed<Recurso> recursoPozo= new ListaEnlazed<>();
-    public ListaEnlazed<Recurso> recursoTesoro= new ListaEnlazed<>();
+    public ListaEnlazed<Recurso> recursos= new ListaEnlazed<>();
 
 
 
 
-    public ListaEnlazed<Recurso> objAgua= new ListaEnlazed<>();
-    public ListaEnlazed<Recurso> objBiblioteca= new ListaEnlazed<>();
 
-    public ListaEnlazed<Recurso> objComida= new ListaEnlazed<>();
 
-    public ListaEnlazed<Recurso> objMontaña= new ListaEnlazed<>();
-
-    public ListaEnlazed<Recurso> objPozo= new ListaEnlazed<>();
-
-    public ListaEnlazed<Recurso> objTesoro= new ListaEnlazed<>();
 
 
 
 
     public void Vida() {
-        for (int i = 0; i < individuos1.getNumeroElementos(); i++) {
-            individuos1.getElemento(i).getData().setVida(individuos1.getElemento(i).getData().getVida()-1);
-
-        }
-        for (int i = 0; i < individuos2.getNumeroElementos(); i++) {
-            individuos2.getElemento(i).getData().setVida(individuos2.getElemento(i).getData().getVida()-1);
-
-        }
-        for (int i = 0; i < individuos3.getNumeroElementos(); i++) {
-            individuos3.getElemento(i).getData().setVida(individuos3.getElemento(i).getData().getVida()-1);
+        for (int i = 0; i < individuos.getNumeroElementos(); i++) {
+            individuos.getElemento(i).getData().setVida(individuos.getElemento(i).getData().getVida()-1);
 
         }
 
-        for (int i = 0; i < individuos1.getNumeroElementos(); i++) {
-            if (individuos1.getElemento(i).getData().getVida() <= 0) {
-                individuos1.del(i);
+
+        for (int i = 0; i < individuos.getNumeroElementos(); i++) {
+            if (individuos.getElemento(i).getData().getVida() <= 0) {
+                individuos.del(i);
             }
 
         }
-        for (int i = 0; i < individuos2.getNumeroElementos(); i++) {
-            if (individuos2.getElemento(i).getData().getVida() <= 0) {
-                individuos2.del(i);
-            }
-        }
-        for (int i = 0; i < individuos3.getNumeroElementos(); i++) {
-            if (individuos3.getElemento(i).getData().getVida() <= 0) {
-                individuos3.del(i);
-            }
-        }
+
     }
 
 
@@ -93,38 +61,16 @@ public class FuncionesBucle {
 
     public ListaEnlazed<Integer> getRecursoIndividuo2(){
         Random random1= new Random();
+
         int el= random1.nextInt(7);
         ListaEnlazed<Integer> coord= new ListaEnlazed<>();
         if(el==1){
             Random random2 = new Random();
-            int cual= random2.nextInt(recursoAgua.getNumeroElementos()+1);
-            objAgua.add(recursoAgua.getElemento(cual).getData());
+            int cual= random2.nextInt(recursos.getNumeroElementos()+1);
+            Recurso obj = new Recurso(recursos.getElemento(cual).getData().getTiempoAparicion());
+            obj.add();
         }
-        if(el==2){
-            Random random2 = new Random();
-            int cual= random2.nextInt(recursoBiblioteca.getNumeroElementos()+1);
-            objBiblioteca.add(recursoBiblioteca.getElemento(cual).getData());
-        }
-        if(el==3){
-            Random random2 = new Random();
-            int cual= random2.nextInt(recursoTesoro.getNumeroElementos()+1);
-            objTesoro.add(recursoTesoro.getElemento(cual).getData());
-        }
-        if(el==4){
-            Random random2 = new Random();
-            int cual= random2.nextInt(recursoComida.getNumeroElementos()+1);
-            objComida.add(recursoComida.getElemento(cual).getData());
-        }
-        if(el==5){
-            Random random2 = new Random();
-            int cual= random2.nextInt(recursoMontaña.getNumeroElementos()+1);
-            objMontaña.add(recursoMontaña.getElemento(cual).getData());
-        }
-        if(el==6){
-            Random random2 = new Random();
-            int cual= random2.nextInt(recursoPozo.getNumeroElementos()+1);
-            objPozo.add(recursoPozo.getElemento(cual).getData());
-        }
+
         return coord;
     }
 
@@ -137,6 +83,7 @@ public class FuncionesBucle {
             individuos1.getElemento(i).getData().getCamino1();
 
         }
+
 
 
 

@@ -2,36 +2,37 @@ package com.example.trabajofinal.Individuo;
 
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
+import com.example.trabajofinal.Estructuras.Celdas;
 public class Individuo3 extends Individuo {
     public Individuo3(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, int x, int y, int tipo,int ID,ArbolAVL<Integer> generacion) {
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,x,y,3,ID,generacion);
     }
 
-    public void getCamino3(int Rx, int Ry){
-        ListaEnlazed<ListaEnlazed<Integer>> ruta = new ListaEnlazed<>();
-        ListaEnlazed<Integer> actual= new ListaEnlazed<>();
-        actual.add(individuox);
-        actual.add(individuoy);
+    public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
+        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+        Celdas actual= new Celdas();
+        actual.setX(individuox);
+        actual.setY(individuoy);
 
-        while(actual.getElemento(0).getData()!=Rx || actual.getElemento(1).getData()!=Ry){
+        while(actual.getX()!=fin.getX() || actual.getY()!= fin.getY()){
             ruta.add(actual);
 
-            if(actual.getElemento(1).getData()<Ry){
-                actual.getElemento(1).setData(actual.getElemento(1).getData()+1);
+            if(actual.getY()<fin.getY()){
+                actual.setY(actual.getY()+1);
             }
-            else if(actual.getElemento(1).getData()>Ry){
-                actual.getElemento(1).setData(actual.getElemento(1).getData()-1);
+            else if(actual.getY()>fin.getY()){
+                actual.setY(actual.getY()-1);
             }
-            else if(actual.getElemento(0).getData()<Rx){
-                actual.getElemento(0).setData(actual.getElemento(0).getData()+1);
+            else if(actual.getX()<fin.getX()){
+                actual.setX(actual.getX()+1);
             }
-            else if(actual.getElemento(0).getData()>Rx){
-                actual.getElemento(0).setData(actual.getElemento(0).getData()-1);
+            else if(actual.getX()>fin.getX()){
+                actual.setX(actual.getX()-1);
             }
 
         }
-        setIndividuox(ruta.getElemento(1).getData().getElemento(0).getData());
-        setIndividuoy(ruta.getElemento(1).getData().getElemento(1).getData());
+
+        return ruta;
 
     }
 }

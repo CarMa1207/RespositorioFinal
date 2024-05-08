@@ -1,10 +1,12 @@
 package com.example.trabajofinal.Individuo;
+import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Recurso.Recurso;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
+import com.example.trabajofinal.Estructuras.Celdas;
 
 import java.util.Random;
-public class Individuo extends ParameterDataModel   {
+public abstract class Individuo extends ParameterDataModel   {
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
     int individuox;
@@ -66,6 +68,7 @@ public class Individuo extends ParameterDataModel   {
         this.generacion = generacion;
     }
 
+
     public boolean Reproduccion(){
         Random random= new Random();
         int probabilidad= random.nextInt(101);
@@ -92,6 +95,7 @@ public class Individuo extends ParameterDataModel   {
         }
     }
 
+    public  abstract ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin);
 
 
 
