@@ -11,7 +11,7 @@ public class Individuo2 extends Individuo {
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,x,y,2,ID,generacion);
     }
 
-
+    @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
         ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
         Celdas celda= new Celdas();

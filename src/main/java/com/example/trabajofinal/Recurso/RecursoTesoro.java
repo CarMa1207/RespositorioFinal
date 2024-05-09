@@ -14,7 +14,8 @@ public class RecursoTesoro extends Recurso {
 
 
 
-    public void PropiedadT(){
+    @Override
+    public void Propiedad(){
         Random random= new Random();
         int Y= random.nextInt(101);
         Y=Y/100;

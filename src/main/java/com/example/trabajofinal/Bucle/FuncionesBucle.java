@@ -2,6 +2,8 @@
 
 package com.example.trabajofinal.Bucle;
 import java.util.Random;
+
+import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Individuo.Individuo2;
@@ -48,7 +50,7 @@ public class FuncionesBucle {
 
     }
 
-
+    //Esta hay que hacerla
     public void Propiedades(){
         for(int i=0; i<recursos.getNumeroElementos(); i++){
             for (int j=0; j<individuos1.getNumeroElementos();j++){
@@ -59,73 +61,62 @@ public class FuncionesBucle {
         }
     }
 
-    public ListaEnlazed<Integer> getRecursoIndividuo2(){
-        Random random1= new Random();
 
-        int el= random1.nextInt(7);
-        ListaEnlazed<Integer> coord= new ListaEnlazed<>();
-        if(el==1){
-            Random random2 = new Random();
-            int cual= random2.nextInt(recursos.getNumeroElementos()+1);
-            Recurso obj = new Recurso(recursos.getElemento(cual).getData().getTiempoAparicion());
-            obj.add();
-        }
-
-        return coord;
-    }
 
 //Primer problema: en el camino del individuo2 no se como hacer para que se conserve el recurso objetivo
 //Segundo problema: para el individuo3 hay que hacer varios for para que compruebe cual es el menor de todos los recursos
 
 
     public void getCaminoIndividuos(){
-        for(int i =0; i<individuos1.getNumeroElementos(); i++){
-            individuos1.getElemento(i).getData().getCamino1();
+        for(int i=0; i<individuos.getNumeroElementos();i++){
+            Celdas inicio= new Celdas();
+            Celdas fin= new Celdas();
 
-        }
+            inicio.setX(individuos.getElemento(i).getData().getIndividuox());
+            inicio.setY(individuos.getElemento(i).getData().getIndividuoy());
 
-
-
-
-        for(int j=0; j<individuos2.getNumeroElementos(); j++) {
-            int x= getRecursoIndividuo2().getPrimero().getData();
-            int y= getRecursoIndividuo2().getUltimo().getData();
-            individuos2.getElemento(j).getData().getCamino2(x,y);
-        }//Hacer una lista agena a todas las funciones y luego llanarla en el getrecursoindividuo2 para luego usarla aqui comporbando que no ha cambiado nada del recurso
+            if(individuos.getElemento(i).getData().getTipo()==1){
 
 
+                individuos.getElemento(i).getData().getCamino(inicio,fin);
+            }
+            else if( individuos.getElemento(i).getData().getTipo()==2){
+                //aqui solo inicializo el camino, después en el bucle legit voy a tener que comporbar que no haya un camino ya creado y si lo hay usarlo
 
+                Random random= new Random();
+                int cual= random.nextInt(recursos.getNumeroElementos()+1);
+                fin.setX(recursos.getElemento(cual).getData().getCoordxR());
+                fin.setY(recursos.getElemento(cual).getData().getCoordyR());
+                individuos.getElemento(i).getData().getCamino(inicio,fin);
+            }
+            else if(individuos.getElemento(i).getData().getTipo()==3){
+                Recurso recursobuscado= null;
+                double distanciaMinima= Double.MAX_VALUE;
 
+                for(int j=0; j<recursos.getNumeroElementos();j++){
+                    int x1= individuos.getElemento(i).getData().getIndividuox();
+                    int y1 = individuos.getElemento(i).getData().getIndividuoy();
 
+                    int x2= recursos.getElemento(j).getData().getCoordxR();
+                    int y2= recursos.getElemento(j).getData().getCoordyR();
 
-        }
+                    double distancia=Math.sqrt((x1-x2)^2+(y1-y2)^2);
 
-        for(int x=0; x<individuos3.getNumeroElementos(); x++){
-            Recurso recursoBuscado= null;
-            double distanciaMinima= Double.MAX_VALUE;
-
-            for(int w=0; w<recursos.getNumeroElementos();w++){
-                int x1= individuos3.getElemento(x).getData().getIndividuox();
-                int y1= individuos3.getElemento(x).getData().getIndividuoy();
-
-                int x2=recursos.getElemento(w).getData().getCoordxR();
-                int y2=recursos.getElemento(w).getData().getCoordyR();
-
-                double distancia=Math.sqrt((x1-x2)^2+(y1-y2)^2);
-
-                if(distancia<distanciaMinima && distancia>0){
-                    distanciaMinima=distancia;
-                    recursoBuscado=recursos.getElemento(w).getData();
+                    if(distancia<distanciaMinima && distancia>0){
+                        distanciaMinima=distancia;
+                        recursobuscado=recursos.getElemento(j).getData();
+                    }
                 }
+                fin.setX(recursobuscado.getCoordxR());
+                fin.setY(recursobuscado.getCoordyR());
 
+                individuos.getElemento(i).getData().getCamino(inicio,fin);
             }
 
 
 
-            individuos3.getElemento(x).getData().getCamino3(recursoBuscado.coordxR,recursoBuscado.getCoordyR());
+
         }
-
-
     }
 
     public void Reproduccion(){

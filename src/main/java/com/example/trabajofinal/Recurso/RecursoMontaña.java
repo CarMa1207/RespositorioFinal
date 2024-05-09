@@ -8,8 +8,8 @@ public class RecursoMontaña extends Recurso {
 
     }
 
-
-    public void PropiedadM(){
+    @Override
+    public void Propiedad(){
         individuo.setVida(individuo.getVida()-2);
     }
 

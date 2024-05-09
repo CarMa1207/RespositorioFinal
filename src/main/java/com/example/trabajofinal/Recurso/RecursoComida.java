@@ -11,7 +11,8 @@ public class RecursoComida extends Recurso{
 
 
 
-    public void PropiedadC(){
+    @Override
+    public void Propiedad(){
         individuo.setVida(individuo.getVida()+10);
     }
 }

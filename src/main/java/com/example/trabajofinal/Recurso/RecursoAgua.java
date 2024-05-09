@@ -11,7 +11,8 @@ public class RecursoAgua extends Recurso{
 
 
 
-    public void  PropiedadA(){
+    @Override
+    public void  Propiedad(){
         this.individuo.setVida(individuo.getVida()+2);
     }
 }

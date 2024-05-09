@@ -9,6 +9,7 @@ public class Individuo1 extends Individuo {
     public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, int x, int y, int tipo,int ID,ArbolAVL<Integer> generacion) {
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,x,y,1,ID,generacion);
     }
+    @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
         Random random= new Random();
         int dir= random.nextInt(8);

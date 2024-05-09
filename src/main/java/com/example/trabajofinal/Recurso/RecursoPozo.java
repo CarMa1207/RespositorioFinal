@@ -8,7 +8,8 @@ public class RecursoPozo extends Recurso{
 
     }
 
-    public void PropiedadP(){
+    @Override
+    public void Propiedad(){
         individuo.setVida(-4);
     }
 

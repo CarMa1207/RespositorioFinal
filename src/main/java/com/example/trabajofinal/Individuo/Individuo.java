@@ -95,6 +95,7 @@ public abstract class Individuo extends ParameterDataModel   {
         }
     }
 
+
     public  abstract ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin);
 
 

@@ -11,7 +11,8 @@ public class RecursoBiblioteca extends Recurso {
     }
 
 
-    public void PropiedadB(){
+    @Override
+    public void Propiedad(){
         Random random= new Random();
         int Y= random.nextInt(101);
         Y=Y/100;
