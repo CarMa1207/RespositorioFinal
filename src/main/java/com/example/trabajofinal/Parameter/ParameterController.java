@@ -1,5 +1,6 @@
 package com.example.trabajofinal.Parameter;
 
+import com.example.trabajofinal.Tablero.TableroDataModelProperties;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -73,6 +74,7 @@ public class ParameterController implements Initializable {
     @FXML private GridPane tableroDeJuego;
     private ParameterDataModelProperties model;
     private ParameterDataModelPropertiesRecursos modelRecursos;
+    private TableroDataModelProperties modelTablero;
     private Stage scene;
     @FXML
     protected void onBotonGuardarClick() {
@@ -106,8 +108,8 @@ public class ParameterController implements Initializable {
     protected void onTableroButtonClick() {
 
         // Mismo bucle que en el ejemplo de MainGridApplication
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < modelTablero.getColumnas(); i++) {
+            for (int j = 0; modelTablero.getFilas()< 10; j++) {
 
                 Label placeholder = new Label("Celda " + i + "," + j);
                 placeholder.setMinSize(30, 30);
