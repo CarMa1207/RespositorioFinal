@@ -1,18 +1,26 @@
 package com.example.trabajofinal.Recurso;
 
+import com.example.trabajofinal.Estructuras.Celdas;
+import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Individuo.Individuo1;
+
 public class RecursoAgua extends Recurso{
 
 
 
-    public RecursoAgua(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, int x, int y, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,x,y,tipo);
+    public RecursoAgua(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,tipo);
 
     }
 
 
 
     @Override
-    public void  Propiedad(){
-        this.individuo.setVida(individuo.getVida()+2);
+    public void Propiedad(Individuo individuo){
+
+        individuo.setVida(individuo.getVida()+2);
+
+
+
     }
 }

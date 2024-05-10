@@ -9,42 +9,26 @@ import java.util.Random;
 public abstract class Individuo extends ParameterDataModel   {
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
-    int individuox;
-
-    int individuoy;
+    public Celdas celda= new Celdas();
     int ID;
+
+
 
 
     ArbolAVL<Integer> generacion= new ArbolAVL<>();
 
 
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,int x, int y, int tipo,int ID,ArbolAVL<Integer> generacion) {
+    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion) {
 
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
-        this.individuox=x;
-        this.individuoy=y;
+
+        this.celda=celda;
         this.tipo=tipo;
         this.ID=ID;
         this.generacion=generacion;
 
 
     }
-    public int getIndividuox() {
-        return individuox;
-    }
-
-    public void setIndividuox(int individuox) {
-        this.individuox = individuox;
-    }
-
-    public int getIndividuoy() {
-        return individuoy;
-    }
-
-    public void setIndividuoy(int individuoy) {
-        this.individuoy = individuoy;
-    }
-
 
     public void setTipo(int  t){
         this.tipo=t;
@@ -93,6 +77,9 @@ public abstract class Individuo extends ParameterDataModel   {
         else{
             return false;
         }
+    }
+    public Celdas getCelda(){
+        return this.celda;
     }
 
 
