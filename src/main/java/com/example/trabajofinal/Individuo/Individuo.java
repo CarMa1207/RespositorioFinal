@@ -5,7 +5,6 @@ import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Recurso.Recurso;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
 import com.example.trabajofinal.Estructuras.Celdas;
-
 import java.util.ListResourceBundle;
 import java.util.Map;
 import java.util.Random;
