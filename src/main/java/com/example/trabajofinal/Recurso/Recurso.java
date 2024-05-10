@@ -9,7 +9,7 @@ public abstract  class Recurso extends ParameterDataModelRecursos  {
 
     public Individuo individuo;
 
-    public Celdas celda= new Celdas();
+    public Celdas celda;
 
 
     public String tipo;

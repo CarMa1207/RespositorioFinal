@@ -1,10 +1,13 @@
 package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Estructuras.Mapa;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Recurso.Recurso;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
 import com.example.trabajofinal.Estructuras.Celdas;
 
+import java.util.ListResourceBundle;
+import java.util.Map;
 import java.util.Random;
 public abstract class Individuo extends ParameterDataModel   {
     public int tipo;
@@ -12,13 +15,11 @@ public abstract class Individuo extends ParameterDataModel   {
     public Celdas celda= new Celdas();
     int ID;
 
+    public Mapa<Integer,ListaEnlazed<String>> longevidad;
+    ArbolAVL<Integer> generacion;
 
 
-
-    ArbolAVL<Integer> generacion= new ArbolAVL<>();
-
-
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion) {
+    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion,Mapa<Integer,ListaEnlazed<String>> mapa) {
 
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
 
@@ -26,6 +27,7 @@ public abstract class Individuo extends ParameterDataModel   {
         this.tipo=tipo;
         this.ID=ID;
         this.generacion=generacion;
+        this.longevidad=mapa;
 
 
     }
