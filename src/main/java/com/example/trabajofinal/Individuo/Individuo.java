@@ -8,17 +8,22 @@ import com.example.trabajofinal.Estructuras.Celdas;
 import java.util.ListResourceBundle;
 import java.util.Map;
 import java.util.Random;
-public abstract class Individuo extends ParameterDataModel   {
+import com.example.trabajofinal.Tablero.TableroDataModel;
+import com.example.trabajofinal.Estructuras.Longevidad;
+
+public abstract class Individuo extends ParameterDataModel  {
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
     public Celdas celda= new Celdas();
     int ID;
 
-    public Mapa<Integer,ListaEnlazed<String>> longevidad;
+
     ArbolAVL<Integer> generacion;
+    Longevidad longevidad;
 
 
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion,Mapa<Integer,ListaEnlazed<String>> mapa) {
+
+    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion, Longevidad longevity) {
 
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
 
@@ -26,7 +31,7 @@ public abstract class Individuo extends ParameterDataModel   {
         this.tipo=tipo;
         this.ID=ID;
         this.generacion=generacion;
-        this.longevidad=mapa;
+        this.longevidad=longevity;
 
 
     }
@@ -82,6 +87,11 @@ public abstract class Individuo extends ParameterDataModel   {
     public Celdas getCelda(){
         return this.celda;
     }
+
+    public Longevidad getLongevidad(){
+        return longevidad;
+    }
+
 
 
     public  abstract ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin);

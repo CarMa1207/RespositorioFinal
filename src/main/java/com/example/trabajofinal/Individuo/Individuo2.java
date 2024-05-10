@@ -2,13 +2,11 @@ package com.example.trabajofinal.Individuo;
 import java.lang.Math;
 import java.util.Random;
 
-import com.example.trabajofinal.Estructuras.ArbolAVL;
-import com.example.trabajofinal.Estructuras.ListaEnlazed;
-import com.example.trabajofinal.Estructuras.Celdas;
+import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo2 extends Individuo {
-    public Individuo2(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,2,ID,generacion);
+    public Individuo2(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity) {
+        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,2,ID,generacion,longevity);
     }
 
     @Override

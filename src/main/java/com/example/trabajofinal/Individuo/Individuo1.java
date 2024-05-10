@@ -1,14 +1,13 @@
 
 package com.example.trabajofinal.Individuo;
 import java.util.Random;
-import com.example.trabajofinal.Estructuras.ArbolAVL;
-import com.example.trabajofinal.Estructuras.ListaEnlazed;
-import com.example.trabajofinal.Estructuras.Celdas;
+
+import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo1 extends Individuo {
 
-    public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,1,ID,generacion);
+    public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity) {
+        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,1,ID,generacion,longevity);
     }
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
@@ -77,7 +76,7 @@ public class Individuo1 extends Individuo {
             celda2.setY(nuevoY++);
 
         }
-        if(celda2.getX()>=0 && celda2.getX()<catidadColumnas && celda2.getY()>=0 && celda2.getY()<cantidadFilas){
+        if(celda2.getX()>=0 && celda2.getX()< && celda2.getY()>=0 && celda2.getY()<cantidadFilas){
             this.celda.setX(celda2.getX());
             this.celda.setY(celda2.getY());
         }
