@@ -7,7 +7,6 @@ module com.example.trabajofinal {
     requires org.kordamp.bootstrapfx.core;
 
     opens com.example.trabajofinal to javafx.fxml;
-    exports com.example.trabajofinal;
     exports com.example.trabajofinal.Parameter;
     opens com.example.trabajofinal.Parameter to javafx.fxml;
     exports com.example.trabajofinal.Estructuras;

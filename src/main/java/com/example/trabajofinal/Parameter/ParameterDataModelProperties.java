@@ -40,17 +40,18 @@ public class ParameterDataModelProperties {
 
         }
 
-        public Property<Number> porcentajereproduccionProperty() {
-            return porcentajereproduccion;
-        }
+    public Property<Number> porcentajereproduccionProperty() {
+        return porcentajereproduccion;
+    }
 
-        public Property<Number> vidaProperty() {
-            return vida;
-        }
+    public Property<Number> vidaProperty() {
+        return vida;
+    }
 
-        public Property<Number> porcentajeclonacionProperty() {
-            return porcentajeclonacion;
-        }
+    public Property<Number> porcentajeclonacionProperty() {
+        return porcentajeclonacion;
+    }
+
     public Property<Number> porcentajetipohijoProperty() {
         return porcentajetipohijo;
     }

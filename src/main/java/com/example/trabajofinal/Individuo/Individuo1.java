@@ -1,3 +1,4 @@
+
 package com.example.trabajofinal.Individuo;
 import java.util.Random;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
@@ -92,5 +93,7 @@ public class Individuo1 extends Individuo {
 
 
 }
+
+ */
 
 
