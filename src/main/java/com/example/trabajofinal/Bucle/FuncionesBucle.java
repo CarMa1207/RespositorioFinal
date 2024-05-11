@@ -31,7 +31,7 @@ public class FuncionesBucle {
     public void Vida() {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
             individuos.getElemento(i).getData().setVida(individuos.getElemento(i).getData().getVida() - 1);
-
+            individuos.getElemento(i).getData().getLongevidad().añadirTurno();
         }
 
 
@@ -141,6 +141,9 @@ public class FuncionesBucle {
                             Individuo hijo = individuos.getElemento(i).getData();
                             hijo.setID(generarID());
                             individuos.add(hijo);
+                            String mov= "Se reprodujo";
+                            individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getID());
                         } else {
                             Random random = new Random();
                             int probabilidad = random.nextInt(101);
@@ -149,12 +152,19 @@ public class FuncionesBucle {
                                     Individuo hijo = individuos.getElemento(j).getData();
                                     hijo.setID(generarID());
                                     individuos.add(hijo);
+                                    String mov= "Se reprodujo";
+                                    individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                                    individuos.getElemento(i).getData().getGeneracion().add(hijo.getID());
 
                                 } else {
                                     //ojo que puede ser que los if no filtren vien el criterio  prque hay mucho else
                                     Individuo hijo = individuos.getElemento(i).getData();
                                     hijo.setID(generarID());
                                     individuos.add(hijo);
+                                    String mov= "Se reprodujo";
+                                    individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                                    individuos.getElemento(i).getData().getGeneracion().add(hijo.getID());
+
                                 }
                             }
                         }
@@ -162,6 +172,8 @@ public class FuncionesBucle {
                 }
 
         }
+        //Atento a la funcion longevidad y a la generacion porque pueden dar fallos
+
     }
 
     public Individuo ElMatador(Celdas celda){
@@ -195,6 +207,9 @@ public class FuncionesBucle {
                 Individuo clonado= individuos.getElemento(i).getData();
                 clonado.setID(generarID());
                 individuos.add(clonado);
+                String mov= "Se clonó";
+                individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                individuos.getElemento(i).getData().getGeneracion().add(clonado.getID());
 
             }
         }
