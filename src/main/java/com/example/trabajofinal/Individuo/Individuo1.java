@@ -76,13 +76,6 @@ public class Individuo1 extends Individuo {
             celda2.setY(nuevoY++);
 
         }
-        if(celda2.getX()>=0 && celda2.getX()< && celda2.getY()>=0 && celda2.getY()<cantidadFilas){
-            this.celda.setX(celda2.getX());
-            this.celda.setY(celda2.getY());
-        }
-        else{
-            getCamino(inicio,fin);
-        }
         return camino;
     }
 

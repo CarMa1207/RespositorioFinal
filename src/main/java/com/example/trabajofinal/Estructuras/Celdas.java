@@ -30,6 +30,10 @@ public class Celdas {
         this.x = x;
         this.y = y;
     }
+    public Celdas(){
+        this.x=0;
+        this.y=0;
+    }
 
     public ListaEnlazed<Individuo> getIndividuoListaEnlazed() {
         return individuoListaEnlazed;

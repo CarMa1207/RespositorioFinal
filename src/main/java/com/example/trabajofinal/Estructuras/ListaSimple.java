@@ -1,4 +1,4 @@
-package com.example.trabajofinal.Bucle;
+package com.example.trabajofinal.Estructuras;
 
 public class ListaSimple <TipoDeDato> {
     private ElementoLS[] datos;

@@ -1,4 +1,4 @@
-package com.example.trabajofinal.Bucle;
+package com.example.trabajofinal.Estructuras;
 
 public class ElementoLS <TipoDeDato>{
     public TipoDeDato dato;

@@ -185,12 +185,17 @@ public class FuncionesBucle {
             }
         }
         int vida= Integer.MAX_VALUE;
-        Individuo sentenciado= individuos.getPrimero().getData();
+        Individuo sentenciado= null;
 
-        for( int j=0; j<individuos.getNumeroElementos(); j++){
-            if(vida<individuos.getElemento(j).getData().getVida()){
+        for( int j=0; j<enLaCelda.getNumeroElementos(); j++){
+            if(vida<enLaCelda.getElemento(j).getData().getVida()){
                 vida=individuos.getElemento(j).getData().getVida();
                 sentenciado=individuos.getElemento(j).getData();
+            }
+            else{
+                Random random= new Random();
+                int ruleta= random.nextInt(enLaCelda.getNumeroElementos()+1);
+                sentenciado=individuos.getElemento(ruleta).getData() ;
             }
         }
         return sentenciado;
