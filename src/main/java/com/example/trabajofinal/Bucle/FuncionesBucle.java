@@ -35,15 +35,30 @@ public class FuncionesBucle {
         }
 
 
-        for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            if (individuos.getElemento(i).getData().getVida() <= 0) {
-                individuos.del(i);
+        for (int j = 0; j < individuos.getNumeroElementos(); j++) {
+            if (individuos.getElemento(j).getData().getVida() <= 0) {
+                individuos.del(j);
             }
 
         }
+        for(int x=0; x<individuos.getNumeroElementos();x++){
+            individuos.getElemento(x).getData().setPorcentajereproduccion((individuos.getElemento(x).getData().getPorcentajereproduccion())-(10));
+        }
+        for(int w=0; w<individuos.getNumeroElementos(); w++){
+            individuos.getElemento(w).getData().setPorcentajetipohijo(individuos.getElemento(w).getData().getPorcentajetipohijo()-10);
+        }
 
     }
-
+    public void TiempoVidaRecurso(){
+        for(int i=0; i<recursos.getNumeroElementos();i++){
+            recursos.getElemento(i).getData().setTiempoAparicion(recursos.getElemento(i).getData().getTiempoAparicion()-1);
+        }
+        for(int j=0; j<recursos.getNumeroElementos(); j++){
+            if(recursos.getElemento(j).getData().getTiempoAparicion()<=0){
+                recursos.del(j);
+            }
+        }
+    }
     public void Propiedades() {
 
         for (int i = 0; i < recursos.getNumeroElementos(); i++) {
@@ -145,12 +160,44 @@ public class FuncionesBucle {
                         }
                     }
                 }
+
         }
+    }
+
+    public Individuo ElMatador(Celdas celda){
+        ListaEnlazed<Individuo> enLaCelda= new ListaEnlazed<>();
+        for(int i=0; i<individuos.getNumeroElementos();i++){
+            if(individuos.getElemento(i).getData().getCelda().getX()==celda.getX() && individuos.getElemento(i).getData().getCelda().getY()==celda.getY()) {
+                enLaCelda.add(individuos.getElemento(i).getData());
+
+            }
+        }
+        int vida= Integer.MAX_VALUE;
+        Individuo sentenciado= individuos.getPrimero().getData();
+
+        for( int j=0; j<individuos.getNumeroElementos(); j++){
+            if(vida<individuos.getElemento(j).getData().getVida()){
+                vida=individuos.getElemento(j).getData().getVida();
+                sentenciado=individuos.getElemento(j).getData();
+            }
+        }
+        return sentenciado;
+
     }
 
 
     public void Clonacion(){
+        for(int i=0; i<individuos.getNumeroElementos(); i++){
+            Random random= new Random();
+            int prob= random.nextInt(101);
 
+            if(prob<=individuos.getElemento(i).getData().getPorcentajeclonacion()){
+                Individuo clonado= individuos.getElemento(i).getData();
+                clonado.setID(generarID());
+                individuos.add(clonado);
+
+            }
+        }
     }
 
 }
