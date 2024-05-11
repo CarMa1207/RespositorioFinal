@@ -7,13 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
     public class ControladorCelda {
         @FXML
         private Button BotonVentana;
-        @FXML
-        private Button BotonIndividuos;
         @FXML
         private Label titulo;
 
@@ -22,7 +21,7 @@ import javafx.stage.Stage;
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
             try {
-                Scene scene = new Scene(fxmlLoader.load(), 820, 640);
+                Scene scene = new Scene(fxmlLoader.load(), 350, 340);
                 stage.setTitle("Ventana de celda ");
                 stage.setScene(scene);
                 stage.show();
@@ -31,10 +30,7 @@ import javafx.stage.Stage;
             }
 
         }
-        @FXML
-        protected void BotonIndividuosClick(){
 
-        }
 
 
     }

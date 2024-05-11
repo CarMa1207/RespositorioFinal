@@ -10,4 +10,5 @@ public class ElementoLS <TipoDeDato>{
     public void setDato(TipoDeDato o ) {
         this.dato= o ;
     }
+
 }

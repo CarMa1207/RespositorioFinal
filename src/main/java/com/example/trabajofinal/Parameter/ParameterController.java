@@ -1,5 +1,6 @@
 package com.example.trabajofinal.Parameter;
 
+import com.example.trabajofinal.Tablero.TableroDataModel;
 import com.example.trabajofinal.Tablero.TableroDataModelProperties;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -66,6 +67,16 @@ public class ParameterController implements Initializable {
     @FXML
     private Label labelValorProbabilidaBibliotecaSlider;
     @FXML
+    private Slider sliderFilas;
+    @FXML
+    private Slider sliderColumnas;
+    @FXML
+    private Label labelValorColumnas ;
+    @FXML
+    private Label labelValorFilas;
+    protected IntegerProperty medidaColumnas = new SimpleIntegerProperty(0);
+    protected IntegerProperty medidaFilas = new SimpleIntegerProperty(0);
+    @FXML
     private Button BotonGuardar;
     @FXML
     private Button BotonCargar;
@@ -123,6 +134,8 @@ public class ParameterController implements Initializable {
         System.out.print("Inicialización en ejecución del controlador de parámetros\n");
         sliderVida.valueProperty().bindBidirectional(medidaVida);
         sliderPorcentajeclonacion.valueProperty().bindBidirectional(medidaPorcentajeclonacion);
+        sliderFilas.valueProperty().bindBidirectional(medidaFilas);
+        sliderColumnas.valueProperty().bindBidirectional(medidaColumnas);
         sliderPorcentajereproduccion.valueProperty().bindBidirectional(medidaPorcentajereproduccion);
         sliderPorcentajetipohijo.valueProperty().bindBidirectional(medidaPorcentahetipoHijo);
         sliderTiempoAparicion.valueProperty().bindBidirectional(medidaTiempoAparicion);
@@ -144,6 +157,8 @@ public class ParameterController implements Initializable {
         labelValorProbabilidaTesoroSlider.textProperty().bind(medidaProbabilidadTesoro.asString());
         labelValorProbabilidaPozoSlider.textProperty().bind(medidaProbabilidadPozo.asString());
         labelValorProbabilidaBibliotecaSlider.textProperty().bind(medidaProbabilidadBiblioteca.asString());
+        labelValorFilas.textProperty().bind(medidaFilas.asString());
+        labelValorColumnas.textProperty().bind(medidaColumnas.asString());
 
 
 
@@ -168,10 +183,27 @@ public class ParameterController implements Initializable {
 
 
     }
+    private void updateGUIwithModelTablero(){
+        sliderFilas.valueProperty().bindBidirectional(modelTablero.FilasProperty());
+        sliderColumnas.valueProperty().bindBidirectional(modelTablero.ColumnasProperty());
+    }
     public void loadUserData(ParameterDataModelProperties parametrosData , ParameterDataModelPropertiesRecursos parametrosDataRecurso) {
         this.model = parametrosData;
         this.modelRecursos=parametrosDataRecurso;
         this.updateGUIwithModel();
+    }
+    public void loadUserDataTablero(TableroDataModelProperties parametrosTablero){
+        this.modelTablero=parametrosTablero;
+        this.updateGUIwithModelTablero();
+    }
+    @FXML
+    protected void onBotonGuardarTableroClick() {
+        modelTablero.commit();
+    }
+
+    @FXML
+    protected void onBotonReiniciarTableroClick() {
+        modelTablero.rollback();
     }
 
     public void setStage(Stage s){

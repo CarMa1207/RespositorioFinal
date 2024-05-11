@@ -28,6 +28,13 @@ public class TableroDataModelProperties {
     public int getColumnas() {
         return columnas.get();
     }
+    public Property<Number> FilasProperty() {
+        return filas;
+    }
+
+    public Property<Number> ColumnasProperty() {
+        return columnas;
+    }
 
 
     public void setColumnas(int columnas) {

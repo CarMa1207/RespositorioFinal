@@ -1,6 +1,8 @@
 package com.example.trabajofinal.Parameter;
 
+import com.example.trabajofinal.Tablero.TableroController;
 import com.example.trabajofinal.Tablero.TableroDataModel;
+import com.example.trabajofinal.Tablero.TableroDataModelProperties;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +31,8 @@ public class HelloController implements Initializable {
     private ParameterDataModelProperties modeloParaGUICompartido = new ParameterDataModelProperties(parametrosData);
     private ParameterDataModelRecursos parametrosDataRecursos = new ParameterDataModelRecursos(4,5,6,7,8,9,1,3);
     private ParameterDataModelPropertiesRecursos modeloParaGuiCompartidoRecursos = new ParameterDataModelPropertiesRecursos(parametrosDataRecursos);
+    private TableroDataModel tableroData = new TableroDataModel(10,10);
+    private TableroDataModelProperties modeloParaGuiCompartidoTablero = new TableroDataModelProperties(tableroData);
 
 
 
@@ -57,6 +61,7 @@ public class HelloController implements Initializable {
             stage.setScene(scene);
             ParameterController p = fxmlLoader.getController();
             p.loadUserData(this.modeloParaGUICompartido,this.modeloParaGuiCompartidoRecursos);
+            p.loadUserDataTablero(this.modeloParaGuiCompartidoTablero);
             p.setStage(stage);
             stage.show();
         } catch (Exception e) {

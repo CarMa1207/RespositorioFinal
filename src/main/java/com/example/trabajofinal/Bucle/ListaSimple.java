@@ -76,6 +76,7 @@ public class ListaSimple <TipoDeDato> {
         }
         return posicion;
     }
+
     public ElementoLS<TipoDeDato> getUltimo(){
         int contador =0;
         while (datos[contador]!=null){
