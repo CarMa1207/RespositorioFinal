@@ -1,6 +1,7 @@
 package com.example.trabajofinal.Tablero;
 
 import com.example.trabajofinal.Estructuras.Celdas;
+import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,10 +19,14 @@ GridPane tableroDeJuego = new GridPane();
 private TableroDataModel tablero;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ListaEnlazed<Celdas> celda = new ListaEnlazed();
+
         log.info(" Se esta inicializando el tablero");
         if (tablero!=null){
             for (int i =0 ; i<tablero.getColumnas(); i++){
+
                 for ( int j =0 ; i<tablero.getFilas(); j++){
+
                     Button placeholder= new Button();
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -33,7 +38,10 @@ private TableroDataModel tablero;
                     placeholder.setMinSize(320*3/tablero.getColumnas(), 460/tablero.getFilas());
                     placeholder.setMaxSize(320*3/tablero.getColumnas(), 460/tablero.getFilas());
                     tableroDeJuego.add(placeholder,i,j);
-                    Celda celda = new Celda();
+                    Celdas celditas = new Celdas(i,j);
+                    celditas.setX(i);
+                    celditas.setY(j);
+                    celda.add(celditas);
                 }
             }
         }
