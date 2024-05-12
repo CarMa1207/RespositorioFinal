@@ -50,4 +50,12 @@ public class Celdas {
     public void setRecursoListaEnlazed(ListaEnlazed<Recurso> recursoListaEnlazed) {
         this.recursoListaEnlazed = recursoListaEnlazed;
     }
+    public Boolean IndividuosIsCompleto(){
+        if (individuoListaEnlazed.getNumeroElementos()>3 ) {
+            return Boolean.TRUE;
+        }else {
+            return Boolean.FALSE;
+        }
+    }
+    
 }
