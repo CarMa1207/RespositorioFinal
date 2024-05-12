@@ -29,7 +29,8 @@ public class ArbolAVL<T> {
     }
     public void add(T dato){
         if (raiz==null){
-            raiz= (Nodo<T>) dato;
+            Nodo<T> nodo= new Nodo<>(dato);
+            raiz= nodo;
 
         }
         else{

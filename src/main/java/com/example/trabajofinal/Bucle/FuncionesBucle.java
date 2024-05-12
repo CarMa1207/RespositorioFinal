@@ -45,9 +45,9 @@ public class FuncionesBucle {
             individuos.getElemento(x).getData().setPorcentajereproduccion((individuos.getElemento(x).getData().getPorcentajereproduccion())-(10));
         }
         for(int w=0; w<individuos.getNumeroElementos(); w++){
+
             individuos.getElemento(w).getData().setPorcentajetipohijo(individuos.getElemento(w).getData().getPorcentajetipohijo()-10);
         }
-
     }
     public void TiempoVidaRecurso(){
         for(int i=0; i<recursos.getNumeroElementos();i++){

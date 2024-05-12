@@ -86,6 +86,6 @@ public class Individuo1 extends Individuo {
 
 }
 
- */
+
 
 

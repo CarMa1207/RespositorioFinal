@@ -12,6 +12,9 @@ public class Longevidad {
     public ListaEnlazed<String> getMov() {
         return mov;
     }
+    public int getTurno(){
+        return turno;
+    }
 
     public void setMov(ListaEnlazed<String> mov) {
         this.mov = mov;
