@@ -11,11 +11,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,9 +31,9 @@ public class TableroController implements Initializable{
 GridPane tableroDeJuego = new GridPane();
     private TableroDataModelProperties modelTablero;
     @FXML
-    protected void ButtonCelda(Celdas celditas , ListaEnlazed<Celdas> celda ){
+    protected void ButtonCelda(Celdas celditas  ){
         log.info ("Inicializando el boton de la celda");
-        ControladorCelda controladorCelda= new ControladorCelda(celditas,celda);
+        ControladorCelda controladorCelda= new ControladorCelda(celditas);
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
         try {
@@ -41,9 +46,12 @@ GridPane tableroDeJuego = new GridPane();
             e.printStackTrace();
         }
     }
+
+    ListaEnlazed<Celdas> celda = new ListaEnlazed();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ListaEnlazed<Celdas> celda = new ListaEnlazed();
+
 
 
         log.info(" Se esta inicializando el tablero");
@@ -59,12 +67,15 @@ GridPane tableroDeJuego = new GridPane();
                     Celdas celditas = new Celdas(i,j);
                     celditas.setX(i);
                     celditas.setY(j);
+                    celditas.setOnAction(actionEvent -> {
+                        celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
+                    });
                     celda.add(celditas);
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent actionEvent) {
-                            ButtonCelda(celditas,celda); ////
+                            ButtonCelda(celditas); ////
                         }
                     });
                 }

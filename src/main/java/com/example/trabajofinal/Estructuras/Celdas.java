@@ -2,10 +2,20 @@ package com.example.trabajofinal.Estructuras;
 
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Recurso.Recurso;
+import javafx.scene.control.Button;
 
-public class Celdas {
+
+public class Celdas extends Button {
     private ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
     private ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
+
+
+
+    public Celdas(ListaEnlazed<Individuo> individuoListaEnlazed, ListaEnlazed<Recurso> recursoListaEnlazed) {
+        this.individuoListaEnlazed = individuoListaEnlazed;
+        this.recursoListaEnlazed = recursoListaEnlazed;
+    }
+
     public int getX() {
         return x;
     }
@@ -52,6 +62,13 @@ public class Celdas {
     }
     public Boolean IndividuosIsCompleto(){
         if (individuoListaEnlazed.getNumeroElementos()>3 ) {
+            return Boolean.TRUE;
+        }else {
+            return Boolean.FALSE;
+        }
+    }
+    public Boolean RecursosIsCompleto(){
+        if (recursoListaEnlazed.getNumeroElementos()>3 ) {
             return Boolean.TRUE;
         }else {
             return Boolean.FALSE;
