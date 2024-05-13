@@ -2,6 +2,7 @@
 
 package com.example.trabajofinal.Bucle;
 
+import java.util.Locale;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.Celdas;
@@ -15,7 +16,7 @@ import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
 
 
-public class FuncionesBucle {
+public  class FuncionesBucle  {
     //listas para recursos e individuos***
     //compruebe vida***
     //compruebe muerte***
@@ -23,10 +24,15 @@ public class FuncionesBucle {
     //repro/clonacion***
     //recursos***
 
-    public ListaEnlazed<Individuo> individuos = new ListaEnlazed<>();
 
-    public ListaEnlazed<Recurso> recursos = new ListaEnlazed<>();
+    public ListaEnlazed<Recurso> recursos;
+    public ListaEnlazed<Individuo> individuos;
 
+
+    public FuncionesBucle(ListaEnlazed<Recurso> recursoListaEnlazed, ListaEnlazed<Individuo> individuoListaEnlazed){
+        this.recursos=recursoListaEnlazed;
+        this.individuos=individuoListaEnlazed;
+    }
 
     public void Vida() {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
@@ -71,52 +77,52 @@ public class FuncionesBucle {
     }
 
 
-    public void getCaminoIndividuos() {
-        for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            Celdas inicio = new Celdas();
-            Celdas fin = new Celdas();
-
-            inicio.setX(individuos.getElemento(i).getData().getCelda().getX());
-            inicio.setY(individuos.getElemento(i).getData().getCelda().getY());
-
-            if (individuos.getElemento(i).getData().getTipo() == 1) {
+    public void getCaminoIndividuos(Individuo individuo) {
+        ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
 
 
-                individuos.getElemento(i).getData().getCamino(inicio, fin);
-            } else if (individuos.getElemento(i).getData().getTipo() == 2) {
+        Celdas inicio = new Celdas();
+        Celdas fin = new Celdas();
+
+        inicio.setX(individuo.getCelda().getX());
+        inicio.setY(individuo.getCelda().getY());
+
+        if (individuo.getTipo() == 1) {
+            individuo.setRuta(individuo.getCamino(inicio, fin));
+        } else if (individuo.getTipo() == 2) {
                 //aqui solo inicializo el camino, después en el bucle legit voy a tener que comporbar que no haya un camino ya creado y si lo hay usarlo
 
-                Random random = new Random();
-                int cual = random.nextInt(recursos.getNumeroElementos() + 1);
-                fin.setX(recursos.getElemento(cual).getData().getCelda().getX());
-                fin.setY(recursos.getElemento(cual).getData().getCelda().getY());
-                individuos.getElemento(i).getData().getCamino(inicio, fin);
-            } else if (individuos.getElemento(i).getData().getTipo() == 3) {
-                Recurso recursobuscado = null;
-                double distanciaMinima = Double.MAX_VALUE;
+            Random random = new Random();
+            int cual = random.nextInt(recursos.getNumeroElementos() + 1);
+            fin.setX(recursos.getElemento(cual).getData().getCelda().getX());
+            fin.setY(recursos.getElemento(cual).getData().getCelda().getY());
+            individuo.setRuta( individuo.getCamino(inicio, fin));
+        } else if (individuo.getTipo() == 3) {
+            Recurso recursobuscado = null;
+            double distanciaMinima = Double.MAX_VALUE;
 
-                for (int j = 0; j < recursos.getNumeroElementos(); j++) {
-                    int x1 = individuos.getElemento(i).getData().getCelda().getX();
-                    int y1 = individuos.getElemento(i).getData().getCelda().getY();
+            for (int j = 0; j < recursos.getNumeroElementos(); j++) {
+                int x1 = individuo.getCelda().getX();
+                int y1 = individuo.getCelda().getY();
 
-                    int x2 = recursos.getElemento(j).getData().getCelda().getX();
-                    int y2 = recursos.getElemento(j).getData().getCelda().getY();
+                int x2 = recursos.getElemento(j).getData().getCelda().getX();
+                int y2 = recursos.getElemento(j).getData().getCelda().getY();
 
-                    double distancia = Math.sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2);
+                double distancia = Math.sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2);
 
-                    if (distancia < distanciaMinima && distancia > 0) {
-                        distanciaMinima = distancia;
-                        recursobuscado = recursos.getElemento(j).getData();
-                    }
+                if (distancia < distanciaMinima && distancia > 0) {
+                    distanciaMinima = distancia;
+                    recursobuscado = recursos.getElemento(j).getData();
                 }
-                fin.setX(recursobuscado.getCelda().getX());
-                fin.setY(recursobuscado.getCelda().getY());
-
-                individuos.getElemento(i).getData().getCamino(inicio, fin);
             }
+            fin.setX(recursobuscado.getCelda().getX());
+            fin.setY(recursobuscado.getCelda().getY());
 
-
+            individuo.setRuta( individuo.getCamino(inicio, fin));
         }
+
+
+
     }
 
     public int generarID() {
@@ -219,6 +225,7 @@ public class FuncionesBucle {
             }
         }
     }
+
 
 }
 

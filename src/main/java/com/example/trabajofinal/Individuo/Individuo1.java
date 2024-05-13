@@ -6,18 +6,22 @@ import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo1 extends Individuo {
 
-    public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,1,ID,generacion,longevity);
+    public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> ruta) {
+        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,1,ID,generacion,longevity,ruta);
     }
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
         Random random= new Random();
         int dir= random.nextInt(8);
+
         int nuevoX= celda.getX();
         int nuevoY= celda.getY();
+
         ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
         Celdas celda2= new Celdas();
-        camino.add(inicio);
+        ListaEnlazed<Celdas> celda=new ListaEnlazed<>();
+
+
 
 
         if(dir==0){
@@ -75,8 +79,16 @@ public class Individuo1 extends Individuo {
             celda2.setX(nuevoX--);
             celda2.setY(nuevoY++);
 
+        } else if (celda2.getX()<0 || celda2.getY()<0) {
+            if(celda2.getX()<0){
+                celda2.setX(0);
+            }
+            else if(celda2.getY()<0){
+                celda2.setY(0);
+            }
         }
-        return camino;
+        celda.add(celda2);
+        return celda;
     }
 
 

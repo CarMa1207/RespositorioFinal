@@ -27,8 +27,12 @@ public class ListaEnlazed<T> {
         } else {
             e = new ElementoLe<T>();
             e.setData(el);
-            e.setSiguiente(this.primero);
-            this.primero = e;
+            ElementoLe<T> rotativo= this.primero;
+            while(rotativo.getSiguiente()!=null){
+                rotativo=rotativo.getSiguiente();
+            }
+            rotativo.setSiguiente(e);
+
         }
         return getPosicion(e);
     }

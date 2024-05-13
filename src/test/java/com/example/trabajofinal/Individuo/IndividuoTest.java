@@ -110,6 +110,7 @@ class IndividuoTest {
 
     @Test
     void getCamino() {
+
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -128,5 +129,7 @@ class IndividuoTest {
 
             assertEquals(camino.getUltimo().getData().getX(),caminoF.getUltimo().getData().getX());
             assertEquals(camino.getUltimo().getData().getY(),caminoF.getUltimo().getData().getY());
+
+
     }
 }

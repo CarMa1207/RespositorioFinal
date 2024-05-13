@@ -14,7 +14,7 @@ import com.example.trabajofinal.Estructuras.Longevidad;
 public abstract class Individuo extends ParameterDataModel  {
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
-    public Celdas celda= new Celdas();
+    public Celdas celda;
     int ID;
 
 
@@ -22,8 +22,12 @@ public abstract class Individuo extends ParameterDataModel  {
     Longevidad longevidad;
 
 
+    ListaEnlazed<Celdas> ruta;
 
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion, Longevidad longevity) {
+
+
+    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> camino)
+    {
 
         super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
 
@@ -32,7 +36,7 @@ public abstract class Individuo extends ParameterDataModel  {
         this.ID=ID;
         this.generacion=generacion;
         this.longevidad=longevity;
-
+        this.ruta=camino;
 
     }
 
@@ -91,6 +95,15 @@ public abstract class Individuo extends ParameterDataModel  {
     public Longevidad getLongevidad(){
         return longevidad;
     }
+
+    public ListaEnlazed<Celdas> getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(ListaEnlazed<Celdas> ruta) {
+        this.ruta = ruta;
+    }
+
 
 
 

@@ -8,12 +8,27 @@ import javafx.scene.control.Button;
 public class Celdas extends Button {
     private ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
     private ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
+    int x;
+    int y;
+
 
 
 
     public Celdas(ListaEnlazed<Individuo> individuoListaEnlazed, ListaEnlazed<Recurso> recursoListaEnlazed) {
         this.individuoListaEnlazed = individuoListaEnlazed;
         this.recursoListaEnlazed = recursoListaEnlazed;
+
+
+    }
+    public Celdas(int x, int y) {
+        this.x = x;
+        this.y = y;
+
+
+    }
+    public Celdas(){
+        this.x=0;
+        this.y=0;
     }
 
     public int getX() {
@@ -32,18 +47,10 @@ public class Celdas extends Button {
         this.y = y;
     }
 
-    int x;
-    int y;
 
 
-    public Celdas(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-    public Celdas(){
-        this.x=0;
-        this.y=0;
-    }
+
+
 
     public ListaEnlazed<Individuo> getIndividuoListaEnlazed() {
         return individuoListaEnlazed;
@@ -74,5 +81,5 @@ public class Celdas extends Button {
             return Boolean.FALSE;
         }
     }
-    
+
 }

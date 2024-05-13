@@ -3,13 +3,13 @@ package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo3 extends Individuo {
-    public Individuo3(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,3,ID,generacion,longevity);
+    public Individuo3(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity,ListaEnlazed<Celdas> camino) {
+        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,3,ID,generacion,longevity,camino);
     }
 
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
-        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+        ListaEnlazed<Celdas> camino = new ListaEnlazed<>();
         Celdas actual= new Celdas();
         actual.setX(this.celda.getX());
         actual.setY(this.celda.getY());
@@ -32,7 +32,7 @@ public class Individuo3 extends Individuo {
 
         }
 
-        return ruta;
+        return camino;
 
     }
 }
