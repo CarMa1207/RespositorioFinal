@@ -84,7 +84,7 @@ public class Individuo1 extends Individuo {
                 celda2.setX(0);
             }
             else if(celda2.getY()<0){
-                celda2.setY(0);
+                celda2.setY (0);
             }
         }
         celda.add(celda2);
