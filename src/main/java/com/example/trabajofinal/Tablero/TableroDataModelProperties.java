@@ -13,6 +13,10 @@ public class TableroDataModelProperties {
         setTableroOriginal(tableroOriginal);;
     }
 
+    public TableroDataModel getTableroOriginal() {
+        return tableroOriginal;
+    }
+
     public void setTableroOriginal(TableroDataModel tableroOriginal) {
         this.tableroOriginal = tableroOriginal;
     }

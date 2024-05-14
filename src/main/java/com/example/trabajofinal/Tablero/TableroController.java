@@ -3,6 +3,8 @@ package com.example.trabajofinal.Tablero;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Parameter.HelloApplication;
+import com.example.trabajofinal.Parameter.ParameterController;
+import com.example.trabajofinal.json.Json;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -27,15 +29,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TableroController implements Initializable {
+public class TableroController implements Initializable{
 GridPane tableroDeJuego = new GridPane();
-
-
-
-
-    ListaEnlazed<Celdas> celda = new ListaEnlazed();
-
     private TableroDataModelProperties modelTablero;
+    private TableroDataModel tableroDataModel;
+    private ParameterController parameterController;
+    protected void guardarPartida(){
+        Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
+        Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
+        Json.guardarObjetoEnArchivo("guardarListaCeldasPartida",celda );
+    }
+
+
+
     public TableroController(){
 
     }
@@ -58,9 +64,9 @@ GridPane tableroDeJuego = new GridPane();
     }
 
     @FXML
-    protected void ButtonCelda(Celdas celditas , ListaEnlazed<Celdas> celda ){
+    protected void ButtonCelda(Celdas celditas  ){
         log.info ("Inicializando el boton de la celda");
-        ControladorCelda controladorCelda= new ControladorCelda(celditas,celda);
+        ControladorCelda controladorCelda= new ControladorCelda(celditas);
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
         try {
@@ -72,14 +78,13 @@ GridPane tableroDeJuego = new GridPane();
             log.error(" no se ha encontrado");
             e.printStackTrace();
         }
-
     }
 
     ListaEnlazed<Celdas> celda = new ListaEnlazed();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ListaEnlazed<Celdas> celda = new ListaEnlazed();
+
 
 
         log.info(" Se esta inicializando el tablero");
@@ -95,12 +100,15 @@ GridPane tableroDeJuego = new GridPane();
                     Celdas celditas = new Celdas(i,j);
                     celditas.setX(i);
                     celditas.setY(j);
+                    celditas.setOnAction(actionEvent -> {
+                        celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
+                    });
                     celda.add(celditas);
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent actionEvent) {
-                            ButtonCelda(celditas,celda); ////
+                            ButtonCelda(celditas); ////
                         }
                     });
                 }

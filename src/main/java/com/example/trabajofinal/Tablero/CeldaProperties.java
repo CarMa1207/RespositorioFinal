@@ -2,7 +2,9 @@ package com.example.trabajofinal.Tablero;
 
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
+import com.example.trabajofinal.Recurso.Recurso;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.Property;
@@ -14,9 +16,9 @@ import java.util.Properties;
 
 public class CeldaProperties {
     protected Celdas original;
-    private Properties individuos = new Properties() ;
+    private static Properties individuos = new Properties() ;
 
-    private  Properties recursos = new Properties();
+    private  static Properties recursos = new Properties();
     public CeldaProperties(Celdas original) {
         setOriginal(original);
     }
@@ -26,11 +28,11 @@ public class CeldaProperties {
     }
     public void rollback() {
         individuos.(original.getIndividuoListaEnlazed());
-        recursos.set(original.getRecursoListaEnlazed());
+        recursos.setProperty(original.getRecursoListaEnlazed());
     }
     public void commit(){
-        original.setIndividuoListaEnlazed(individuos.get());
-        original.setRecursoListaEnlazed(recursos.get());
+        original.setIndividuoListaEnlazed((ListaEnlazed<Individuo>) individuos.get());
+        original.setRecursoListaEnlazed((ListaEnlazed<Recurso>) recursos.get());
     }
 
     public Properties getIndividuos() {

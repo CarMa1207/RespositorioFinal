@@ -1,7 +1,11 @@
 package com.example.trabajofinal.Parameter;
 
+import com.example.trabajofinal.Estructuras.Celdas;
+import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Tablero.TableroController;
 import com.example.trabajofinal.Tablero.TableroDataModel;
 import com.example.trabajofinal.Tablero.TableroDataModelProperties;
+import com.example.trabajofinal.json.Json;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -15,7 +19,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ParameterController implements Initializable {
+public class ParameterController extends TableroController implements Initializable {
+
+    private Json json ;
     @FXML
     private Label welcomeText;
     @FXML
@@ -83,14 +89,15 @@ public class ParameterController implements Initializable {
     @FXML
     private Button BotonCerrar;
     @FXML private GridPane tableroDeJuego;
-    private ParameterDataModelProperties model;
-    private ParameterDataModelPropertiesRecursos modelRecursos;
-    private TableroDataModelProperties modelTablero;
+    public static ParameterDataModelProperties model;
+    private  static ParameterDataModelPropertiesRecursos modelRecursos;
+    public static TableroDataModelProperties modelTablero;
     private Stage scene;
     @FXML
     protected void onBotonGuardarClick() {
         model.commit();
         modelRecursos.commit();
+
     }
 
     @FXML
@@ -102,6 +109,7 @@ public class ParameterController implements Initializable {
     @FXML protected void onBotonCerrarClick(){
         scene.close();
     }
+
     protected IntegerProperty medidaVida = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaPorcentajereproduccion = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaPorcentahetipoHijo = new SimpleIntegerProperty(0);
@@ -116,7 +124,7 @@ public class ParameterController implements Initializable {
     protected IntegerProperty medidaProbabilidadTesoro = new SimpleIntegerProperty(0);
     @FXML
 
-    protected void onTableroButtonClick() {
+    protected void onTableroButtonClick() { ////// " mirar esta funcion , del modelo del tablero porque puede estar mal y en vez de eso es con el tablero data model "
 
         // Mismo bucle que en el ejemplo de MainGridApplication
         for (int i = 0; i < modelTablero.getColumnas(); i++) {

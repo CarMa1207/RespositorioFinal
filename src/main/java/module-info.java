@@ -5,6 +5,7 @@ module com.example.trabajofinal {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires com.google.gson;
 
     opens com.example.trabajofinal to javafx.fxml;
     exports com.example.trabajofinal.Parameter;
