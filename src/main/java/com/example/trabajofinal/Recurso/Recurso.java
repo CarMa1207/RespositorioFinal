@@ -25,7 +25,7 @@ public abstract  class Recurso extends ParameterDataModelRecursos  {
     public void setTipo(String tip){
         this.tipo=tipo;
     }
-    public String getTipod(){
+    public String getTipo(){
         return tipo;
     }
 
@@ -37,5 +37,6 @@ public abstract  class Recurso extends ParameterDataModelRecursos  {
 
 
     public abstract void Propiedad(Individuo individuo);
+    public abstract int getProbabilidad();
 
 }

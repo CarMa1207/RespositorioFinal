@@ -10,7 +10,7 @@ public class RecursoTesoro extends Recurso {
 
 
     public RecursoTesoro(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,tipo);
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,"Tesoro");
 
     }
 
@@ -24,5 +24,9 @@ public class RecursoTesoro extends Recurso {
         Y=Y/100;
         individuo.setPorcentajereproduccion(individuo.getPorcentajereproduccion()+(individuo.getPorcentajereproduccion()*Y));
 
+    }
+    @Override
+    public int getProbabilidad(){
+        return getProbabilidadTesoro();
     }
 }

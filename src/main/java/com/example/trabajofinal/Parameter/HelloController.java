@@ -1,31 +1,3 @@
-package com.example.trabajofinal.Parameter;
-
-import com.example.trabajofinal.Tablero.TableroController;
-import com.example.trabajofinal.Tablero.TableroDataModel;
-import com.example.trabajofinal.Tablero.TableroDataModelProperties;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class HelloController implements Initializable {
-    @FXML
-    private Label welcomeText;
-    @FXML
-    private Button nuevaPartida;
-    @FXML
-    private Button cargarPartida;
-
-
-
-
-    /** Modelo de datos **/
 
     private ParameterDataModel parametrosData = new ParameterDataModel(7, 10, 5,8);
     private ParameterDataModelProperties modeloParaGUICompartido = new ParameterDataModelProperties(parametrosData);
@@ -75,3 +47,5 @@ public class HelloController implements Initializable {
     }
 
 }
+
+

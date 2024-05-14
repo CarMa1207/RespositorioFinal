@@ -17,7 +17,7 @@ public class Individuo1 extends Individuo {
         int nuevoX= celda.getX();
         int nuevoY= celda.getY();
 
-        ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
+
         Celdas celda2= new Celdas();
         ListaEnlazed<Celdas> celda=new ListaEnlazed<>();
 

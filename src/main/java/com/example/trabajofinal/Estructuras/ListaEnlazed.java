@@ -1,5 +1,8 @@
 package com.example.trabajofinal.Estructuras;//Hecho con el grupo de Marcos
 
+import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Recurso.Recurso;
+
 public class ListaEnlazed<T> {
     private ElementoLe<T> primero;
 

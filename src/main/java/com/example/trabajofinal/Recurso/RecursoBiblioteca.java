@@ -10,7 +10,7 @@ public class RecursoBiblioteca extends Recurso {
 
 
     public RecursoBiblioteca(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,tipo);
+        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,"Biblioteca");
 
     }
 
@@ -29,5 +29,9 @@ public class RecursoBiblioteca extends Recurso {
         }
 
 
+    }
+    @Override
+    public int getProbabilidad(){
+        return getProbabilidadBiblioteca();
     }
 }

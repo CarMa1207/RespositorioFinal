@@ -71,6 +71,7 @@ public  class FuncionesBucle  {
             for (int j = 0; j < individuos.getNumeroElementos(); j++) {
                 if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
                     recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
+                    recursos.del(i);
                 }
             }
         }
@@ -207,6 +208,32 @@ public  class FuncionesBucle  {
         return sentenciado;
 
     }
+    public Recurso ElMatadorRecursos(Celdas celda){
+        ListaEnlazed<Recurso> enLaCelda= new ListaEnlazed<>();
+        for(int i=0; i<recursos.getNumeroElementos();i++){
+            if(recursos.getElemento(i).getData().getCelda().getX()==celda.getX() && recursos.getElemento(i).getData().getCelda().getY()==celda.getY()) {
+                enLaCelda.add(recursos.getElemento(i).getData());
+
+            }
+        }
+        int vida= Integer.MAX_VALUE;
+        Recurso sentenciado= null;
+
+        for( int j=0; j<enLaCelda.getNumeroElementos(); j++){
+            if(vida<enLaCelda.getElemento(j).getData().getTiempoAparicion()){
+                vida=recursos.getElemento(j).getData().getTiempoAparicion();
+                sentenciado=recursos.getElemento(j).getData();
+            }
+            else{
+                Random random= new Random();
+                int ruleta= random.nextInt(enLaCelda.getNumeroElementos()+1);
+                sentenciado=recursos.getElemento(ruleta).getData() ;
+            }
+        }
+        return sentenciado;
+
+    }
+
 
 
     public void Clonacion(){
@@ -225,6 +252,27 @@ public  class FuncionesBucle  {
             }
         }
     }
+    public void getDescolodado(Celdas celda, int filas, int columnas){
+        int x= celda.getX();
+        int y= celda.getY();
+
+        if(x<0){
+            celda.setX(0);
+        }
+        else if(y<0){
+            celda.setY(0);
+        }
+        else if(x>columnas){
+            celda.setX(columnas);
+        }
+        else if(y>filas){
+            celda.setY(filas);
+        }
+    }
+
+
+
+
 
 
 }
