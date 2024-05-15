@@ -23,8 +23,5 @@ public class RecursoAgua extends Recurso{
 
 
     }
-    @Override
-    public int getProbabilidad(){
-        return getProbabilidadAgua();
-    }
+
 }

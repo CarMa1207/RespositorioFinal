@@ -17,10 +17,7 @@ public class RecursoPozo extends Recurso{
         individuo.setVida(-4);
 
     }
-    @Override
-    public int getProbabilidad(){
-        return getProbabilidadPozo();
-    }
+
 
 
 }

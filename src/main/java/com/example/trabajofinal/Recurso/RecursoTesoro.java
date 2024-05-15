@@ -25,8 +25,5 @@ public class RecursoTesoro extends Recurso {
         individuo.setPorcentajereproduccion(individuo.getPorcentajereproduccion()+(individuo.getPorcentajereproduccion()*Y));
 
     }
-    @Override
-    public int getProbabilidad(){
-        return getProbabilidadTesoro();
-    }
+
 }

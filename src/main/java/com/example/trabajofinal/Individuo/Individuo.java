@@ -33,7 +33,7 @@ public abstract class Individuo extends ParameterDataModel  {
 
         this.celda=celda;
         this.tipo=tipo;
-        this.ID=ID;
+        this.ID=0;
         this.generacion=generacion;
         this.longevidad=longevity;
         this.ruta=camino;

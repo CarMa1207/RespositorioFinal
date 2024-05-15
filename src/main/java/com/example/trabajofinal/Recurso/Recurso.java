@@ -37,6 +37,19 @@ public abstract  class Recurso extends ParameterDataModelRecursos  {
 
 
     public abstract void Propiedad(Individuo individuo);
-    public abstract int getProbabilidad();
+    public int getProbabilidadA(){return getProbabilidadAgua();};
+
+    public int getProbabilidadB(){return getProbabilidadAgua();};
+
+    public int getProbabilidadC(){return getProbabilidadAgua();};
+
+    public int getProbabilidadM(){return getProbabilidadAgua();};
+
+    public int getProbabilidadP(){return getProbabilidadAgua();};
+
+    public int getProbabilidadT(){return getProbabilidadAgua();};
+
+
+
 
 }

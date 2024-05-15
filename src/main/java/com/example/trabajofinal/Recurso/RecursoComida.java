@@ -22,8 +22,5 @@ public class RecursoComida extends Recurso{
         individuo.setVida(individuo.getVida()+10);
 
     }
-    @Override
-    public int getProbabilidad(){
-        return getProbabilidadComida();
-    }
+
 }

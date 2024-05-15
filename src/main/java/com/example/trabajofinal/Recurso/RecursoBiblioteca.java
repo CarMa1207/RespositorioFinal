@@ -30,8 +30,6 @@ public class RecursoBiblioteca extends Recurso {
 
 
     }
-    @Override
-    public int getProbabilidad(){
-        return getProbabilidadBiblioteca();
-    }
+
+
 }

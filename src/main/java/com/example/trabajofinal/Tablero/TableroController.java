@@ -1,10 +1,14 @@
 package com.example.trabajofinal.Tablero;
 
+import com.example.trabajofinal.Bucle.BucleDeControl;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterController;
 import com.example.trabajofinal.json.Json;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -24,6 +28,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,10 +39,22 @@ GridPane tableroDeJuego = new GridPane();
     private TableroDataModelProperties modelTablero;
     private TableroDataModel tableroDataModel;
     private ParameterController parameterController;
+    public Timeline control;
+
+
+    public boolean Pausa
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
         Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
         Json.guardarObjetoEnArchivo("guardarListaCeldasPartida",celda );
+    }
+
+    public boolean isPausa() {
+        return Pausa;
+    }
+
+    public void setPausa(boolean pausa) {
+        Pausa = pausa;
     }
 
 
@@ -52,7 +69,7 @@ GridPane tableroDeJuego = new GridPane();
     public void setCelda(ListaEnlazed<Celdas> celda) {
         this.celda = celda;
     }
-    private TableroDataModel tableroDataModel;
+    private TableroDataModel tableroDataModel2;
 
     public int getFilas(){
 
@@ -80,7 +97,35 @@ GridPane tableroDeJuego = new GridPane();
         }
     }
 
+    @FXML
+    protected void onPlayButtonClick(){
+        System.out.println("Se ha pulsado el boton de play");
+    }
+    @FXML
+    protected void onPauseButtonClick(){
+        System.out.println("Se ha pulsado el boton de pausa");
+        setPausa(true);
+    }
+
     ListaEnlazed<Celdas> celda = new ListaEnlazed();
+    private void bucleDeControlIniciar(){
+
+        if(control==null){
+            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
+                if (!isPausa()) {
+                    BucleDeControl contronladorPatria = new BucleDeControl(celda);
+                    celda = contronladorPatria.ejecucion();
+                } else {
+                    System.out.println("Se ha pausado el juego");
+                    control.stop();
+                }
+            }));
+            control.setCycleCount(Animation.INDEFINITE);
+            }else{
+            control.stop();
+        }
+        control.play();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

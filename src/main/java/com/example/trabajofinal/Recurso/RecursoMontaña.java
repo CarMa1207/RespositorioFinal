@@ -18,10 +18,7 @@ public class RecursoMontaña extends Recurso {
         individuo.setVida(individuo.getVida()-2);
 
     }
-    @Override
-    public int getProbabilidad(){
-        return getProbabilidadMontaña();
-    }
+
 
 
 }
