@@ -1,8 +1,11 @@
+
 package com.example.trabajofinal.Bucle;
 
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ElementoLe;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Excepciones.Camino;
+import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Recurso.*;
@@ -29,7 +32,7 @@ public class BucleDeControl extends TableroController {
         this.celdas = celda;
     }
 
-    public ListaEnlazed<Celdas> ejecucion() {
+    public ListaEnlazed<Celdas> ejecucion() throws Camino, ExistentID {
 
 
 
@@ -185,6 +188,8 @@ public class BucleDeControl extends TableroController {
         return celdas;
     }
 }
+
+
 
 
 

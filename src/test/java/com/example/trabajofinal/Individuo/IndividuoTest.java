@@ -15,10 +15,12 @@ class IndividuoTest {
     ArbolAVL<Integer> gen= new ArbolAVL<>();
     ListaEnlazed<String> mov= new ListaEnlazed<>();
     Longevidad longevidad= new Longevidad(1,mov);
+    ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
-    Individuo individuo1= new Individuo1(1,1,1,1,celda1,1,1,gen,longevidad);
-    Individuo individuo2= new Individuo1(1,1,1,1,celda2,1,1,gen,longevidad);
-    Individuo individuo3= new Individuo1(1,1,1,1,celda3,1,1,gen,longevidad);
+
+    Individuo individuo1= new Individuo1(1,1,1,1,celda1,1,1,gen,longevidad,ruta);
+    Individuo individuo2= new Individuo2(1,1,1,1,celda2,1,1,gen,longevidad,ruta);
+    Individuo individuo3= new Individuo3(1,1,1,1,celda3,1,1,gen,longevidad,ruta);
 
     @Test
     void setTipo() {
@@ -127,8 +129,8 @@ class IndividuoTest {
 
         ListaEnlazed<Celdas> caminoF= invdividuos.getPrimero().getData().getCamino(celda1,celda4);
 
-            assertEquals(camino.getUltimo().getData().getX(),caminoF.getUltimo().getData().getX());
-            assertEquals(camino.getUltimo().getData().getY(),caminoF.getUltimo().getData().getY());
+        assertEquals(camino.getUltimo().getData().getX(),caminoF.getUltimo().getData().getX());
+        assertEquals(camino.getUltimo().getData().getY(),caminoF.getUltimo().getData().getY());
 
 
     }

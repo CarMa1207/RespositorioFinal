@@ -6,6 +6,10 @@ import java.util.Locale;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.Celdas;
+import com.example.trabajofinal.Excepciones.Camino;
+import com.example.trabajofinal.Excepciones.ExistentID;
+import com.example.trabajofinal.Excepciones.MismaVida;
+import com.example.trabajofinal.Excepciones.NonExistenIndividuo;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Individuo.Individuo2;
@@ -36,33 +40,63 @@ public  class FuncionesBucle  {
 
     public void Vida() {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            individuos.getElemento(i).getData().setVida(individuos.getElemento(i).getData().getVida() - 1);
-            individuos.getElemento(i).getData().getLongevidad().añadirTurno();
+            try {
+
+                individuos.getElemento(i).getData().setVida(individuos.getElemento(i).getData().getVida() - 1);
+                individuos.getElemento(i).getData().getLongevidad().añadirTurno();
+            }catch (NullPointerException exception){
+                System.out.println("ERROR: El individuo que se busca no exsite");
+            }
         }
 
 
         for (int j = 0; j < individuos.getNumeroElementos(); j++) {
-            if (individuos.getElemento(j).getData().getVida() <= 0) {
-                individuos.del(j);
+            try {
+                if (individuos.getElemento(j).getData().getVida() <= 0) {
+                    individuos.del(j);
+                }
+            }catch (NullPointerException exception){
+                System.out.println("ERROR: El individuo que se busca no exsite");
             }
+
 
         }
         for(int x=0; x<individuos.getNumeroElementos();x++){
-            individuos.getElemento(x).getData().setPorcentajereproduccion((individuos.getElemento(x).getData().getPorcentajereproduccion())-(10));
+
+            try {
+                individuos.getElemento(x).getData().setPorcentajereproduccion((individuos.getElemento(x).getData().getPorcentajereproduccion())-(10));
+
+            }catch (NullPointerException exception){
+                System.out.println("ERROR: El individuo que se busca no exsite");
+            }
         }
         for(int w=0; w<individuos.getNumeroElementos(); w++){
+            try {
+                individuos.getElemento(w).getData().setPorcentajetipohijo(individuos.getElemento(w).getData().getPorcentajetipohijo()-10);
 
-            individuos.getElemento(w).getData().setPorcentajetipohijo(individuos.getElemento(w).getData().getPorcentajetipohijo()-10);
+            }catch (NullPointerException exception){
+                System.out.println("ERROR: El individuo que se busca no exsite");
+            }
         }
     }
     public void TiempoVidaRecurso(){
         for(int i=0; i<recursos.getNumeroElementos();i++){
-            recursos.getElemento(i).getData().setTiempoAparicion(recursos.getElemento(i).getData().getTiempoAparicion()-1);
+            try {
+                recursos.getElemento(i).getData().setTiempoAparicion(recursos.getElemento(i).getData().getTiempoAparicion()-1);
+
+            }catch (NullPointerException exception){
+                System.out.println("ERROR: El recurso que se busca no exsite");
+            }
         }
         for(int j=0; j<recursos.getNumeroElementos(); j++){
-            if(recursos.getElemento(j).getData().getTiempoAparicion()<=0){
-                recursos.del(j);
+            try {
+                if(recursos.getElemento(j).getData().getTiempoAparicion()<=0){
+                    recursos.del(j);
+                }
+            }catch (NullPointerException exception){
+                System.out.println("ERROR: El recurso que se busca no exsite");
             }
+
         }
     }
     public void Propiedades() {
@@ -78,7 +112,7 @@ public  class FuncionesBucle  {
     }
 
 
-    public void getCaminoIndividuos(Individuo individuo) {
+    public void getCaminoIndividuos(Individuo individuo) throws Camino {
         ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
 
 
@@ -118,15 +152,19 @@ public  class FuncionesBucle  {
             }
             fin.setX(recursobuscado.getCelda().getX());
             fin.setY(recursobuscado.getCelda().getY());
+            if(individuo.getCamino(inicio,fin)!=null){
+                individuo.setRuta( individuo.getCamino(inicio, fin));
+            }else{
+                throw (new Camino("El camino esta vacio"));
+            }
 
-            individuo.setRuta( individuo.getCamino(inicio, fin));
         }
 
 
 
     }
 
-    public int generarID() {
+    public int generarID() throws ExistentID {
         int id = 0;
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
             if(individuos.getElemento(i).getData().getID()>id){
@@ -134,12 +172,26 @@ public  class FuncionesBucle  {
             }
         }
         id=id+1;
-        return id;
+        boolean esta= false;
+        for(int j=0; j<individuos.getNumeroElementos();j++){
+            for(int w=0; w<individuos.getNumeroElementos();w++){
+                if(individuos.getElemento(j).getData().getID()==individuos.getElemento(w).getData().getID()){
+                    esta=true;
+                }
+            }
+        }
+        if(!esta){
+            return id;
+        }else{
+            throw (new ExistentID("El ID generado ya existe"));
+
+        }
+
 
 
     }
 
-    public void Reproduccion() {
+    public void Reproduccion() throws ExistentID {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
             for (int j = 0; j < individuos.getNumeroElementos(); j++)
                 if (individuos.getElemento(i).getData().getCelda().getX() == individuos.getElemento(j).getData().getCelda().getX() && individuos.getElemento(i).getData().getCelda().getY() == individuos.getElemento(j).getData().getCelda().getY()) {
@@ -183,7 +235,7 @@ public  class FuncionesBucle  {
 
     }
 
-    public Individuo ElMatador(Celdas celda){
+    public Individuo ElMatador(Celdas celda) throws MismaVida {
         ListaEnlazed<Individuo> enLaCelda= new ListaEnlazed<>();
         for(int i=0; i<individuos.getNumeroElementos();i++){
             if(individuos.getElemento(i).getData().getCelda().getX()==celda.getX() && individuos.getElemento(i).getData().getCelda().getY()==celda.getY()) {
@@ -195,7 +247,7 @@ public  class FuncionesBucle  {
         Individuo sentenciado= null;
 
         for( int j=0; j<enLaCelda.getNumeroElementos(); j++){
-            if(vida<enLaCelda.getElemento(j).getData().getVida()){
+            if(vida<=enLaCelda.getElemento(j).getData().getVida()){
                 vida=individuos.getElemento(j).getData().getVida();
                 sentenciado=individuos.getElemento(j).getData();
             }
@@ -204,8 +256,16 @@ public  class FuncionesBucle  {
                 int ruleta= random.nextInt(enLaCelda.getNumeroElementos()+1);
                 sentenciado=individuos.getElemento(ruleta).getData() ;
             }
+
         }
-        return sentenciado;
+        if(sentenciado!=null){
+            return sentenciado;
+        }
+        else{
+            throw (new MismaVida("Los individuos de una de las celdas tienen la misma vida"));
+        }
+
+
 
     }
     public Recurso ElMatadorRecursos(Celdas celda){
@@ -236,7 +296,7 @@ public  class FuncionesBucle  {
 
 
 
-    public void Clonacion(){
+    public void Clonacion() throws ExistentID {
         for(int i=0; i<individuos.getNumeroElementos(); i++){
             Random random= new Random();
             int prob= random.nextInt(101);
