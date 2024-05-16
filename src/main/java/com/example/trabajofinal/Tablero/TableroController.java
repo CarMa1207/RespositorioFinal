@@ -115,12 +115,14 @@ GridPane tableroDeJuego = new GridPane();
     ListaEnlazed<Celdas> celda = new ListaEnlazed();
     private void bucleDeControlIniciar(){
 
+
         if(control==null){
             control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
                 if (!isPausa()) {
                     BucleDeControl contronladorPatria = new BucleDeControl(celda);
+                    contronladorPatria.setTableroDataModel(tableroDataModel);
                     try {
-                        celda = contronladorPatria.ejecucion();
+                        celda = contronladorPatria.ejecucion(celda);
                     } catch (Camino e) {
                         throw new RuntimeException(e);
                     } catch (ExistentID e) {
@@ -141,7 +143,7 @@ GridPane tableroDeJuego = new GridPane();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        TableroController controlador
 
         log.info(" Se esta inicializando el tablero");
         if (modelTablero!=null){

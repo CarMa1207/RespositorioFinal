@@ -17,6 +17,12 @@ public abstract class Individuo extends ParameterDataModel  {
     public Celdas celda;
     int ID;
 
+    public void setDatos(ParameterDataModel datos) {
+
+    }
+
+    private ParameterDataModel datos;
+
 
     ArbolAVL<Integer> generacion;
     Longevidad longevidad;

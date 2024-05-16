@@ -14,25 +14,29 @@ import com.example.trabajofinal.Tablero.TableroDataModel;
 
 import java.util.Random;
 
-public class BucleDeControl extends TableroController {
-
+public class BucleDeControl  {
+    private TableroDataModel tableroDataModel;
 
     public ListaEnlazed<Celdas> celdas;
+
+    public void setTableroDataModel(TableroDataModel tableroDataModel) {
+        this.tableroDataModel = tableroDataModel;
+    }
 
     public BucleDeControl(ListaEnlazed<Celdas> celdas){
         this.celdas= celdas;
     }
-    @Override
+
     public ListaEnlazed<Celdas> getCelda() {
         return celdas;
     }
 
-    @Override
+
     public void setCelda(ListaEnlazed<Celdas> celda) {
         this.celdas = celda;
     }
 
-    public ListaEnlazed<Celdas> ejecucion() throws Camino, ExistentID {
+    public ListaEnlazed<Celdas> ejecucion(ListaEnlazed<Celdas> celdas) throws Camino, ExistentID {
 
 
 
@@ -108,7 +112,7 @@ public class BucleDeControl extends TableroController {
                     if (celdas.getElemento(j).getData().getIndividuoListaEnlazed() != null) {
                         for (int y = 0; y < individuos.getElemento(w).getData().getNumeroElementos(); y++) {
 
-                            funcionesBucle.getDescolodado(individuos.getElemento(w).getData().getElemento(y).getData().getCelda(), getFilas(), getColumnas());
+                            funcionesBucle.getDescolodado(individuos.getElemento(w).getData().getElemento(y).getData().getCelda(), tableroDataModel.getFilas(), tableroDataModel.getColumnas());
 
                         }
                     }
