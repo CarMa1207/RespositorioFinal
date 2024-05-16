@@ -1,4 +1,3 @@
-
 package com.example.trabajofinal.Bucle;
 
 import com.example.trabajofinal.Estructuras.Celdas;
@@ -8,6 +7,8 @@ import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Recurso.*;
 import com.example.trabajofinal.Tablero.TableroController;
 import com.example.trabajofinal.Tablero.TableroDataModel;
@@ -42,11 +43,9 @@ public class BucleDeControl  {
 
 
         ListaEnlazed<ListaEnlazed<Individuo>> individuos = new ListaEnlazed<>();
-
         ListaEnlazed<ListaEnlazed<Recurso>> recursos = new ListaEnlazed<>();
 
         int probA = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadA();
-
         int probB = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadB();
 
         int probC = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadC();
@@ -56,9 +55,7 @@ public class BucleDeControl  {
         int probP = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadP();
 
         int probT = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadT();
-
         int tiempoAp = recursos.getPrimero().getData().getPrimero().getData().getTiempoAparicion();
-
         int probAp = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadAparicion();
 
 
@@ -196,8 +193,6 @@ public class BucleDeControl  {
         return celdas;
     }
 }
-
-
 
 
 

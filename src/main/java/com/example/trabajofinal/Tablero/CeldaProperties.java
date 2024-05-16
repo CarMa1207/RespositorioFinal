@@ -27,14 +27,6 @@ public class CeldaProperties {
     public void setOriginal(Celdas original) {
         this.original = original;
     }
-    public void rollback() {
-        individuos.(original.getIndividuoListaEnlazed());
-        recursos.setProperty(original.getRecursoListaEnlazed());
-    }
-    public void commit(){
-        original.setIndividuoListaEnlazed((ListaEnlazed<Individuo>) individuos.get());
-        original.setRecursoListaEnlazed((ListaEnlazed<Recurso>) recursos.get());
-    }
 
     public Properties getIndividuos() {
         return individuos;

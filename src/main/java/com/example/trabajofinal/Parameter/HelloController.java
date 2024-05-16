@@ -24,7 +24,7 @@ public class HelloController implements Initializable {
     private Button cargarPartida;
 
 
-    private Json gson;
+   private Json gson;
 
     /** Modelo de datos **/
 
@@ -34,7 +34,7 @@ public class HelloController implements Initializable {
     private ParameterDataModelPropertiesRecursos modeloParaGuiCompartidoRecursos = new ParameterDataModelPropertiesRecursos(parametrosDataRecursos);
     private TableroDataModel tableroData = new TableroDataModel(10,10);
     private TableroDataModelProperties modeloParaGuiCompartidoTablero = new TableroDataModelProperties(tableroData);
-
+    private TableroController tableroController;
 
 
 
@@ -44,14 +44,17 @@ public class HelloController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 820, 640);
-            Json.cargarObjetoDesdeArchivo("")
+            gson.cargarObjetoDesdeArchivo("guardarParametrosPartida", ParameterController.model.getOriginal().getClass());
+            gson.cargarObjetoDesdeArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal().getClass());
+            gson.cargarObjetoDesdeArchivo("guardarListaCeldasPartida",tableroController.getCelda().getClass());
+
+
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     @FXML
     protected void nuevaPartidaClick() {

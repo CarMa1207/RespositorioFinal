@@ -1,4 +1,3 @@
-
 package com.example.trabajofinal.Tablero;
 
 import com.example.trabajofinal.Bucle.BucleDeControl;
@@ -8,6 +7,8 @@ import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterController;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.json.Json;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -41,11 +42,14 @@ public class TableroController implements Initializable{
 GridPane tableroDeJuego = new GridPane();
     private TableroDataModelProperties modelTablero;
     private TableroDataModel tableroDataModel;
+    private ParameterDataModelRecursos recusosDatamodel;
+    private ParameterDataModel individuosDatamodel;
     private ParameterController parameterController;
     public Timeline control;
-
-
     public boolean Pausa;
+
+
+    public boolean Pausa
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
         Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
@@ -62,7 +66,10 @@ GridPane tableroDeJuego = new GridPane();
 
 
 
-    public TableroController(){
+    public void setTableroDeJuego(ParameterDataModelRecursos recursos,TableroDataModel tablero,ParameterDataModel individuosD ){
+        this.tableroDataModel=tablero;
+        this.recusosDatamodel=recursos;
+        this.individuosDatamodel=individuosD;
 
     }
     public ListaEnlazed<Celdas> getCelda() {
@@ -88,11 +95,17 @@ GridPane tableroDeJuego = new GridPane();
         log.info ("Inicializando el boton de la celda");
         ControladorCelda controladorCelda= new ControladorCelda(celditas);
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Celda-view.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);
             stage.setTitle(" Celda " + "( " + (celditas.getX())+1 + " , "+ celditas.getY()+1);
             stage.setScene(scene);
+           ControladorCelda ventanaController = fxmlLoader.getController();
+           ventanaController.setTablero(tableroDataModel);
+           ventanaController.setIndividuosc(individuosDatamodel);
+           ventanaController.setRecursosd(recusosDatamodel);
+            ventanaController.setSceneCeldita(stage);
+
             stage.show();
         } catch (Exception e) {
             log.error(" no se ha encontrado");
@@ -114,7 +127,6 @@ GridPane tableroDeJuego = new GridPane();
 
     ListaEnlazed<Celdas> celda = new ListaEnlazed();
     private void bucleDeControlIniciar(){
-
 
         if(control==null){
             control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
@@ -142,18 +154,14 @@ GridPane tableroDeJuego = new GridPane();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (tableroDataModel!=null){
+            for (int i =0 ; i<tableroDataModel.getColumnas(); i++){
 
-        TableroController controlador
-
-        log.info(" Se esta inicializando el tablero");
-        if (modelTablero!=null){
-            for (int i =0 ; i<modelTablero.getColumnas(); i++){
-
-                for ( int j =0 ; i<modelTablero.getFilas(); j++){
+                for ( int j =0 ; i<tableroDataModel.getFilas(); j++){
 
                     Button placeholder= new Button();
-                    placeholder.setMinSize(320*3/modelTablero.getColumnas(), 460/modelTablero.getFilas());
-                    placeholder.setMaxSize(320*3/modelTablero.getColumnas(), 460/modelTablero.getFilas());
+                    placeholder.setMinSize(320*3/tableroDataModel.getColumnas(), 460/tableroDataModel.getFilas());
+                    placeholder.setMaxSize(320*3/tableroDataModel.getColumnas(), 460/tableroDataModel.getFilas());
                     tableroDeJuego.add(placeholder,i,j);
                     Celdas celditas = new Celdas(i,j);
                     celditas.setX(i);
@@ -175,6 +183,5 @@ GridPane tableroDeJuego = new GridPane();
 
     }
 }
-
 
 
