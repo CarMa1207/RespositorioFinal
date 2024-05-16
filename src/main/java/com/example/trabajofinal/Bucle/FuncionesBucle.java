@@ -9,7 +9,6 @@ import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Excepciones.MismaVida;
-import com.example.trabajofinal.Excepciones.NonExistenIndividuo;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Individuo.Individuo2;

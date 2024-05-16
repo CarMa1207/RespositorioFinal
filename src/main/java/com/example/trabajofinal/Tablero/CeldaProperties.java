@@ -1,3 +1,4 @@
+
 package com.example.trabajofinal.Tablero;
 
 import com.example.trabajofinal.Estructuras.Celdas;
@@ -51,3 +52,6 @@ public class CeldaProperties {
         this.recursos = recursos;
     }
 }
+
+
+

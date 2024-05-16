@@ -1,8 +1,11 @@
+
 package com.example.trabajofinal.Tablero;
 
 import com.example.trabajofinal.Bucle.BucleDeControl;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Excepciones.Camino;
+import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterController;
 import com.example.trabajofinal.json.Json;
@@ -42,7 +45,7 @@ GridPane tableroDeJuego = new GridPane();
     public Timeline control;
 
 
-    public boolean Pausa
+    public boolean Pausa;
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
         Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
@@ -99,10 +102,12 @@ GridPane tableroDeJuego = new GridPane();
 
     @FXML
     protected void onPlayButtonClick(){
+        tableroDeJuego.setDisable(true);
         System.out.println("Se ha pulsado el boton de play");
     }
     @FXML
     protected void onPauseButtonClick(){
+        tableroDeJuego.setDisable(false);
         System.out.println("Se ha pulsado el boton de pausa");
         setPausa(true);
     }
@@ -114,7 +119,13 @@ GridPane tableroDeJuego = new GridPane();
             control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
                 if (!isPausa()) {
                     BucleDeControl contronladorPatria = new BucleDeControl(celda);
-                    celda = contronladorPatria.ejecucion();
+                    try {
+                        celda = contronladorPatria.ejecucion();
+                    } catch (Camino e) {
+                        throw new RuntimeException(e);
+                    } catch (ExistentID e) {
+                        throw new RuntimeException(e);
+                    }
                 } else {
                     System.out.println("Se ha pausado el juego");
                     control.stop();
@@ -162,5 +173,6 @@ GridPane tableroDeJuego = new GridPane();
 
     }
 }
+
 
 

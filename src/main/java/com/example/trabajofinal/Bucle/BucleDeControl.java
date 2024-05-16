@@ -38,9 +38,11 @@ public class BucleDeControl extends TableroController {
 
 
         ListaEnlazed<ListaEnlazed<Individuo>> individuos = new ListaEnlazed<>();
+
         ListaEnlazed<ListaEnlazed<Recurso>> recursos = new ListaEnlazed<>();
 
         int probA = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadA();
+
         int probB = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadB();
 
         int probC = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadC();
@@ -50,7 +52,9 @@ public class BucleDeControl extends TableroController {
         int probP = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadP();
 
         int probT = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadT();
+
         int tiempoAp = recursos.getPrimero().getData().getPrimero().getData().getTiempoAparicion();
+
         int probAp = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadAparicion();
 
 

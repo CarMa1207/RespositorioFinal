@@ -1,3 +1,4 @@
+
 package com.example.trabajofinal.Tablero;
 
 
@@ -75,6 +76,7 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
                 log.info("No se puede , porque el maximo es 3");
             } else {
+
                 celdaControlador.getIndividuoListaEnlazed().add(individuo1);
             }
 
@@ -171,4 +173,6 @@ public class ControladorCelda implements Initializable {
         System.out.print("Inicialización en ejecución del controlador\n");
     }
 }
+
+
 
