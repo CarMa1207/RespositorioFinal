@@ -17,14 +17,10 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
     @FXML
-    private Label welcomeText;
-    @FXML
     private Button nuevaPartida;
     @FXML
     private Button cargarPartida;
 
-
-    private Json gson;
 
     /** Modelo de datos **/
 
@@ -37,21 +33,19 @@ public class HelloController implements Initializable {
 
 
 
-
     @FXML
     protected void cargarPartidaClick() {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 820, 640);
-            Json.cargarObjetoDesdeArchivo("")
+
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     @FXML
     protected void nuevaPartidaClick() {

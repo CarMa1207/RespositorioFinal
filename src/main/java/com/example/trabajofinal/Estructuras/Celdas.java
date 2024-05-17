@@ -3,14 +3,15 @@ package com.example.trabajofinal.Estructuras;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Recurso.Recurso;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 
 public class Celdas extends Button {
-    private ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
-    private ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
+    private  ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
+    private   ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
     int x;
     int y;
-
+    private Stage escenaVentana;
 
 
 
@@ -80,6 +81,9 @@ public class Celdas extends Button {
         }else {
             return Boolean.FALSE;
         }
+    }
+    public void setStage(Stage escenaDada){
+        this.escenaVentana= escenaDada;
     }
 
 

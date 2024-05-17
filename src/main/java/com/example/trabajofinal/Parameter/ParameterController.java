@@ -2,6 +2,7 @@ package com.example.trabajofinal.Parameter;
 
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Tablero.TableroController;
 import com.example.trabajofinal.Tablero.TableroDataModel;
 import com.example.trabajofinal.Tablero.TableroDataModelProperties;
@@ -9,7 +10,9 @@ import com.example.trabajofinal.json.Json;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -19,11 +22,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ParameterController extends TableroController implements Initializable {
+public class ParameterController implements Initializable {
 
-    private Json json ;
-    @FXML
-    private Label welcomeText;
+    public Slider sliderFilas;
+    public Label laberValorColumnas;
     @FXML
     private Slider sliderPorcentajereproduccion;
     @FXML
@@ -55,8 +57,6 @@ public class ParameterController extends TableroController implements Initializa
     @FXML
     private Label labelValorPorcentajeClonacionSlider;
     @FXML
-    private Label labelValorPorcentajeTipoHijoSlider;
-    @FXML
     private Label labelValorTiempoAparicionSlider;
     @FXML
     private Label labelValorProbabilidadAparicionSlider;
@@ -72,12 +72,9 @@ public class ParameterController extends TableroController implements Initializa
     private Label labelValorProbabilidaTesoroSlider;
     @FXML
     private Label labelValorProbabilidaBibliotecaSlider;
-    @FXML
-    private Slider sliderFilas;
+
     @FXML
     private Slider sliderColumnas;
-    @FXML
-    private Label labelValorColumnas ;
     @FXML
     private Label labelValorFilas;
     protected IntegerProperty medidaColumnas = new SimpleIntegerProperty(0);
@@ -88,11 +85,20 @@ public class ParameterController extends TableroController implements Initializa
     private Button BotonCargar;
     @FXML
     private Button BotonCerrar;
+    @FXML
+    private Button BotonGuardarTablero;
+    @FXML
+    private Button BotonReiniciarTablero;
     @FXML private GridPane tableroDeJuego;
     public static ParameterDataModelProperties model;
     private  static ParameterDataModelPropertiesRecursos modelRecursos;
     public static TableroDataModelProperties modelTablero;
+    public TableroDataModel tablero;
+    public ParameterDataModel individuos;
+    public ParameterDataModelRecursos recursos;
     private Stage scene;
+
+
     @FXML
     protected void onBotonGuardarClick() {
         model.commit();
@@ -105,6 +111,7 @@ public class ParameterController extends TableroController implements Initializa
         model.rollback();
         modelRecursos.rollback();
     }
+
 
     @FXML protected void onBotonCerrarClick(){
         scene.close();
@@ -125,18 +132,23 @@ public class ParameterController extends TableroController implements Initializa
     @FXML
 
     protected void onTableroButtonClick() { ////// " mirar esta funcion , del modelo del tablero porque puede estar mal y en vez de eso es con el tablero data model "
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
+        try {
+            Scene escena =new Scene(fxmlLoader.load(),600,600);
 
-        // Mismo bucle que en el ejemplo de MainGridApplication
-        for (int i = 0; i < modelTablero.getColumnas(); i++) {
-            for (int j = 0; modelTablero.getFilas()< 10; j++) {
+            TableroController controlador1=fxmlLoader.getController();
+            controlador1.setTableroDeJuego(recursos,tablero,individuos);
 
-                Label placeholder = new Label("Celda " + i + "," + j);
-                placeholder.setMinSize(30, 30);
-                placeholder.setStyle("-fx-border-color: black; -fx-text-alignment: center;");
-                tableroDeJuego.add(placeholder, i, j);
-            }
+            stage.setTitle("Establezca parámetros: ");
+            stage.setScene(escena);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.print("Inicialización en ejecución del controlador de parámetros\n");
@@ -166,7 +178,7 @@ public class ParameterController extends TableroController implements Initializa
         labelValorProbabilidaPozoSlider.textProperty().bind(medidaProbabilidadPozo.asString());
         labelValorProbabilidaBibliotecaSlider.textProperty().bind(medidaProbabilidadBiblioteca.asString());
         labelValorFilas.textProperty().bind(medidaFilas.asString());
-        labelValorColumnas.textProperty().bind(medidaColumnas.asString());
+        laberValorColumnas.textProperty().bind(medidaColumnas.asString());
 
 
 

@@ -4,111 +4,135 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.ParameterController">
-   <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="587.0" text="                                ELIJA LOS NUEVOS PARÁMETROS " textFill="#7c2222">
-         <font>
-            <Font name="System Bold Italic" size="17.0" />
-         </font>
-      </Label>
-      <Separator layoutX="325.0" layoutY="59.0" orientation="VERTICAL" prefHeight="343.0" prefWidth="5.0" />
-      <Label layoutX="387.0" layoutY="51.0" prefHeight="17.0" prefWidth="173.0" text="RECURSOS " textFill="#3d14d0">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="53.0" text="CLASE DE INDIVIDUO" textFill="#340fae">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="373.0" layoutY="107.0" text="AGUA">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="368.0" layoutY="142.0" text="TESORO">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="368.0" layoutY="183.0" text="MONTAÑA">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="366.0" layoutY="230.0" text="BIBLIOTECA">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="373.0" layoutY="276.0" text="POZO">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="366.0" layoutY="319.0" text="COMIDA">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Slider fx:id="sliderProbabilidadAgua" layoutX="420.0" layoutY="109.0" />
-      <Slider fx:id="sliderProbabilidadTesoro" layoutX="420.0" layoutY="144.0" />
-      <Slider fx:id="sliderProbabilidadMontaña" layoutX="440.0" layoutY="185.0" />
-      <Slider fx:id="sliderProbabilidadBiblioteca" layoutX="440.0" layoutY="232.0" />
-      <Slider fx:id="sliderProbabilidadPozo" layoutX="420.0" layoutY="278.0" />
-      <Slider fx:id="sliderProbabilidadComida" layoutX="426.0" layoutY="321.0" />
-      <Label layoutX="24.0" layoutY="134.0" text="VIDA ">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="24.0" layoutY="191.0" text="PORCENTAJE CLONACIÓN">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="24.0" layoutY="247.0" text="PORCENTAJE REPRODUCCIÓN">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="24.0" layoutY="311.0" text="PORCENTAJE TIPO HIJO ">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="357.0" layoutY="361.0" text="TIEMPO APARICIÓN">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Slider fx:id="sliderVida" layoutX="87.0" layoutY="136.0" />
-      <Slider fx:id="sliderPorcentajeclonacion" layoutX="185.0" layoutY="194.0" />
-      <Slider fx:id="sliderPorcentajereproduccion" layoutX="202.0" layoutY="249.0" prefHeight="14.0" prefWidth="124.0" />
-      <Slider fx:id="sliderPorcentajetipohijo" layoutX="187.0" layoutY="314.0" />
-      <Slider fx:id="sliderTiempoAparicion" layoutX="474.0" layoutY="362.0" prefHeight="14.0" prefWidth="124.0" />
-      <Label layoutX="327.0" layoutY="75.0" prefHeight="17.0" prefWidth="162.0" text="PROBABILIDAD APARICION">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Slider fx:id="sliderProbabilidadAparicion" layoutX="490.0" layoutY="76.0" />
-      <Label fx:id="labelValorVidaSlider" layoutX="161.0" layoutY="152.0" prefHeight="17.0" prefWidth="0.0" text="0" />
-      <Label fx:id="labelValorPorcentajeClonacionSlider" layoutX="241.0" layoutY="208.0" text="0" />
-      <Label fx:id="labelValorPorcentajeReproduccionSlider" layoutX="243.0" layoutY="268.0" text="0" />
-      <Label fx:id="labelValorPorcentajeTipoHijoSlider" layoutX="243.0" layoutY="336.0" text="0" />
-      <Label fx:id="labelValorProbabilidadAparicionSlider" layoutX="546.0" layoutY="90.0" text="0" />
-      <Label fx:id="labelValorProbabilidaAguaSlider" layoutX="476.0" layoutY="126.0" text="0" />
-      <Label fx:id="labelValorProbabilidaTesoroSlider" layoutX="476.0" layoutY="160.0" text="0" />
-      <Label fx:id="labelValorProbabilidaMontañaSlider" layoutX="476.0" layoutY="200.0" text="0" />
-      <Label fx:id="labelValorProbabilidaBibliotecaSlider" layoutX="475.0" layoutY="248.0" text="0" />
-      <Label fx:id="labelValorProbabilidaPozoSlider" layoutX="476.0" layoutY="293.0" text="0" />
-      <Label fx:id="labelValorProbabilidaComidaSlider" layoutX="475.0" layoutY="336.0" text="0" />
-      <Label fx:id="labelValorTiempoAparicionSlider" layoutX="522.0" layoutY="380.0" text="0" />
-      <Button fx:id="Tablero" layoutX="161.0" layoutY="78.0" mnemonicParsing="false" onAction="#onTableroButtonClick" text="Tablero" />
-   </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.ParameterController">
+  <tabs>
+    <Tab text="Parametros">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane layoutX="-6.0" layoutY="-3.0" prefHeight="383.0" prefWidth="630.0">
+                     <children>
+                        <Separator layoutX="325.0" layoutY="59.0" orientation="VERTICAL" prefHeight="343.0" prefWidth="5.0" />
+                        <Label layoutX="385.0" layoutY="29.0" prefHeight="17.0" prefWidth="173.0" text="RECURSOS " textFill="#3d14d0">
+                           <font>
+                              <Font name="System Italic" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="29.0" text="CLASE DE INDIVIDUO" textFill="#340fae">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="368.0" layoutY="98.0" text="AGUA">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="367.0" layoutY="128.0" text="TESORO">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="368.0" layoutY="168.0" text="MONTAÑA">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="366.0" layoutY="212.0" text="BIBLIOTECA">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="383.0" layoutY="248.0" text="POZO">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="366.0" layoutY="284.0" text="COMIDA">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="sliderProbabilidadAgua" layoutX="418.0" layoutY="100.0" />
+                        <Slider fx:id="sliderProbabilidadTesoro" layoutX="420.0" layoutY="130.0" />
+                        <Slider fx:id="sliderProbabilidadMontaña" layoutX="440.0" layoutY="170.0" />
+                        <Slider fx:id="sliderProbabilidadBiblioteca" layoutX="452.0" layoutY="214.0" />
+                        <Slider fx:id="sliderProbabilidadPozo" layoutX="452.0" layoutY="250.0" />
+                        <Slider fx:id="sliderProbabilidadComida" layoutX="440.0" layoutY="286.0" />
+                        <Label layoutX="24.0" layoutY="83.0" text="VIDA ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="13.0" layoutY="135.0" text="PORCENTAJE CLONACIÓN">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="13.0" layoutY="190.0" text="PORCENTAJE REPRODUCCIÓN">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="18.0" layoutY="248.0" text="PORCENTAJE TIPO HIJO ">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="348.0" layoutY="318.0" text="TIEMPO APARICIÓN">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="sliderVida" layoutX="74.0" layoutY="85.0" />
+                        <Slider fx:id="sliderPorcentajeclonacion" layoutX="171.0" layoutY="137.0" />
+                        <Slider fx:id="sliderPorcentajereproduccion" layoutX="195.0" layoutY="193.0" prefHeight="14.0" prefWidth="124.0" />
+                        <Slider fx:id="sliderPorcentajetipohijo" layoutX="180.0" layoutY="250.0" />
+                        <Slider fx:id="sliderTiempoAparicion" layoutX="484.0" layoutY="320.0" prefHeight="14.0" prefWidth="124.0" />
+                        <Label layoutX="325.0" layoutY="67.0" prefHeight="17.0" prefWidth="162.0" text="PROBABILIDAD APARICION">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="sliderProbabilidadAparicion" layoutX="488.0" layoutY="69.0" prefHeight="14.0" prefWidth="115.0" />
+                        <Label fx:id="labelValorVidaSlider" layoutX="137.0" layoutY="107.0" prefHeight="17.0" prefWidth="0.0" text="0" />
+                        <Label fx:id="labelValorPorcentajeClonacionSlider" layoutX="234.0" layoutY="160.0" text="0" />
+                        <Label fx:id="labelValorPorcentajeReproduccionSlider" layoutX="239.0" layoutY="221.0" text="0" />
+                        <Label fx:id="labelValorPorcentajeTipoHijoSlider" layoutX="239.0" layoutY="267.0" text="0" />
+                        <Label fx:id="labelValorProbabilidadAparicionSlider" layoutX="557.0" layoutY="83.0" text="0" />
+                        <Label fx:id="labelValorProbabilidaAguaSlider" layoutX="484.0" layoutY="115.0" text="0" />
+                        <Label fx:id="labelValorProbabilidaTesoroSlider" layoutX="487.0" layoutY="143.0" text="0" />
+                        <Label fx:id="labelValorProbabilidaMontañaSlider" layoutX="507.0" layoutY="190.0" text="0" />
+                        <Label fx:id="labelValorProbabilidaBibliotecaSlider" layoutX="510.0" layoutY="229.0" text="0" />
+                        <Label fx:id="labelValorProbabilidaPozoSlider" layoutX="513.0" layoutY="267.0" text="0" />
+                        <Label fx:id="labelValorProbabilidaComidaSlider" layoutX="507.0" layoutY="301.0" text="0" />
+                        <Label fx:id="labelValorTiempoAparicionSlider" layoutX="543.0" layoutY="344.0" text="0" />
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Tablero">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="168.0" layoutY="14.0" prefHeight="17.0" prefWidth="263.0" text="Elija los parametros del tablero" />
+                  <Slider fx:id="sliderFilas" layoutX="135.0" layoutY="70.0" />
+                  <Label layoutX="44.0" layoutY="69.0" text="Filas" />
+                  <Label layoutX="42.0" layoutY="134.0" text="Columnas " />
+                  <Slider fx:id="sliderColumnas" layoutX="135.0" layoutY="136.0" />
+                  <Button fx:id="onBotonGuardarTableroClick" layoutX="56.0" layoutY="226.0" mnemonicParsing="false" text="Guardar" />
+                  <Button fx:id="onBotonReiniciarTableroClick" layoutX="251.0" layoutY="226.0" mnemonicParsing="false" text="Reiniciar" />
+                  <Button fx:id="onTableroButtonClick" layoutX="448.0" layoutY="226.0" mnemonicParsing="false" onAction="#onTableroButtonClick" text="Crear Tablero " />
+                  <Label fx:id="labelValorFilas" layoutX="191.0" layoutY="86.0" text="0" />
+                  <Label fx:id="laberValorColumnas" layoutX="180.0" layoutY="158.0" text="0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

@@ -8,6 +8,8 @@ import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Individuo.Individuo2;
 import com.example.trabajofinal.Individuo.Individuo3;
 import com.example.trabajofinal.Parameter.HelloApplication;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Recurso.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,14 +28,14 @@ import java.util.ResourceBundle;
 public class ControladorCelda implements Initializable {
         private Celdas celdaControlador;
 
-        private Individuo1 individuo1;
-        private Individuo2 individuo2;
-        private Individuo3 individuo3;
+        private  Individuo1 individuo1;
+        private  Individuo2 individuo2;
+        private   Individuo3 individuo3;
         private RecursoAgua agua ;
-        private RecursoBiblioteca biblioteca;
-        private RecursoComida comida ;
+        private  RecursoBiblioteca biblioteca;
+        private  RecursoComida comida ;
         private RecursoMontaña montaña;
-        private RecursoPozo pozo;
+        private  RecursoPozo pozo;
         private RecursoTesoro tesoro;
     private Stage sceneCelda;
         @FXML
@@ -59,12 +61,28 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         private Label titulo;
+        private TableroDataModel tablero;
+        private ParameterDataModel individuosc;
+        private ParameterDataModelRecursos recursosd;
 
-        private Stage sceneCeldita;
+    public void setTablero(TableroDataModel tablero) {
+        this.tablero = tablero;
+    }
+
+    public void setIndividuosc(ParameterDataModel individuosc) {
+        this.individuosc = individuosc;
+    }
+
+    public void setRecursosd(ParameterDataModelRecursos recursosd) {
+        this.recursosd = recursosd;
+    }
+
+    private Stage sceneCeldita;
 
         public ControladorCelda(Celdas celdaControlador) {
             this.celdaControlador = celdaControlador;
         }
+
 
         @FXML
         protected void onBotonCerrarClick() {
@@ -74,7 +92,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonIndividuo1() {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
 
                 celdaControlador.getIndividuoListaEnlazed().add(individuo1);
@@ -85,7 +102,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonIndividuo2() {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getIndividuoListaEnlazed().add(individuo2);
             }
@@ -95,7 +111,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonIndividuo3() {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getIndividuoListaEnlazed().add(individuo3);
             }
@@ -105,7 +120,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonAgua() {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(agua);
             }
@@ -115,7 +129,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonBiblioteca () {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(biblioteca);
             }
@@ -125,7 +138,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonComida() {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(comida);
             }
@@ -136,7 +148,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonMontaña () {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(montaña);
             }
@@ -146,7 +157,6 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonPozo() {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(pozo);
             }
@@ -156,17 +166,16 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonTesoro() {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-                log.info("No se puede , porque el maximo es 3");
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(tesoro);
             }
 
 
         }
-
     public void setSceneCeldita(Stage sceneCeldita) {
         this.sceneCeldita = sceneCeldita;
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

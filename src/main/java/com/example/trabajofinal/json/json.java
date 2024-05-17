@@ -1,11 +1,12 @@
 package com.example.trabajofinal.json;
+
 import com.google.gson.Gson;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class json {
+public class Json {
     public static <T> void guardarObjetoEnArchivo(String rutaArchivo, T objeto) {
         Gson gson = new Gson();
         try (FileWriter writer = new FileWriter(rutaArchivo)) {
