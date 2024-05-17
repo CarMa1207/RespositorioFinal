@@ -126,9 +126,9 @@
                   <Label layoutX="44.0" layoutY="69.0" text="Filas" />
                   <Label layoutX="42.0" layoutY="134.0" text="Columnas " />
                   <Slider fx:id="sliderColumnas" layoutX="135.0" layoutY="136.0" />
-                  <Button fx:id="onBotonGuardarTableroClick" layoutX="56.0" layoutY="226.0" mnemonicParsing="false" text="Guardar" />
-                  <Button fx:id="onBotonReiniciarTableroClick" layoutX="251.0" layoutY="226.0" mnemonicParsing="false" text="Reiniciar" />
-                  <Button fx:id="onTableroButtonClick" layoutX="448.0" layoutY="226.0" mnemonicParsing="false" onAction="#onTableroButtonClick" text="Crear Tablero " />
+                  <Button fx:id="BotonGuardarTablero" layoutX="56.0" layoutY="226.0" mnemonicParsing="false" onAction="#onBotonGuardarTableroClick" text="Guardar" />
+                  <Button fx:id="BotonReiniciarTablero" layoutX="251.0" layoutY="226.0" mnemonicParsing="false" onAction="#onBotonReiniciarTableroClick" text="Reiniciar" />
+                  <Button fx:id="tableroboton" layoutX="448.0" layoutY="226.0" mnemonicParsing="false" onAction="#onTableroButtonClick" text="Crear Tablero " />
                   <Label fx:id="labelValorFilas" layoutX="191.0" layoutY="86.0" text="0" />
                   <Label fx:id="laberValorColumnas" layoutX="180.0" layoutY="158.0" text="0" />
                </children></AnchorPane>
