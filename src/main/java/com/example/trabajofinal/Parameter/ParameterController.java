@@ -26,9 +26,6 @@ public class ParameterController implements Initializable {
 
     public Slider sliderFilas;
     public Label laberValorColumnas;
-    private Json json ;
-    @FXML
-    private Label welcomeText;
     @FXML
     private Slider sliderPorcentajereproduccion;
     @FXML
@@ -59,8 +56,6 @@ public class ParameterController implements Initializable {
     private Label labelValorPorcentajeReproduccionSlider;
     @FXML
     private Label labelValorPorcentajeClonacionSlider;
-    @FXML
-    private Label labelValorPorcentajeTipoHijoSlider;
     @FXML
     private Label labelValorTiempoAparicionSlider;
     @FXML
@@ -134,7 +129,6 @@ public class ParameterController implements Initializable {
     protected IntegerProperty medidaProbabilidadPozo = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadMontaña = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadTesoro = new SimpleIntegerProperty(0);
-    private Scene escenaTablero;
     @FXML
 
     protected void onTableroButtonClick() { ////// " mirar esta funcion , del modelo del tablero porque puede estar mal y en vez de eso es con el tablero data model "
@@ -147,7 +141,7 @@ public class ParameterController implements Initializable {
             controlador1.setTableroDeJuego(recursos,tablero,individuos);
 
             stage.setTitle("Establezca parámetros: ");
-            stage.setScene(escenaTablero);
+            stage.setScene(escena);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

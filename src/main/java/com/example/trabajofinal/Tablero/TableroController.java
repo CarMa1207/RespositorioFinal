@@ -48,8 +48,6 @@ GridPane tableroDeJuego = new GridPane();
     public Timeline control;
     public boolean Pausa;
 
-
-    public boolean Pausa
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
         Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
@@ -92,8 +90,6 @@ GridPane tableroDeJuego = new GridPane();
 
     @FXML
     protected void ButtonCelda(Celdas celditas  ){
-        log.info ("Inicializando el boton de la celda");
-        ControladorCelda controladorCelda= new ControladorCelda(celditas);
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Celda-view.fxml"));
         try {
@@ -108,7 +104,6 @@ GridPane tableroDeJuego = new GridPane();
 
             stage.show();
         } catch (Exception e) {
-            log.error(" no se ha encontrado");
             e.printStackTrace();
         }
     }
