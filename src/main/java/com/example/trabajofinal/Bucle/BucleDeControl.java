@@ -1,17 +1,12 @@
 package com.example.trabajofinal.Bucle;
 
 import com.example.trabajofinal.Estructuras.Celdas;
-import com.example.trabajofinal.Estructuras.ElementoLe;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Individuo.Individuo;
-import com.example.trabajofinal.Individuo.Individuo1;
-import com.example.trabajofinal.Parameter.ParameterDataModel;
-import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Recurso.*;
-import com.example.trabajofinal.Tablero.TableroController;
-import com.example.trabajofinal.Tablero.TableroDataModel;
+import com.example.trabajofinal.Parameter.TableroDataModel;
 
 import java.util.Random;
 

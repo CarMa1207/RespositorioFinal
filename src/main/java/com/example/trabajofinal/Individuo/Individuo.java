@@ -1,14 +1,11 @@
 package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
-import com.example.trabajofinal.Estructuras.Mapa;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
-import com.example.trabajofinal.Recurso.Recurso;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
 import com.example.trabajofinal.Estructuras.Celdas;
-import java.util.ListResourceBundle;
-import java.util.Map;
+
 import java.util.Random;
-import com.example.trabajofinal.Tablero.TableroDataModel;
+
 import com.example.trabajofinal.Estructuras.Longevidad;
 
 public abstract class Individuo  {

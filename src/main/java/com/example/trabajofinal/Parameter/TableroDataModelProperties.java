@@ -1,5 +1,6 @@
-package com.example.trabajofinal.Tablero;
+package com.example.trabajofinal.Parameter;
 
+import com.example.trabajofinal.Parameter.TableroDataModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleIntegerProperty;

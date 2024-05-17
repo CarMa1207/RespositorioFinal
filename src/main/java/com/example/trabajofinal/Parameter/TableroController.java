@@ -1,4 +1,4 @@
-package com.example.trabajofinal.Tablero;
+package com.example.trabajofinal.Parameter;
 
 import com.example.trabajofinal.Bucle.BucleDeControl;
 import com.example.trabajofinal.Estructuras.Celdas;
@@ -16,9 +16,6 @@ import com.example.trabajofinal.json.Json;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,8 +24,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -42,7 +37,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TableroController implements Initializable{
-GridPane tableroDeJuego = new GridPane();
+@FXML
+    GridPane tableroDeJuego = new GridPane();
     private TableroDataModelProperties modelTablero;
     private TableroDataModel tableroDataModel;
     private ParameterDataModelRecursos recusosDatamodel;
@@ -59,6 +55,12 @@ GridPane tableroDeJuego = new GridPane();
 
 
  */
+protected void guardarPartida(){
+    Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
+    Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
+    Json.guardarObjetoEnArchivo("guardarListaCeldasPartida",celda );
+}
+
     public boolean isPausa() {
         return Pausa;
     }
@@ -67,9 +69,10 @@ GridPane tableroDeJuego = new GridPane();
         Pausa = pausa;
     }
 
+    public TableroController() {
+    }
 
-
-    public void setTableroDeJuego(ParameterDataModelRecursos recursos,TableroDataModel tablero,ParameterDataModel individuosD ){
+    public void setTableroDeJuego(ParameterDataModelRecursos recursos, TableroDataModel tablero, ParameterDataModel individuosD ){
         this.tableroDataModel=tablero;
         this.recusosDatamodel=recursos;
         this.individuosDatamodel=individuosD;

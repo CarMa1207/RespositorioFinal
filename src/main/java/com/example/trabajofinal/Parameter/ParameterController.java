@@ -26,9 +26,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ParameterController implements Initializable {
-
+    @FXML
     public Slider sliderFilas;
+    @FXML
     public Label laberValorColumnas;
+    @FXML
+    public Label labelValorPorcentajeTipoHijoSlider;
     @FXML
     private Slider sliderPorcentajereproduccion;
     @FXML
@@ -93,9 +96,11 @@ public class ParameterController implements Initializable {
     @FXML
     private Button BotonReiniciarTablero;
     @FXML private GridPane tableroDeJuego;
-    public static ParameterDataModelProperties model;
-    private  static ParameterDataModelPropertiesRecursos modelRecursos;
-    public static TableroDataModelProperties modelTablero;
+    @FXML
+    private Button tableroboton;
+    public  ParameterDataModelProperties model;
+    private  ParameterDataModelPropertiesRecursos modelRecursos;
+    public  TableroDataModelProperties modelTablero;
     public TableroDataModel tablero;
     public ParameterDataModel individuos;
     public ParameterDataModelRecursos recursos;
@@ -104,15 +109,19 @@ public class ParameterController implements Initializable {
 
     @FXML
     protected void onBotonGuardarClick() {
-        model.commit();
-        modelRecursos.commit();
+       if(model!= null && modelRecursos!= null) {
+           model.commit();
+           modelRecursos.commit();
+       }
 
     }
 
     @FXML
     protected void onBotonReiniciarClick() {
-        model.rollback();
-        modelRecursos.rollback();
+        if(model!= null && modelRecursos!= null) {
+            model.rollback();
+            modelRecursos.rollback();
+        }
     }
 
 
@@ -135,13 +144,14 @@ public class ParameterController implements Initializable {
     @FXML
 
     protected void onTableroButtonClick() { ////// " mirar esta funcion , del modelo del tablero porque puede estar mal y en vez de eso es con el tablero data model "
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
+
         try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("com/example/trabajofinal/tablero-view.fxml"));
             Scene escena =new Scene(fxmlLoader.load(),600,600);
 
             TableroController controlador1=fxmlLoader.getController();
-            controlador1.setTableroDeJuego(recursos,tablero,individuos);
+            controlador1.setTableroDeJuego(modelRecursos.getOriginal(),modelTablero.getTableroOriginal(),model.getOriginal());
 
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(escena);
@@ -210,23 +220,27 @@ public class ParameterController implements Initializable {
         sliderFilas.valueProperty().bindBidirectional(modelTablero.FilasProperty());
         sliderColumnas.valueProperty().bindBidirectional(modelTablero.ColumnasProperty());
     }
-    public void loadUserData(ParameterDataModelProperties parametrosData , ParameterDataModelPropertiesRecursos parametrosDataRecurso) {
+    public void loadUserData(ParameterDataModelProperties parametrosData , ParameterDataModelPropertiesRecursos parametrosDataRecurso,TableroDataModelProperties parametrosTablero) {
         this.model = parametrosData;
-        this.modelRecursos=parametrosDataRecurso;
-        this.updateGUIwithModel();
-    }
-    public void loadUserDataTablero(TableroDataModelProperties parametrosTablero){
+        this.modelRecursos = parametrosDataRecurso;
         this.modelTablero=parametrosTablero;
-        this.updateGUIwithModelTablero();
-    }
+        this.updateGUIwithModel();
+        }
+
     @FXML
     protected void onBotonGuardarTableroClick() {
-        modelTablero.commit();
+        if (modelTablero!= null ) {
+
+
+            modelTablero.commit();
+        }
     }
 
     @FXML
     protected void onBotonReiniciarTableroClick() {
-        modelTablero.rollback();
+       if (modelTablero!= null) {
+           modelTablero.rollback();
+       }
     }
 
     public void setStage(Stage s){

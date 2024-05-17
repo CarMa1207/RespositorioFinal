@@ -1,4 +1,4 @@
-package com.example.trabajofinal.Tablero;
+package com.example.trabajofinal.Parameter;
 
 public class TableroDataModel {
     private int filas;

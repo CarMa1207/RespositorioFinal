@@ -1,25 +1,19 @@
 
-package com.example.trabajofinal.Tablero;
+package com.example.trabajofinal.Parameter;
 
 
 import com.example.trabajofinal.Estructuras.Celdas;
-import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Individuo.Individuo2;
 import com.example.trabajofinal.Individuo.Individuo3;
-import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
+import com.example.trabajofinal.Parameter.TableroDataModel;
 import com.example.trabajofinal.Recurso.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 import java.net.URL;

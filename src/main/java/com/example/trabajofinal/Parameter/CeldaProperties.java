@@ -1,5 +1,5 @@
 
-package com.example.trabajofinal.Tablero;
+package com.example.trabajofinal.Parameter;
 
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;

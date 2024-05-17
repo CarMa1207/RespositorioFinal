@@ -12,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -39,7 +38,7 @@ public class HelloController implements Initializable {
     @FXML
     protected void cargarPartidaClick() {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/trabajofinal/nuevaPartida-view.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 820, 640);
 
@@ -53,14 +52,13 @@ public class HelloController implements Initializable {
     @FXML
     protected void nuevaPartidaClick() {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("nuevaPartida-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/trabajofinal/nuevaPartida-view.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 820, 640);
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(scene);
             ParameterController p = fxmlLoader.getController();
-            p.loadUserData(this.modeloParaGUICompartido,this.modeloParaGuiCompartidoRecursos);
-            p.loadUserDataTablero(this.modeloParaGuiCompartidoTablero);
+            p.loadUserData(this.modeloParaGUICompartido,this.modeloParaGuiCompartidoRecursos,this.modeloParaGuiCompartidoTablero);
             p.setStage(stage);
             stage.show();
         } catch (Exception e) {
