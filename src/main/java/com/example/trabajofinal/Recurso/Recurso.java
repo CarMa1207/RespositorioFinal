@@ -4,7 +4,7 @@ import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Estructuras.Celdas;
 
-public abstract  class Recurso extends ParameterDataModelRecursos  {
+public abstract  class Recurso   {
 
 
     public Individuo individuo;
@@ -15,10 +15,28 @@ public abstract  class Recurso extends ParameterDataModelRecursos  {
     public String tipo;
 
 
-    public Recurso(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro);
+    public ParameterDataModelRecursos getDatos() {
+        return datos;
+    }
+
+    public ParameterDataModelRecursos datos;
+    public void setDatos(ParameterDataModelRecursos datos) {
+        this.datos = datos;
+    }
+    int tiempoAparicon= datos.getTiempoAparicion();
+    int probabilidadAparicion= datos.getProbabilidadAparicion();
+    int probabilidadAgua= datos.getProbabilidadAgua();
+    int probabilidadComida= datos.getProbabilidadComida();
+    int probabilidadBiblioteca= datos.getProbabilidadBiblioteca();
+    int probabilidadPozo= datos.getProbabilidadPozo();
+    int probabilidadTesoro= datos.getProbabilidadTesoro();
+    int probabilidadMontaña= datos.getProbabilidadMontaña();
+
+
+    public Recurso( Celdas celda, String tipo)  {
         this.celda=celda;
         this.tipo=tipo;
+
     }
 
 
@@ -37,17 +55,17 @@ public abstract  class Recurso extends ParameterDataModelRecursos  {
 
 
     public abstract void Propiedad(Individuo individuo);
-    public int getProbabilidadA(){return getProbabilidadAgua();};
+    public int getProbabilidadA(){return probabilidadAgua;};
 
-    public int getProbabilidadB(){return getProbabilidadAgua();};
+    public int getProbabilidadB(){return probabilidadBiblioteca;};
 
-    public int getProbabilidadC(){return getProbabilidadAgua();};
+    public int getProbabilidadC(){return probabilidadComida;};
 
-    public int getProbabilidadM(){return getProbabilidadAgua();};
+    public int getProbabilidadM(){return probabilidadMontaña;};
 
-    public int getProbabilidadP(){return getProbabilidadAgua();};
+    public int getProbabilidadP(){return probabilidadPozo;};
 
-    public int getProbabilidadT(){return getProbabilidadAgua();};
+    public int getProbabilidadT(){return probabilidadTesoro;};
 
 
 

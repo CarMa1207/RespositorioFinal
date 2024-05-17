@@ -9,8 +9,8 @@ public class RecursoBiblioteca extends Recurso {
 
 
 
-    public RecursoBiblioteca(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,"Biblioteca");
+    public RecursoBiblioteca( Celdas celda, String tipo)  {
+        super(celda,"Biblioteca");
 
     }
 
@@ -21,7 +21,7 @@ public class RecursoBiblioteca extends Recurso {
         Random random= new Random();
         int Y= random.nextInt(101);
         Y=Y/100;
-        individuo.setPorcentajeclonacion(individuo.getPorcentajeclonacion()+(individuo.getPorcentajeclonacion()*Y));
+        individuo.getDatos().setPorcentajeclonacion(individuo.getDatos().getPorcentajeclonacion()+(individuo.getDatos().getPorcentajeclonacion()*Y));
 
         individuo.setTipo(individuo.getTipo()+1);
         if(individuo.getTipo()>3){

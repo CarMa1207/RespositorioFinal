@@ -11,18 +11,14 @@ import java.util.Random;
 import com.example.trabajofinal.Tablero.TableroDataModel;
 import com.example.trabajofinal.Estructuras.Longevidad;
 
-public abstract class Individuo extends ParameterDataModel  {
+public abstract class Individuo  {
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
     public Celdas celda;
-    int ID;
 
-    public void setDatos(ParameterDataModel datos) {
 
-    }
 
     private ParameterDataModel datos;
-
 
     ArbolAVL<Integer> generacion;
     Longevidad longevidad;
@@ -30,16 +26,25 @@ public abstract class Individuo extends ParameterDataModel  {
 
     ListaEnlazed<Celdas> ruta;
 
+    public void setDatos(ParameterDataModel datos) {
+
+    }
+    public ParameterDataModel getDatos() {
+        return datos;
+    }
 
 
-    public Individuo(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo,Celdas celda, int tipo,int ID,ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> camino)
+    int vida=datos.getVida();
+    int porcentajeclonacion= datos.getPorcentajeclonacion();
+    int porcentajereproduccion= datos.getPorcentajereproduccion();
+    int ID=datos.getID();
+
+    public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> camino)
     {
 
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo);
 
         this.celda=celda;
         this.tipo=tipo;
-        this.ID=0;
         this.generacion=generacion;
         this.longevidad=longevity;
         this.ruta=camino;
@@ -52,13 +57,7 @@ public abstract class Individuo extends ParameterDataModel  {
     public int getTipo(){
         return tipo;
     }
-    public int getID() {
-        return ID;
-    }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public ArbolAVL<Integer> getGeneracion() {
         return generacion;
@@ -73,7 +72,7 @@ public abstract class Individuo extends ParameterDataModel  {
         Random random= new Random();
         int probabilidad= random.nextInt(101);
 
-        if (probabilidad <= getPorcentajereproduccion()) {
+        if (probabilidad <= porcentajereproduccion) {
 
             return true;
         }
@@ -86,7 +85,7 @@ public abstract class Individuo extends ParameterDataModel  {
         Random random= new Random();
         int probabilidad= random.nextInt(101);
 
-        if (probabilidad <= getPorcentajeclonacion()) {
+        if (probabilidad <= porcentajeclonacion) {
 
             return true;
         }

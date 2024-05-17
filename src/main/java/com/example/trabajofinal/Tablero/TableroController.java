@@ -9,7 +9,10 @@ import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterController;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
+/*
 import com.example.trabajofinal.json.Json;
+
+ */
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -47,13 +50,15 @@ GridPane tableroDeJuego = new GridPane();
     private ParameterController parameterController;
     public Timeline control;
     public boolean Pausa;
-
+/*
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
         Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
         Json.guardarObjetoEnArchivo("guardarListaCeldasPartida",celda );
     }
 
+
+ */
     public boolean isPausa() {
         return Pausa;
     }
@@ -150,6 +155,7 @@ GridPane tableroDeJuego = new GridPane();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (tableroDataModel!=null){
+            int ID=0;
             for (int i =0 ; i<tableroDataModel.getColumnas(); i++){
 
                 for ( int j =0 ; i<tableroDataModel.getFilas(); j++){
@@ -161,6 +167,14 @@ GridPane tableroDeJuego = new GridPane();
                     Celdas celditas = new Celdas(i,j);
                     celditas.setX(i);
                     celditas.setY(j);
+                    for(int x=0; x<celditas.getIndividuoListaEnlazed().getNumeroElementos();x++){
+                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
+                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
+                        celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
+                        celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
+                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().getDatos().setID(ID);
+                        ID++;
+                    }
                     celditas.setOnAction(actionEvent -> {
                         celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
                     });

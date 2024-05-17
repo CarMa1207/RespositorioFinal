@@ -6,12 +6,16 @@ public class ParameterDataModel {
     private int porcentajeclonacion;
     private int porcentajetipohijo;
 
+
+    public int ID;
+
     /** Constructor **/
-    public ParameterDataModel(int vida, int porcentajereproduccion, int porcentajeclonacion, int porcentajetipohijo) {
+    public ParameterDataModel(int vida, int porcentajereproduccion, int porcentajeclonacion, int porcentajetipohijo,int ID) {
         this.vida = vida;
         this.porcentajereproduccion = porcentajereproduccion;
         this.porcentajeclonacion = porcentajeclonacion;
         this.porcentajetipohijo = porcentajetipohijo;
+        this.ID=ID;
     }
 
     public int getVida() {
@@ -45,4 +49,15 @@ public class ParameterDataModel {
     public void setPorcentajetipohijo(int porcentajetipohijo) {
         this.porcentajetipohijo = porcentajetipohijo;
     }
+    public int getID() {
+        return ID;
+    }
+    public void generarID(){
+        this.ID++;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
 }

@@ -8,8 +8,8 @@ public class RecursoAgua extends Recurso{
 
 
 
-    public RecursoAgua(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,"Agua");
+    public RecursoAgua( Celdas celda, String tipo)  {
+        super(celda,"Agua");
 
     }
 
@@ -18,7 +18,7 @@ public class RecursoAgua extends Recurso{
     @Override
     public void Propiedad(Individuo individuo){
 
-        individuo.setVida(individuo.getVida()+2);
+        individuo.getDatos().setVida(individuo.getDatos().getVida()+2);
 
 
 

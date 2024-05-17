@@ -3,8 +3,8 @@ package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo3 extends Individuo {
-    public Individuo3(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity,ListaEnlazed<Celdas> camino) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,3,ID,generacion,longevity,camino);
+    public Individuo3( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Longevidad longevity,ListaEnlazed<Celdas> camino) {
+        super(celda,3,generacion,longevity,camino);
     }
 
     @Override

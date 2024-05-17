@@ -3,7 +3,10 @@ package com.example.trabajofinal.Parameter;
 import com.example.trabajofinal.Tablero.TableroController;
 import com.example.trabajofinal.Tablero.TableroDataModel;
 import com.example.trabajofinal.Tablero.TableroDataModelProperties;
+/*
 import com.example.trabajofinal.json.Json;
+
+ */
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +27,7 @@ public class HelloController implements Initializable {
 
     /** Modelo de datos **/
 
-    private ParameterDataModel parametrosData = new ParameterDataModel(7, 10, 5,8);
+    private ParameterDataModel parametrosData = new ParameterDataModel(7, 10, 5,8,0);
     private ParameterDataModelProperties modeloParaGUICompartido = new ParameterDataModelProperties(parametrosData);
     private ParameterDataModelRecursos parametrosDataRecursos = new ParameterDataModelRecursos(4,5,6,7,8,9,1,3);
     private ParameterDataModelPropertiesRecursos modeloParaGuiCompartidoRecursos = new ParameterDataModelPropertiesRecursos(parametrosDataRecursos);
