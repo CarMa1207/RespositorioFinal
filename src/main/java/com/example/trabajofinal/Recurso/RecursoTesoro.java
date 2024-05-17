@@ -9,8 +9,8 @@ import java.util.Random;
 public class RecursoTesoro extends Recurso {
 
 
-    public RecursoTesoro(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,"Tesoro");
+    public RecursoTesoro( Celdas celda, String tipo)  {
+        super(celda,"Tesoro");
 
     }
 
@@ -22,7 +22,7 @@ public class RecursoTesoro extends Recurso {
         Random random= new Random();
         int Y= random.nextInt(101);
         Y=Y/100;
-        individuo.setPorcentajereproduccion(individuo.getPorcentajereproduccion()+(individuo.getPorcentajereproduccion()*Y));
+        individuo.getDatos().setPorcentajereproduccion(individuo.getDatos().getPorcentajereproduccion()+(individuo.getDatos().getPorcentajereproduccion()*Y));
 
     }
 

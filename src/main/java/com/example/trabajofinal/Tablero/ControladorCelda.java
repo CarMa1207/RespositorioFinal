@@ -95,6 +95,8 @@ public class ControladorCelda implements Initializable {
             } else {
 
                 celdaControlador.getIndividuoListaEnlazed().add(individuo1);
+                individuo1.setDatos(individuosc);
+
             }
 
         }
@@ -104,6 +106,8 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getIndividuoListaEnlazed().add(individuo2);
+                individuo2.setDatos(individuosc);
+
             }
 
         }
@@ -113,6 +117,8 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getIndividuoListaEnlazed().add(individuo3);
+                individuo3.setDatos(individuosc);
+
             }
 
 
@@ -122,6 +128,7 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(agua);
+                agua.setDatos(recursosd);
             }
 
 
@@ -131,6 +138,8 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(biblioteca);
+                biblioteca.setDatos(recursosd);
+
             }
 
 
@@ -140,6 +149,7 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(comida);
+                comida.setDatos(recursosd);
             }
 
 
@@ -150,6 +160,7 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(montaña);
+                montaña.setDatos(recursosd);
             }
 
 
@@ -159,6 +170,7 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(pozo);
+                pozo.setDatos(recursosd);
             }
 
 
@@ -168,6 +180,7 @@ public class ControladorCelda implements Initializable {
             if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
             } else {
                 celdaControlador.getRecursoListaEnlazed().add(tesoro);
+                tesoro.setDatos(recursosd);
             }
 
 

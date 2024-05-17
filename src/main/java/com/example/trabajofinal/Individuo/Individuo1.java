@@ -6,8 +6,8 @@ import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo1 extends Individuo {
 
-    public Individuo1(int vida, int porcenajereproduccion, int porcentajeclonacion, int porcentajehijo, Celdas celda, int tipo, int ID, ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> ruta) {
-        super(vida, porcenajereproduccion, porcentajeclonacion, porcentajehijo,celda,1,ID,generacion,longevity,ruta);
+    public Individuo1( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> ruta) {
+        super(celda,1,generacion,longevity,ruta);
     }
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){

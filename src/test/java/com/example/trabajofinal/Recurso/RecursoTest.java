@@ -18,13 +18,13 @@ class RecursoTest {
     Longevidad longevidad= new Longevidad(1,mov);
     ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
-    Recurso recurso2= new RecursoPozo(1,1,1,1,1,1,1,1,celda,"Pozo");
+    Recurso recurso2= new RecursoPozo(celda,"Pozo");
 
-    Recurso recurso1= new RecursoAgua(1,1,1,1,1,1,1,1,celda,"Agua");
-    Recurso recurso3= new RecursoMontaña(1,1,1,1,1,1,1,1,celda,"Montaña");
-    Recurso recurso4= new RecursoTesoro(1,1,1,1,1,1,1,1,celda,"Tesoro");
-    Recurso recurso5= new RecursoBiblioteca(1,1,1,1,1,1,1,1,celda,"Biblioteca");
-    Recurso recurso6= new RecursoComida(1,1,1,1,1,1,1,1,celda,"Comida");
+    Recurso recurso1= new RecursoAgua(celda,"Agua");
+    Recurso recurso3= new RecursoMontaña(celda,"Montaña");
+    Recurso recurso4= new RecursoTesoro(celda,"Tesoro");
+    Recurso recurso5= new RecursoBiblioteca(celda,"Biblioteca");
+    Recurso recurso6= new RecursoComida(celda,"Comida");
     ListaEnlazed<Recurso> recursos= new ListaEnlazed<>();
 
 
@@ -50,10 +50,10 @@ class RecursoTest {
 
     @Test
     void propiedad() {
-        Individuo individuo1= new Individuo1(1,1,1,1,celda,1,1,gen,longevidad,ruta);
-        assertEquals(1,individuo1.getVida());
+        Individuo individuo1= new Individuo1(celda,1,gen,longevidad,ruta);
+        assertEquals(1,individuo1.getDatos().getVida());
         recurso1.Propiedad(individuo1);
-        assertEquals(2,individuo1.getVida());
+        assertEquals(2,individuo1.getDatos().getVida());
     }
 
 }

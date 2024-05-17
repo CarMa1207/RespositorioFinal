@@ -7,8 +7,8 @@ import com.example.trabajofinal.Individuo.Individuo1;
 public class RecursoComida extends Recurso{
 
 
-    public RecursoComida(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, Celdas celda, String tipo)  {
-        super(tiempoAparicion,probabilidadAparicion,probabilidadAgua,probabilidadComida,probabilidadBiblioteca, probabilidadMontaña,probabilidadPozo,probabilidadTesoro,celda,"Comida");
+    public RecursoComida( Celdas celda, String tipo)  {
+        super(celda,"Comida");
 
     }
 
@@ -19,7 +19,7 @@ public class RecursoComida extends Recurso{
     public void Propiedad(Individuo individuo)
     {
 
-        individuo.setVida(individuo.getVida()+10);
+        individuo.getDatos().setVida(individuo.getDatos().getVida()+10);
 
     }
 

@@ -41,7 +41,7 @@ public  class FuncionesBucle  {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
             try {
 
-                individuos.getElemento(i).getData().setVida(individuos.getElemento(i).getData().getVida() - 1);
+                individuos.getElemento(i).getData().getDatos().setVida(individuos.getElemento(i).getData().getDatos().getVida() - 1);
                 individuos.getElemento(i).getData().getLongevidad().añadirTurno();
             }catch (NullPointerException exception){
                 System.out.println("ERROR: El individuo que se busca no exsite");
@@ -51,7 +51,7 @@ public  class FuncionesBucle  {
 
         for (int j = 0; j < individuos.getNumeroElementos(); j++) {
             try {
-                if (individuos.getElemento(j).getData().getVida() <= 0) {
+                if (individuos.getElemento(j).getData().getDatos().getVida() <= 0) {
                     individuos.del(j);
                 }
             }catch (NullPointerException exception){
@@ -63,7 +63,7 @@ public  class FuncionesBucle  {
         for(int x=0; x<individuos.getNumeroElementos();x++){
 
             try {
-                individuos.getElemento(x).getData().setPorcentajereproduccion((individuos.getElemento(x).getData().getPorcentajereproduccion())-(10));
+                individuos.getElemento(x).getData().getDatos().setPorcentajereproduccion((individuos.getElemento(x).getData().getDatos().getPorcentajereproduccion())-(10));
 
             }catch (NullPointerException exception){
                 System.out.println("ERROR: El individuo que se busca no exsite");
@@ -71,7 +71,7 @@ public  class FuncionesBucle  {
         }
         for(int w=0; w<individuos.getNumeroElementos(); w++){
             try {
-                individuos.getElemento(w).getData().setPorcentajetipohijo(individuos.getElemento(w).getData().getPorcentajetipohijo()-10);
+                individuos.getElemento(w).getData().getDatos().setPorcentajetipohijo(individuos.getElemento(w).getData().getDatos().getPorcentajetipohijo()-10);
 
             }catch (NullPointerException exception){
                 System.out.println("ERROR: El individuo que se busca no exsite");
@@ -81,7 +81,7 @@ public  class FuncionesBucle  {
     public void TiempoVidaRecurso(){
         for(int i=0; i<recursos.getNumeroElementos();i++){
             try {
-                recursos.getElemento(i).getData().setTiempoAparicion(recursos.getElemento(i).getData().getTiempoAparicion()-1);
+                recursos.getElemento(i).getData().getDatos().setTiempoAparicion(recursos.getElemento(i).getData().getDatos().getTiempoAparicion()-1);
 
             }catch (NullPointerException exception){
                 System.out.println("ERROR: El recurso que se busca no exsite");
@@ -89,7 +89,7 @@ public  class FuncionesBucle  {
         }
         for(int j=0; j<recursos.getNumeroElementos(); j++){
             try {
-                if(recursos.getElemento(j).getData().getTiempoAparicion()<=0){
+                if(recursos.getElemento(j).getData().getDatos().getTiempoAparicion()<=0){
                     recursos.del(j);
                 }
             }catch (NullPointerException exception){
@@ -112,7 +112,7 @@ public  class FuncionesBucle  {
 
 
     public void getCaminoIndividuos(Individuo individuo) throws Camino {
-        ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
+
 
 
         Celdas inicio = new Celdas();
@@ -166,15 +166,15 @@ public  class FuncionesBucle  {
     public int generarID() throws ExistentID {
         int id = 0;
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            if(individuos.getElemento(i).getData().getID()>id){
-                id=individuos.getElemento(i).getData().getID();
+            if(individuos.getElemento(i).getData().getDatos().getID()>id){
+                id=individuos.getElemento(i).getData().getDatos().getID();
             }
         }
         id=id+1;
         boolean esta= false;
         for(int j=0; j<individuos.getNumeroElementos();j++){
             for(int w=0; w<individuos.getNumeroElementos();w++){
-                if(individuos.getElemento(j).getData().getID()==individuos.getElemento(w).getData().getID()){
+                if(individuos.getElemento(j).getData().getDatos().getID()==individuos.getElemento(w).getData().getDatos().getID()){
                     esta=true;
                 }
             }
@@ -197,31 +197,31 @@ public  class FuncionesBucle  {
                     if (individuos.getElemento(i).getData().Reproduccion()) {
                         if (individuos.getElemento(i).getData().getTipo() == individuos.getElemento(j).getData().getTipo()) {
                             Individuo hijo = individuos.getElemento(i).getData();
-                            hijo.setID(generarID());
+                            hijo.getDatos().setID(generarID());
                             individuos.add(hijo);
                             String mov= "Se reprodujo";
                             individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
-                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getID());
+                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
                         } else {
                             Random random = new Random();
                             int probabilidad = random.nextInt(101);
-                            if (probabilidad <= individuos.getElemento(i).getData().getPorcentajetipohijo()) {
+                            if (probabilidad <= individuos.getElemento(i).getData().getDatos().getPorcentajetipohijo()) {
                                 if (individuos.getElemento(i).getData().getTipo() < individuos.getElemento(j).getData().getTipo()) {
                                     Individuo hijo = individuos.getElemento(j).getData();
-                                    hijo.setID(generarID());
+                                    hijo.getDatos().setID(generarID());
                                     individuos.add(hijo);
                                     String mov= "Se reprodujo";
                                     individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
-                                    individuos.getElemento(i).getData().getGeneracion().add(hijo.getID());
+                                    individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
 
                                 } else {
                                     //ojo que puede ser que los if no filtren vien el criterio  prque hay mucho else
                                     Individuo hijo = individuos.getElemento(i).getData();
-                                    hijo.setID(generarID());
+                                    hijo.getDatos().setID(generarID());
                                     individuos.add(hijo);
                                     String mov= "Se reprodujo";
                                     individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
-                                    individuos.getElemento(i).getData().getGeneracion().add(hijo.getID());
+                                    individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
 
                                 }
                             }
@@ -246,8 +246,8 @@ public  class FuncionesBucle  {
         Individuo sentenciado= null;
 
         for( int j=0; j<enLaCelda.getNumeroElementos(); j++){
-            if(vida<=enLaCelda.getElemento(j).getData().getVida()){
-                vida=individuos.getElemento(j).getData().getVida();
+            if(vida<=enLaCelda.getElemento(j).getData().getDatos().getVida()){
+                vida=individuos.getElemento(j).getData().getDatos().getVida();
                 sentenciado=individuos.getElemento(j).getData();
             }
             else{
@@ -279,8 +279,8 @@ public  class FuncionesBucle  {
         Recurso sentenciado= null;
 
         for( int j=0; j<enLaCelda.getNumeroElementos(); j++){
-            if(vida<enLaCelda.getElemento(j).getData().getTiempoAparicion()){
-                vida=recursos.getElemento(j).getData().getTiempoAparicion();
+            if(vida<enLaCelda.getElemento(j).getData().getDatos().getTiempoAparicion()){
+                vida=recursos.getElemento(j).getData().getDatos().getTiempoAparicion();
                 sentenciado=recursos.getElemento(j).getData();
             }
             else{
@@ -300,13 +300,13 @@ public  class FuncionesBucle  {
             Random random= new Random();
             int prob= random.nextInt(101);
 
-            if(prob<=individuos.getElemento(i).getData().getPorcentajeclonacion()){
+            if(prob<=individuos.getElemento(i).getData().getDatos().getPorcentajeclonacion()){
                 Individuo clonado= individuos.getElemento(i).getData();
-                clonado.setID(generarID());
+                clonado.getDatos().setID(generarID());
                 individuos.add(clonado);
                 String mov= "Se clonó";
                 individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
-                individuos.getElemento(i).getData().getGeneracion().add(clonado.getID());
+                individuos.getElemento(i).getData().getGeneracion().add(clonado.getDatos().getID());
 
             }
         }

@@ -6,7 +6,10 @@ import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Tablero.TableroController;
 import com.example.trabajofinal.Tablero.TableroDataModel;
 import com.example.trabajofinal.Tablero.TableroDataModelProperties;
+/*
 import com.example.trabajofinal.json.Json;
+
+ */
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;

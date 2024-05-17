@@ -18,9 +18,9 @@ class IndividuoTest {
     ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
-    Individuo individuo1= new Individuo1(1,1,1,1,celda1,1,1,gen,longevidad,ruta);
-    Individuo individuo2= new Individuo2(1,1,1,1,celda2,1,1,gen,longevidad,ruta);
-    Individuo individuo3= new Individuo3(1,1,1,1,celda3,1,1,gen,longevidad,ruta);
+    Individuo individuo1= new Individuo1(celda1,1,gen,longevidad,ruta);
+    Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+    Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
 
     @Test
     void setTipo() {
@@ -39,9 +39,9 @@ class IndividuoTest {
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
-        assertEquals(1,invdividuos.getElemento(1).getData().getID());
-        invdividuos.getElemento(1).getData().setID(33);
-        assertEquals(33,invdividuos.getElemento(1).getData().getID());
+        assertEquals(1,invdividuos.getElemento(1).getData().getDatos().getID());
+        invdividuos.getElemento(1).getData().getDatos().setID(33);
+        assertEquals(33,invdividuos.getElemento(1).getData().getDatos().getID());
     }
 
 
@@ -65,9 +65,9 @@ class IndividuoTest {
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
-        invdividuos.getElemento(2).getData().setPorcentajereproduccion(0);
+        invdividuos.getElemento(2).getData().getDatos().setPorcentajereproduccion(0);
         assertFalse(invdividuos.getElemento(2).getData().Reproduccion());
-        invdividuos.getElemento(2).getData().setPorcentajereproduccion(100);
+        invdividuos.getElemento(2).getData().getDatos().setPorcentajereproduccion(100);
         assertTrue(invdividuos.getElemento(2).getData().Reproduccion());
 
     }
@@ -78,9 +78,9 @@ class IndividuoTest {
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
-        invdividuos.getElemento(2).getData().setPorcentajeclonacion(0);
+        invdividuos.getElemento(2).getData().getDatos().setPorcentajeclonacion(0);
         assertFalse(invdividuos.getElemento(2).getData().Clonacion());
-        invdividuos.getElemento(2).getData().setPorcentajeclonacion(100);
+        invdividuos.getElemento(2).getData().getDatos().setPorcentajeclonacion(100);
         assertTrue(invdividuos.getElemento(2).getData().Clonacion());
     }
 
