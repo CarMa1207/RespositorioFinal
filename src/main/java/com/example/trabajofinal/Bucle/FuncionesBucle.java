@@ -115,8 +115,8 @@ public  class FuncionesBucle  {
 
 
 
-        Celdas inicio = new Celdas();
-        Celdas fin = new Celdas();
+        Celdas inicio = new Celdas(0,0);
+        Celdas fin = new Celdas(0,0);
 
         inicio.setX(individuo.getCelda().getX());
         inicio.setY(individuo.getCelda().getY());

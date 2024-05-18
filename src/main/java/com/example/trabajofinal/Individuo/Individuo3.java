@@ -10,7 +10,7 @@ public class Individuo3 extends Individuo {
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
         ListaEnlazed<Celdas> camino = new ListaEnlazed<>();
-        Celdas actual= new Celdas();
+        Celdas actual= new Celdas(0,0);
         actual.setX(this.celda.getX());
         actual.setY(this.celda.getY());
 

@@ -12,7 +12,7 @@ public class Individuo2 extends Individuo {
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
         ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
-        Celdas celda= new Celdas();
+        Celdas celda= new Celdas(0,0);
 
        if((fin.getX()-this.celda.getX())>0){
            while(this.celda.getX()!=fin.getX()){

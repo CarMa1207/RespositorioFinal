@@ -3,9 +3,6 @@ package com.example.trabajofinal.Parameter;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Individuo.Individuo;
-import com.example.trabajofinal.Tablero.TableroController;
-import com.example.trabajofinal.Tablero.TableroDataModel;
-import com.example.trabajofinal.Tablero.TableroDataModelProperties;
 /*
 import com.example.trabajofinal.json.Json;
 
@@ -101,9 +98,9 @@ public class ParameterController implements Initializable {
     public  ParameterDataModelProperties model;
     private  ParameterDataModelPropertiesRecursos modelRecursos;
     public  TableroDataModelProperties modelTablero;
-    public TableroDataModel tablero;
-    public ParameterDataModel individuos;
-    public ParameterDataModelRecursos recursos;
+    public static  TableroDataModel tablero;
+    public static ParameterDataModel individuos;
+    public static ParameterDataModelRecursos recursos;
     private Stage scene;
 
 
@@ -144,22 +141,8 @@ public class ParameterController implements Initializable {
     @FXML
 
     protected void onTableroButtonClick() { ////// " mirar esta funcion , del modelo del tablero porque puede estar mal y en vez de eso es con el tablero data model "
-
-        try {
-            Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("com/example/trabajofinal/tablero-view.fxml"));
-            Scene escena =new Scene(fxmlLoader.load(),600,600);
-
-            TableroController controlador1=fxmlLoader.getController();
-            controlador1.setTableroDeJuego(modelRecursos.getOriginal(),modelTablero.getTableroOriginal(),model.getOriginal());
-
-            stage.setTitle("Establezca parámetros: ");
-            stage.setScene(escena);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
+        TableroController tableroController = new TableroController();
+        tableroController.setTableroDeJuego(modelRecursos.getOriginal(), modelTablero.getTableroOriginal(), model.getOriginal());
     }
 
     @Override
@@ -213,12 +196,9 @@ public class ParameterController implements Initializable {
         sliderProbabilidadBiblioteca.valueProperty().bindBidirectional(modelRecursos.ProbabilidadBibliotecaProperty());
         sliderProbabilidadTesoro.valueProperty().bindBidirectional(modelRecursos.ProbabilidadTesoroProperty());
         sliderProbabilidadPozo.valueProperty().bindBidirectional(modelRecursos.ProbabilidadPozoProperty());
-
-
-    }
-    private void updateGUIwithModelTablero(){
-        sliderFilas.valueProperty().bindBidirectional(modelTablero.FilasProperty());
+        sliderFilas.valueProperty().bindBidirectional((modelTablero.FilasProperty()));
         sliderColumnas.valueProperty().bindBidirectional(modelTablero.ColumnasProperty());
+
     }
     public void loadUserData(ParameterDataModelProperties parametrosData , ParameterDataModelPropertiesRecursos parametrosDataRecurso,TableroDataModelProperties parametrosTablero) {
         this.model = parametrosData;

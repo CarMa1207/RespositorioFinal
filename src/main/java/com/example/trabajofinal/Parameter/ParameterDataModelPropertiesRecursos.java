@@ -25,6 +25,7 @@ public class ParameterDataModelPropertiesRecursos {
 
     public void setOriginal(ParameterDataModelRecursos original) {
         this.original = original;
+        rollback();
     }
     public void commit(){
         original.setTiempoAparicion(TiempoAparicion.get());

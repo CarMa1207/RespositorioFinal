@@ -11,7 +11,7 @@ public class TableroDataModelProperties {
     private IntegerProperty filas = new SimpleIntegerProperty();
 
     public TableroDataModelProperties(TableroDataModel tableroOriginal) {
-        setTableroOriginal(tableroOriginal);;
+        setTableroOriginal(tableroOriginal);
     }
 
     public TableroDataModel getTableroOriginal() {
@@ -20,6 +20,7 @@ public class TableroDataModelProperties {
 
     public void setTableroOriginal(TableroDataModel tableroOriginal) {
         this.tableroOriginal = tableroOriginal;
+        rollback();
     }
     public void rollback() {
         filas.set(tableroOriginal.getFilas());

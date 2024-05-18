@@ -71,11 +71,59 @@ protected void guardarPartida(){
 
     public TableroController() {
     }
+    @FXML
+    protected void onPlayButtonClick(){
+        tableroDeJuego.setDisable(true);
+        System.out.println("Se ha pulsado el boton de play");
+    }
+    @FXML
+    protected void onPauseButtonClick(){
+        tableroDeJuego.setDisable(false);
+        System.out.println("Se ha pulsado el boton de pausa");
+        setPausa(true);}
+
+    private void bucleDeControlIniciar(){
+
+        if(control==null){
+            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
+                if (!isPausa()) {
+                    BucleDeControl contronladorPatria = new BucleDeControl(celda);
+                    contronladorPatria.setTableroDataModel(tableroDataModel);
+                    try {
+                        celda = contronladorPatria.ejecucion(celda);
+                    } catch (Camino e) {
+                        throw new RuntimeException(e);
+                    } catch (ExistentID e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    System.out.println("Se ha pausado el juego");
+                    control.stop();
+                }
+            }));
+            control.setCycleCount(Animation.INDEFINITE);
+        }else{
+            control.stop();
+        }
+        control.play();}
 
     public void setTableroDeJuego(ParameterDataModelRecursos recursos, TableroDataModel tablero, ParameterDataModel individuosD ){
         this.tableroDataModel=tablero;
         this.recusosDatamodel=recursos;
         this.individuosDatamodel=individuosD;
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(TableroController.class.getResource("/com/example/trabajofinal/tablero-view.fxml"));
+            Scene escena = new Scene(fxmlLoader.load(), 600, 600);
+
+
+            stage.setTitle("Establezca parámetros: ");
+            stage.setScene(escena);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
     }
     public ListaEnlazed<Celdas> getCelda() {
@@ -97,23 +145,9 @@ protected void guardarPartida(){
     }
 
     @FXML
-    protected void ButtonCelda(Celdas celditas  ){
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Celda-view.fxml"));
-        try {
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-            stage.setTitle(" Celda " + "( " + (celditas.getX())+1 + " , "+ celditas.getY()+1);
-            stage.setScene(scene);
-           ControladorCelda ventanaController = fxmlLoader.getController();
-           ventanaController.setTablero(tableroDataModel);
-           ventanaController.setIndividuosc(individuosDatamodel);
-           ventanaController.setRecursosd(recusosDatamodel);
-            ventanaController.setSceneCeldita(stage);
-
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    protected void ButtonCelda ( Celdas celditas){
+       ControladorCelda controladorCelda = new ControladorCelda();
+       controladorCelda.setCelda(tableroDataModel,individuosDatamodel,recusosDatamodel);
     }
 
     @FXML
@@ -157,38 +191,34 @@ protected void guardarPartida(){
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (tableroDataModel!=null){
-            int ID=0;
-            for (int i =0 ; i<tableroDataModel.getColumnas(); i++){
+        if (tableroDataModel != null) {
+            int ID = 0;
+            for (int i = 0; i < tableroDataModel.getColumnas(); i++) {
 
-                for ( int j =0 ; i<tableroDataModel.getFilas(); j++){
+                for (int j = 0; j < tableroDataModel.getFilas(); j++) {
 
-                    Button placeholder= new Button();
-                    placeholder.setMinSize(320*3/tableroDataModel.getColumnas(), 460/tableroDataModel.getFilas());
-                    placeholder.setMaxSize(320*3/tableroDataModel.getColumnas(), 460/tableroDataModel.getFilas());
-                    tableroDeJuego.add(placeholder,i,j);
-                    Celdas celditas = new Celdas(i,j);
+                    Button placeholder = new Button();
+                    placeholder.setMinSize((double) (320 * 3) / tableroDataModel.getColumnas(), (double) 460 / tableroDataModel.getFilas());
+                    placeholder.setMaxSize((double) (320 * 3) / tableroDataModel.getColumnas(), (double) 460 / tableroDataModel.getFilas());
+                    tableroDeJuego.add(placeholder, i, j);
+                    Celdas celditas = new Celdas(i, j);
                     celditas.setX(i);
-                    celditas.setY(j);
-                    for(int x=0; x<celditas.getIndividuoListaEnlazed().getNumeroElementos();x++){
+                    celditas.setY(j);;
+                    celda.add(celditas);
+                    for (int x = 0; x < celditas.getIndividuoListaEnlazed().getNumeroElementos(); x++) {
                         celditas.getIndividuoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
                         celditas.getIndividuoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
                         celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
                         celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
                         celditas.getIndividuoListaEnlazed().getElemento(x).getData().getDatos().setID(ID);
-                        ID++;
-                    }
-                    celditas.setOnAction(actionEvent -> {
-                        celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
-                    });
-                    celda.add(celditas);
+                        ID++;}
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent actionEvent) {
-                            ButtonCelda(celditas); ////
-                        }
-                    });
+                            ButtonCelda(celditas);
+                            celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));////
+                        }});
                 }
             }
         }

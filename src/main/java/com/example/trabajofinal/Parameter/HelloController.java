@@ -1,8 +1,6 @@
 package com.example.trabajofinal.Parameter;
 
-import com.example.trabajofinal.Tablero.TableroController;
-import com.example.trabajofinal.Tablero.TableroDataModel;
-import com.example.trabajofinal.Tablero.TableroDataModelProperties;
+
 /*
 import com.example.trabajofinal.json.Json;
 

@@ -11,7 +11,9 @@ import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Parameter.TableroDataModel;
 import com.example.trabajofinal.Recurso.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -20,17 +22,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorCelda implements Initializable {
-        private Celdas celdaControlador;
+        private static Celdas celdaControlador;
 
         private  Individuo1 individuo1;
-        private  Individuo2 individuo2;
-        private   Individuo3 individuo3;
-        private RecursoAgua agua ;
+        private   Individuo2 individuo2;
+        private  Individuo3 individuo3;
+        private  RecursoAgua agua ;
         private  RecursoBiblioteca biblioteca;
         private  RecursoComida comida ;
-        private RecursoMontaña montaña;
+        private  RecursoMontaña montaña;
         private  RecursoPozo pozo;
-        private RecursoTesoro tesoro;
+        private   RecursoTesoro tesoro;
     private Stage sceneCelda;
         @FXML
         private Button BotonIndividuo1;
@@ -55,27 +57,28 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         private Label titulo;
-        private TableroDataModel tablero;
-        private ParameterDataModel individuosc;
-        private ParameterDataModelRecursos recursosd;
+        private static TableroDataModel tablero;
+        private static ParameterDataModel individuosc;
+        private static ParameterDataModelRecursos recursosd;
+        private static  Celdas tableroguapo;
 
-    public void setTablero(TableroDataModel tablero) {
+    public void setCelda(TableroDataModel tablero, ParameterDataModel individuos , ParameterDataModelRecursos recursos) {
         this.tablero = tablero;
-    }
+        this.individuosc=individuos;
+        this.recursosd=recursos;
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(ControladorCelda.class.getResource("/com/example/trabajofinal/Celda-view.fxml"));
+            Scene scene = new Scene(fxmlLoaderload(), 320, 240);
+            stage.setScene(scene);
 
-    public void setIndividuosc(ParameterDataModel individuosc) {
-        this.individuosc = individuosc;
-    }
-
-    public void setRecursosd(ParameterDataModelRecursos recursosd) {
-        this.recursosd = recursosd;
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private Stage sceneCeldita;
-
-        public ControladorCelda(Celdas celdaControlador) {
-            this.celdaControlador = celdaControlador;
-        }
 
 
         @FXML
@@ -86,9 +89,11 @@ public class ControladorCelda implements Initializable {
         @FXML
         protected void onBotonIndividuo1() {
             if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
+                System.out.println(" no se añade");
             } else {
 
                 celdaControlador.getIndividuoListaEnlazed().add(individuo1);
+                System.out.println(" se añade");
                 individuo1.setDatos(individuosc);
 
             }
@@ -187,6 +192,7 @@ public class ControladorCelda implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.print("Inicialización en ejecución del controlador\n");
+
     }
 }
 

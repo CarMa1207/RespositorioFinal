@@ -18,7 +18,7 @@ public class Individuo1 extends Individuo {
         int nuevoY= celda.getY();
 
 
-        Celdas celda2= new Celdas();
+        Celdas celda2= new Celdas(0,0);
         ListaEnlazed<Celdas> celda=new ListaEnlazed<>();
 
 
