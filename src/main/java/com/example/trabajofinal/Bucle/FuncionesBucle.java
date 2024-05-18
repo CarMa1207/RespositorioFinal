@@ -2,7 +2,6 @@
 
 package com.example.trabajofinal.Bucle;
 
-import java.util.Locale;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.Celdas;
@@ -10,13 +9,8 @@ import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Excepciones.MismaVida;
 import com.example.trabajofinal.Individuo.Individuo;
-import com.example.trabajofinal.Individuo.Individuo1;
-import com.example.trabajofinal.Individuo.Individuo2;
-import com.example.trabajofinal.Individuo.Individuo3;
-import com.example.trabajofinal.Parameter.ParameterDataModelProperties;
 import com.example.trabajofinal.Recurso.*;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
-import com.example.trabajofinal.Estructuras.ArbolAVL;
 
 
 public  class FuncionesBucle  {
@@ -32,6 +26,10 @@ public  class FuncionesBucle  {
     public ListaEnlazed<Individuo> individuos;
 
 
+
+
+
+
     public FuncionesBucle(ListaEnlazed<Recurso> recursoListaEnlazed, ListaEnlazed<Individuo> individuoListaEnlazed){
         this.recursos=recursoListaEnlazed;
         this.individuos=individuoListaEnlazed;
@@ -42,7 +40,7 @@ public  class FuncionesBucle  {
             try {
 
                 individuos.getElemento(i).getData().getDatos().setVida(individuos.getElemento(i).getData().getDatos().getVida() - 1);
-                individuos.getElemento(i).getData().getLongevidad().añadirTurno();
+                individuos.getElemento(i).getData().getHistorial().añadirTurno();
             }catch (NullPointerException exception){
                 System.out.println("ERROR: El individuo que se busca no exsite");
             }
@@ -105,6 +103,7 @@ public  class FuncionesBucle  {
                 if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
                     recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
                     recursos.del(i);
+                    individuos.getElemento(j).getData().getHistorial().getMov().push("Recurso: "+recursos.getElemento(i).getData().getTipo());
                 }
             }
         }
@@ -200,7 +199,7 @@ public  class FuncionesBucle  {
                             hijo.getDatos().setID(generarID());
                             individuos.add(hijo);
                             String mov= "Se reprodujo";
-                            individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
                             individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
                         } else {
                             Random random = new Random();
@@ -211,7 +210,7 @@ public  class FuncionesBucle  {
                                     hijo.getDatos().setID(generarID());
                                     individuos.add(hijo);
                                     String mov= "Se reprodujo";
-                                    individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                                    individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
                                     individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
 
                                 } else {
@@ -220,7 +219,7 @@ public  class FuncionesBucle  {
                                     hijo.getDatos().setID(generarID());
                                     individuos.add(hijo);
                                     String mov= "Se reprodujo";
-                                    individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                                    individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
                                     individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
 
                                 }
@@ -305,7 +304,7 @@ public  class FuncionesBucle  {
                 clonado.getDatos().setID(generarID());
                 individuos.add(clonado);
                 String mov= "Se clonó";
-                individuos.getElemento(i).getData().getLongevidad().getMov().add(mov);
+                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
                 individuos.getElemento(i).getData().getGeneracion().add(clonado.getDatos().getID());
 
             }
@@ -327,6 +326,15 @@ public  class FuncionesBucle  {
         else if(y>filas){
             celda.setY(filas);
         }
+    }
+    public int getMaximaVida(){
+        int vida=-2;
+        for(int i=0; i<individuos.getNumeroElementos();i++){
+            if(vida<individuos.getElemento(i).getData().getDatos().getVida()){
+                vida=individuos.getElemento(i).getData().getDatos().getVida();
+            }
+        }
+        return vida;
     }
 
 

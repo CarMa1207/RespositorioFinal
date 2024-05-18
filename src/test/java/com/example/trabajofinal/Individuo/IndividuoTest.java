@@ -1,29 +1,27 @@
 package com.example.trabajofinal.Individuo;
 
-import com.example.trabajofinal.Estructuras.ArbolAVL;
-import com.example.trabajofinal.Estructuras.Celdas;
-import com.example.trabajofinal.Estructuras.ListaEnlazed;
-import com.example.trabajofinal.Estructuras.Longevidad;
+import com.example.trabajofinal.Estructuras.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class IndividuoTest {
-    Celdas celda1= new Celdas(2,2);
-    Celdas celda2= new Celdas(1,4);
-    Celdas celda3= new Celdas(3,3);
-    ArbolAVL<Integer> gen= new ArbolAVL<>();
-    ListaEnlazed<String> mov= new ListaEnlazed<>();
-    Longevidad longevidad= new Longevidad(1,mov);
-    ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
-
-    Individuo individuo1= new Individuo1(celda1,1,gen,longevidad,ruta);
-    Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-    Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
 
     @Test
     void setTipo() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -35,6 +33,18 @@ class IndividuoTest {
 
     @Test
     void setID() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -47,11 +57,23 @@ class IndividuoTest {
 
     @Test
     void setGeneracion() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
-        ArbolAVL<Integer> gen=new  ArbolAVL<>();
+
         gen.add(1);
         gen.add(1);
         invdividuos.getPrimero().getData().setGeneracion(gen);
@@ -61,6 +83,18 @@ class IndividuoTest {
 
     @Test
     void reproduccion() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -74,6 +108,18 @@ class IndividuoTest {
 
     @Test
     void clonacion() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -86,6 +132,18 @@ class IndividuoTest {
 
     @Test
     void getCelda() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -98,36 +156,60 @@ class IndividuoTest {
 
     @Test
     void getLongevidad() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
 
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
 
-        Longevidad longevidad= new Longevidad(1,mov);
-        assertEquals(1,invdividuos.getUltimo().getData().getLongevidad().getTurno());
-        assertEquals(null,invdividuos.getUltimo().getData().getLongevidad().getMov().getPrimero());
+
+        assertEquals(1,invdividuos.getUltimo().getData().getHistorial().getTurno());
+        assertEquals(null,invdividuos.getUltimo().getData().getHistorial().getMov().pull());
 
     }
 
     @Test
     void getCamino() {
+        Celdas celda1= new Celdas(2,2);
+        Celdas celda2= new Celdas(1,4);
+        Celdas celda3= new Celdas(3,3);
+        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Cola<String> mov= new Cola<>();
+        Historial longevidad= new Historial(1,mov);
+        ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
 
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
         ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
-        Celdas celda1= new Celdas(3,3);
-        Celdas celda2= new Celdas(2,3);
-        Celdas celda3= new Celdas(1,3);
-        Celdas celda4= new Celdas(1,4);
-        camino.add(celda4);
-        camino.add(celda3);
-        camino.add(celda2);
-        camino.add(celda1);
+        Celdas celda11= new Celdas(3,3);
+        Celdas celda22= new Celdas(2,3);
+        Celdas celda33= new Celdas(1,3);
+        Celdas celda44= new Celdas(1,4);
+        camino.add(celda44);
+        camino.add(celda33);
+        camino.add(celda22);
+        camino.add(celda11);
 
-        ListaEnlazed<Celdas> caminoF= invdividuos.getPrimero().getData().getCamino(celda1,celda4);
+        ListaEnlazed<Celdas> caminoF= invdividuos.getPrimero().getData().getCamino(celda11,celda44);
 
         assertEquals(camino.getUltimo().getData().getX(),caminoF.getUltimo().getData().getX());
         assertEquals(camino.getUltimo().getData().getY(),caminoF.getUltimo().getData().getY());

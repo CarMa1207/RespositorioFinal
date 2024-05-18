@@ -1,22 +1,29 @@
 package com.example.trabajofinal.Estructuras;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 
-public class Longevidad {
+public class Historial {
     public int turno;
-    public ListaEnlazed<String> mov;
-    public Longevidad(int turno, ListaEnlazed<String> mov){
+    public Cola<String> mov;
+
+
+
+
+
+    public Historial(int turno, Cola<String> mov){
         this.turno=turno;
         this.mov=mov;
     }
 
-    public ListaEnlazed<String> getMov() {
+
+    public Cola<String> getMov() {
         return mov;
     }
     public int getTurno(){
         return turno;
     }
 
-    public void setMov(ListaEnlazed<String> mov) {
+
+    public void setMov(Cola<String> mov) {
         this.mov = mov;
     }
 

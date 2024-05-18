@@ -5,7 +5,7 @@ import java.util.Random;
 import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo2 extends Individuo {
-    public Individuo2( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Longevidad longevity,ListaEnlazed<Celdas> camino) {
+    public Individuo2( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity,ListaEnlazed<Celdas> camino) {
         super(celda,2,generacion,longevity,camino);
     }
 

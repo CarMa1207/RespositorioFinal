@@ -3,7 +3,7 @@ package com.example.trabajofinal.Individuo;
 import com.example.trabajofinal.Estructuras.*;
 
 public class Individuo3 extends Individuo {
-    public Individuo3( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Longevidad longevity,ListaEnlazed<Celdas> camino) {
+    public Individuo3( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity,ListaEnlazed<Celdas> camino) {
         super(celda,3,generacion,longevity,camino);
     }
 

@@ -6,6 +6,17 @@ public class ParameterDataModel {
     private int porcentajeclonacion;
     private int porcentajetipohijo;
 
+    public int getMaxVida() {
+        return MaxVida;
+    }
+
+    public void setMaxVida(int maxVida) {
+        MaxVida = maxVida;
+    }
+
+    private  int MaxVida;
+
+
 
     public int ID;
 

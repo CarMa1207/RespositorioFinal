@@ -1,4 +1,5 @@
 package com.example.trabajofinal.Individuo;
+import com.example.trabajofinal.Estructuras.Historial;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Estructuras.ArbolAVL;
@@ -6,7 +7,7 @@ import com.example.trabajofinal.Estructuras.Celdas;
 
 import java.util.Random;
 
-import com.example.trabajofinal.Estructuras.Longevidad;
+import com.example.trabajofinal.Estructuras.Historial;
 
 public abstract class Individuo  {
     public int tipo;
@@ -18,7 +19,7 @@ public abstract class Individuo  {
     private ParameterDataModel datos;
 
     ArbolAVL<Integer> generacion;
-    Longevidad longevidad;
+    Historial longevidad;
 
 
     ListaEnlazed<Celdas> ruta;
@@ -36,7 +37,17 @@ public abstract class Individuo  {
     int porcentajereproduccion= datos.getPorcentajereproduccion();
     int ID=datos.getID();
 
-    public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Longevidad longevity, ListaEnlazed<Celdas> camino)
+    public int getVidamax() {
+        return vidamax;
+    }
+
+    public void setVidamax(int vidamax) {
+        this.vidamax = vidamax;
+    }
+
+    int vidamax=datos.getMaxVida();
+
+    public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino)
     {
 
 
@@ -94,7 +105,7 @@ public abstract class Individuo  {
         return this.celda;
     }
 
-    public Longevidad getLongevidad(){
+    public Historial getHistorial(){
         return longevidad;
     }
 

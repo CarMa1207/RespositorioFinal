@@ -1,6 +1,7 @@
 package com.example.trabajofinal.Parameter;
 
 import com.example.trabajofinal.Bucle.BucleDeControl;
+import com.example.trabajofinal.Bucle.Datos;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Excepciones.Camino;
@@ -46,6 +47,7 @@ public class TableroController implements Initializable{
     private ParameterController parameterController;
     public Timeline control;
     public boolean Pausa;
+    int vidaMax;
 /*
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
@@ -71,41 +73,7 @@ protected void guardarPartida(){
 
     public TableroController() {
     }
-    @FXML
-    protected void onPlayButtonClick(){
-        tableroDeJuego.setDisable(true);
-        System.out.println("Se ha pulsado el boton de play");
-    }
-    @FXML
-    protected void onPauseButtonClick(){
-        tableroDeJuego.setDisable(false);
-        System.out.println("Se ha pulsado el boton de pausa");
-        setPausa(true);}
 
-    private void bucleDeControlIniciar(){
-
-        if(control==null){
-            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
-                if (!isPausa()) {
-                    BucleDeControl contronladorPatria = new BucleDeControl(celda);
-                    contronladorPatria.setTableroDataModel(tableroDataModel);
-                    try {
-                        celda = contronladorPatria.ejecucion(celda);
-                    } catch (Camino e) {
-                        throw new RuntimeException(e);
-                    } catch (ExistentID e) {
-                        throw new RuntimeException(e);
-                    }
-                } else {
-                    System.out.println("Se ha pausado el juego");
-                    control.stop();
-                }
-            }));
-            control.setCycleCount(Animation.INDEFINITE);
-        }else{
-            control.stop();
-        }
-        control.play();}
 
     public void setTableroDeJuego(ParameterDataModelRecursos recursos, TableroDataModel tablero, ParameterDataModel individuosD ){
         this.tableroDataModel=tablero;
@@ -188,6 +156,37 @@ protected void guardarPartida(){
         }
         control.play();
     }
+    public Datos pantallaFinal(){
+
+        int longevidad=0;
+        int mutaciones=0;
+        int agua=0;
+
+
+
+        for(int i=0; i<celda.getNumeroElementos(); i++){
+            for(int j=0; j<celda.getNumeroElementos();j++){
+                if(longevidad<celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData().getHistorial().getTurno()){
+                    longevidad=celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData().getHistorial().getTurno();
+                }
+                for(int x=0; x<celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData().getHistorial().getMov().getDatos().getNumeroElementos();){
+                    if("Recurso: Biblioteca"==celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData().getHistorial().getMov().getDatos().getElemento(x).getData()){
+                        mutaciones++;
+                    }
+                    if("Recurso: Agua"==celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData().getHistorial().getMov().getDatos().getElemento(x).getData()){
+                        agua++;
+                    }
+
+                }
+            }
+        }
+
+        Datos actualizado= new Datos();
+        actualizado.setLongevo(longevidad);
+        actualizado.setMaxAgua(agua);
+        actualizado.setMaxMut(mutaciones);
+        return actualizado;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -211,7 +210,13 @@ protected void guardarPartida(){
                         celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
                         celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
                         celditas.getIndividuoListaEnlazed().getElemento(x).getData().getDatos().setID(ID);
-                        ID++;}
+                        ID++;
+                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().setVidamax(0);
+                    }
+                    celditas.setOnAction(actionEvent -> {
+                        celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
+                    });
+                    celda.add(celditas);
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -221,6 +226,8 @@ protected void guardarPartida(){
                         }});
                 }
             }
+            bucleDeControlIniciar();
+            pantallaFinal();
         }
 
     }

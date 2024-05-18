@@ -1,9 +1,6 @@
 package com.example.trabajofinal.Recurso;
 
-import com.example.trabajofinal.Estructuras.ArbolAVL;
-import com.example.trabajofinal.Estructuras.Celdas;
-import com.example.trabajofinal.Estructuras.ListaEnlazed;
-import com.example.trabajofinal.Estructuras.Longevidad;
+import com.example.trabajofinal.Estructuras.*;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
 import org.junit.jupiter.api.Test;
@@ -14,8 +11,8 @@ class RecursoTest {
 
     Celdas celda= new Celdas();
     ArbolAVL<Integer> gen= new ArbolAVL<>();
-    ListaEnlazed<String> mov= new ListaEnlazed<>();
-    Longevidad longevidad= new Longevidad(1,mov);
+    Cola<String> mov= new Cola<>();
+    Historial longevidad= new Historial(1,mov);
     ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
     Recurso recurso2= new RecursoPozo(celda,"Pozo");
