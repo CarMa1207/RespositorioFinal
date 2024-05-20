@@ -6,15 +6,7 @@ public class ParameterDataModel {
     private int porcentajeclonacion;
     private int porcentajetipohijo;
 
-    public int getMaxVida() {
-        return MaxVida;
-    }
 
-    public void setMaxVida(int maxVida) {
-        MaxVida = maxVida;
-    }
-
-    private  int MaxVida;
 
 
 
@@ -27,11 +19,13 @@ public class ParameterDataModel {
         this.porcentajeclonacion = porcentajeclonacion;
         this.porcentajetipohijo = porcentajetipohijo;
         this.ID=ID;
+
     }
 
     public int getVida() {
         return vida;
     }
+
 
     public int getPorcentajereproduccion() {
         return porcentajereproduccion;

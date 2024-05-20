@@ -181,12 +181,9 @@ public class BucleDeControl  {
 
 
             }
-            for(int y=0; y<celdas.getElemento(j).getData().getIndividuoListaEnlazed().getNumeroElementos();j++){
-                if(celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(y).getData().getDatos().getMaxVida()<celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(y).getData().getVidamax()){
-                    celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(y).getData().getDatos().setMaxVida(celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(y).getData().getVidamax());
 
-                }
-            }
+
+
 
 
         }

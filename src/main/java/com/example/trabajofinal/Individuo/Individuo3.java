@@ -1,10 +1,11 @@
 package com.example.trabajofinal.Individuo;
 
 import com.example.trabajofinal.Estructuras.*;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
 
 public class Individuo3 extends Individuo {
-    public Individuo3( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity,ListaEnlazed<Celdas> camino) {
-        super(celda,3,generacion,longevity,camino);
+    public Individuo3(Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino, ParameterDataModel datos) {
+        super(celda,3,generacion,longevity,camino,datos);
     }
 
     @Override

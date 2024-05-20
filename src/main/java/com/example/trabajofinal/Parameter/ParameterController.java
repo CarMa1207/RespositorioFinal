@@ -99,8 +99,8 @@ public class ParameterController implements Initializable {
     private  ParameterDataModelPropertiesRecursos modelRecursos;
     public  TableroDataModelProperties modelTablero;
     public static  TableroDataModel tablero;
-    public static ParameterDataModel individuos;
-    public static ParameterDataModelRecursos recursos;
+    public  ParameterDataModel individuos;
+    public ParameterDataModelRecursos recursos;
     private Stage scene;
 
 

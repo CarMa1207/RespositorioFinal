@@ -3,11 +3,12 @@ package com.example.trabajofinal.Individuo;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.*;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
 
 public class Individuo1 extends Individuo {
 
-    public Individuo1( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> ruta) {
-        super(celda,1,generacion,longevity,ruta);
+    public Individuo1(Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> ruta, ParameterDataModel datos) {
+        super(celda,1,generacion,longevity,ruta,datos);
     }
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){

@@ -16,7 +16,7 @@ public abstract class Individuo  {
 
 
 
-    private ParameterDataModel datos;
+    public   ParameterDataModel datos;
 
     ArbolAVL<Integer> generacion;
     Historial longevidad;
@@ -24,30 +24,14 @@ public abstract class Individuo  {
 
     ListaEnlazed<Celdas> ruta;
 
-    public void setDatos(ParameterDataModel datos) {
-
-    }
-    public ParameterDataModel getDatos() {
-        return datos;
-    }
 
 
-    int vida=datos.getVida();
-    int porcentajeclonacion= datos.getPorcentajeclonacion();
-    int porcentajereproduccion= datos.getPorcentajereproduccion();
-    int ID=datos.getID();
 
-    public int getVidamax() {
-        return vidamax;
-    }
+    int porcentajeclonacion;
+    int porcentajereproduccion;
+    int ID;
 
-    public void setVidamax(int vidamax) {
-        this.vidamax = vidamax;
-    }
-
-    int vidamax=datos.getMaxVida();
-
-    public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino)
+    public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino,ParameterDataModel datos)
     {
 
 
@@ -56,7 +40,25 @@ public abstract class Individuo  {
         this.generacion=generacion;
         this.longevidad=longevity;
         this.ruta=camino;
+        this.datos=datos;
+        porcentajeclonacion=datos.getPorcentajeclonacion();
+        porcentajereproduccion= datos.getPorcentajereproduccion();
+        ID=datos.getID();
+    }
 
+
+
+
+
+
+
+
+
+    public void setDatos(ParameterDataModel datos) {
+
+    }
+    public ParameterDataModel getDatos() {
+        return datos;
     }
 
     public void setTipo(int  t){

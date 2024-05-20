@@ -41,13 +41,17 @@ public class TableroController implements Initializable{
 @FXML
     GridPane tableroDeJuego = new GridPane();
     private TableroDataModelProperties modelTablero;
-    private TableroDataModel tableroDataModel;
-    private ParameterDataModelRecursos recusosDatamodel;
-    private ParameterDataModel individuosDatamodel;
-    private ParameterController parameterController;
+    private static TableroDataModel tableroDataModel;
+    private  static  ParameterDataModelRecursos recusosDatamodel;
+    private   static ParameterDataModel individuosDatamodel;
+    private ParameterDataModelPropertiesRecursos modelrecursosproperties;
+    private ParameterDataModelProperties modelindividuosproperties;
+    private TableroDataModelProperties modeltablero;
+    private  Celdas celdota;
     public Timeline control;
     public boolean Pausa;
     int vidaMax;
+    ListaEnlazed<Celdas> celda = new ListaEnlazed();
 /*
     protected void guardarPartida(){
         Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
@@ -58,9 +62,6 @@ public class TableroController implements Initializable{
 
  */
 protected void guardarPartida(){
-    Json.guardarObjetoEnArchivo("guardarParametrosPartida", ParameterController.model.getOriginal());
-    Json.guardarObjetoEnArchivo("guardarTableroPartida", ParameterController.modelTablero.getTableroOriginal());
-    Json.guardarObjetoEnArchivo("guardarListaCeldasPartida",celda );
 }
 
     public boolean isPausa() {
@@ -75,6 +76,7 @@ protected void guardarPartida(){
     }
 
 
+
     public void setTableroDeJuego(ParameterDataModelRecursos recursos, TableroDataModel tablero, ParameterDataModel individuosD ){
         this.tableroDataModel=tablero;
         this.recusosDatamodel=recursos;
@@ -83,6 +85,7 @@ protected void guardarPartida(){
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(TableroController.class.getResource("/com/example/trabajofinal/tablero-view.fxml"));
             Scene escena = new Scene(fxmlLoader.load(), 600, 600);
+
 
 
             stage.setTitle("Establezca parámetros: ");
@@ -101,21 +104,22 @@ protected void guardarPartida(){
     public void setCelda(ListaEnlazed<Celdas> celda) {
         this.celda = celda;
     }
-    private TableroDataModel tableroDataModel2;
 
-    public int getFilas(){
 
-        return  tableroDataModel.getFilas();
-    }
-    public int getColumnas(){
-
-        return  tableroDataModel.getColumnas();
-    }
 
     @FXML
-    protected void ButtonCelda ( Celdas celditas){
-       ControladorCelda controladorCelda = new ControladorCelda();
-       controladorCelda.setCelda(tableroDataModel,individuosDatamodel,recusosDatamodel);
+    protected void ButtonCelda (Celdas celdota,ParameterDataModel individuosDatamodel,ParameterDataModelRecursos recusosDatamodel ){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(ControladorCelda.class.getResource("/com/example/trabajofinal/Celda-view.fxml"));;
+            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+            stage.setScene(scene);
+           ControladorCelda controladorCelda = fxmlLoader.getController();
+            stage.show();
+            controladorCelda.setCelda(tableroDataModel,celdota,individuosDatamodel,recusosDatamodel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -130,7 +134,7 @@ protected void guardarPartida(){
         setPausa(true);
     }
 
-    ListaEnlazed<Celdas> celda = new ListaEnlazed();
+
     private void bucleDeControlIniciar(){
 
         if(control==null){
@@ -205,32 +209,23 @@ protected void guardarPartida(){
                     celditas.setY(j);;
                     celda.add(celditas);
                     for (int x = 0; x < celditas.getIndividuoListaEnlazed().getNumeroElementos(); x++) {
-                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
-                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
-                        celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setX(i);
-                        celditas.getRecursoListaEnlazed().getElemento(x).getData().getCelda().setY(j);
+;
                         celditas.getIndividuoListaEnlazed().getElemento(x).getData().getDatos().setID(ID);
                         ID++;
-                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().setVidamax(0);
                     }
-                    celditas.setOnAction(actionEvent -> {
-                        celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));
-                    });
-                    celda.add(celditas);
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent actionEvent) {
-                            ButtonCelda(celditas);
+                            ButtonCelda(celditas,individuosDatamodel,recusosDatamodel);
                             celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));////
                         }});
                 }
             }
-            bucleDeControlIniciar();
-            pantallaFinal();
         }
 
     }
 }
+
 
 

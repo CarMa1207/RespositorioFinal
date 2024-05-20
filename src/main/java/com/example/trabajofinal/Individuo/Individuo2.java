@@ -3,10 +3,11 @@ import java.lang.Math;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.*;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
 
 public class Individuo2 extends Individuo {
-    public Individuo2( Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity,ListaEnlazed<Celdas> camino) {
-        super(celda,2,generacion,longevity,camino);
+    public Individuo2(Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino, ParameterDataModel datos) {
+        super(celda,2,generacion,longevity,camino,datos);
     }
 
     @Override

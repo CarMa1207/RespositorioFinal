@@ -2,7 +2,8 @@
 package com.example.trabajofinal.Parameter;
 
 
-import com.example.trabajofinal.Estructuras.Celdas;
+import com.example.trabajofinal.Estructuras.*;
+import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
 import com.example.trabajofinal.Individuo.Individuo2;
 import com.example.trabajofinal.Individuo.Individuo3;
@@ -13,6 +14,7 @@ import com.example.trabajofinal.Recurso.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,12 +24,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorCelda implements Initializable {
-        private static Celdas celdaControlador;
 
-        private  Individuo1 individuo1;
-        private   Individuo2 individuo2;
-        private  Individuo3 individuo3;
-        private  RecursoAgua agua ;
+
+    private Celdas celdaControlador;
+
+
+        private   RecursoAgua agua ;
         private  RecursoBiblioteca biblioteca;
         private  RecursoComida comida ;
         private  RecursoMontaña montaña;
@@ -57,26 +59,18 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         private Label titulo;
-        private static TableroDataModel tablero;
-        private static ParameterDataModel individuosc;
-        private static ParameterDataModelRecursos recursosd;
-        private static  Celdas tableroguapo;
+        private static  TableroDataModel tablero;
+        private ParameterDataModel individuosc;
+        private ParameterDataModelRecursos recursosd;
+        private  Celdas celda;
 
-    public void setCelda(TableroDataModel tablero, ParameterDataModel individuos , ParameterDataModelRecursos recursos) {
+    public void setCelda(TableroDataModel tablero, Celdas celda, ParameterDataModel individuos , ParameterDataModelRecursos recursos) {
         this.tablero = tablero;
         this.individuosc=individuos;
         this.recursosd=recursos;
-        try {
-            Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(ControladorCelda.class.getResource("/com/example/trabajofinal/Celda-view.fxml"));
-            Scene scene = new Scene(fxmlLoaderload(), 320, 240);
-            stage.setScene(scene);
-
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.celda=celda;
     }
+
 
     private Stage sceneCeldita;
 
@@ -88,24 +82,35 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonIndividuo1() {
-            if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
-                System.out.println(" no se añade");
-            } else {
+                ArbolAVL<Integer> arbol= new ArbolAVL<>();
+                Cola<String>mov= new Cola<>();
+                Historial historial= new Historial(0,mov);
+                ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
-                celdaControlador.getIndividuoListaEnlazed().add(individuo1);
-                System.out.println(" se añade");
-                individuo1.setDatos(individuosc);
 
-            }
+                Individuo individuo1= new Individuo1(celda,1,arbol,historial,ruta,individuosc) ;
+                ListaEnlazed<Individuo> lista= new ListaEnlazed<>();
+                lista.add(individuo1);
+                celda.setIndividuoListaEnlazed(lista);
+            System.out.println(" se añade");
+
 
         }
 
         @FXML
         protected void onBotonIndividuo2() {
-            if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
+            if (celdaControlador.IndividuosIsCompleto(celdaControlador) == Boolean.TRUE) {
             } else {
+
+                System.out.println(" se añade");
+                Celdas celda= new Celdas(celdaControlador.getX(), celdaControlador.getY());
+                ArbolAVL<Integer> arbol= new ArbolAVL<>();
+                Cola<String>mov= new Cola<>();
+                Historial historial= new Historial(0,mov);
+                ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+                Individuo individuo2= new Individuo2(celda,2,arbol,historial,ruta,individuosc) ;
                 celdaControlador.getIndividuoListaEnlazed().add(individuo2);
-                individuo2.setDatos(individuosc);
+
 
             }
 
@@ -113,10 +118,18 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonIndividuo3() {
-            if (celdaControlador.IndividuosIsCompleto() == Boolean.TRUE) {
+            if (celdaControlador.IndividuosIsCompleto(celdaControlador) == Boolean.TRUE) {
             } else {
+
+                System.out.println(" se añade");
+                Celdas celda= new Celdas(celdaControlador.getX(), celdaControlador.getY());
+                ArbolAVL<Integer> arbol= new ArbolAVL<>();
+                Cola<String>mov= new Cola<>();
+                Historial historial= new Historial(0,mov);
+                ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+                Individuo individuo3= new Individuo3(celda,2,arbol,historial,ruta,individuosc) ;
                 celdaControlador.getIndividuoListaEnlazed().add(individuo3);
-                individuo3.setDatos(individuosc);
+
 
             }
 
@@ -186,6 +199,13 @@ public class ControladorCelda implements Initializable {
         }
     public void setSceneCeldita(Stage sceneCeldita) {
         this.sceneCeldita = sceneCeldita;
+    }
+    public  Celdas getCeldaControlador() {
+        return celdaControlador;
+    }
+
+    public  void setCeldaControlador(Celdas celdaControlador) {
+        this.celdaControlador = celdaControlador;
     }
 
 
