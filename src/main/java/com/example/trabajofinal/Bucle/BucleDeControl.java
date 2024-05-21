@@ -81,7 +81,7 @@ public class BucleDeControl  {
 
             for (int x = 0; x < celdas.getElemento(j).getData().getIndividuoListaEnlazed().getNumeroElementos(); x++) {
                 //Primero compruebo que las rutas sean nulas, luego las genero y actualizo tanto la posicion como la lista para que se elimine la celda a la que lo he movido
-                if (celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta() == null) {
+                if (celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta() == null || celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta().getUltimo().getData().getRecursoListaEnlazed() ==null) {
                     Individuo individuo = celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData();
 
                     funcionesBucle.getCaminoIndividuos(individuo);
@@ -176,20 +176,14 @@ public class BucleDeControl  {
 
                     }
 
-
                 }
 
-
-
             }
-
-
-
-
 
         }
         return celdas;
     }
+
 }
 
 
