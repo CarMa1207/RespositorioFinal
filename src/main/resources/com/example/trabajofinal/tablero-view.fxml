@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.TableroController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.TableroController">
    <children>
-      <GridPane fx:id="tableroDeJuego" >
+      <GridPane fx:id="tableroDeJuego">
 
       </GridPane>
       <Label layoutX="19.0" layoutY="22.0" prefHeight="17.0" prefWidth="246.0" text="El juego de la vida . " />
+      <Button fx:id="iniciarboton" layoutX="401.0" layoutY="339.0" mnemonicParsing="false" onAction="#onPlayButtonClick" text="Iniciar" />
+      <Button fx:id="pauseboton" layoutX="500.0" layoutY="339.0" mnemonicParsing="false" onAction="#onPauseButtonClick" text="Pausar" />
    </children>
 </AnchorPane>

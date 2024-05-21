@@ -60,9 +60,9 @@ public class ControladorCelda implements Initializable {
         @FXML
         private Label titulo;
         private static  TableroDataModel tablero;
-        private ParameterDataModel individuosc;
-        private ParameterDataModelRecursos recursosd;
-        private  Celdas celda;
+        private static ParameterDataModel individuosc;
+        private static ParameterDataModelRecursos recursosd;
+        private   static Celdas celda;
 
     public void setCelda(TableroDataModel tablero, Celdas celda, ParameterDataModel individuos , ParameterDataModelRecursos recursos) {
         this.tablero = tablero;
@@ -82,6 +82,7 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonIndividuo1() {
+            if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
                 Cola<String>mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
@@ -89,79 +90,98 @@ public class ControladorCelda implements Initializable {
 
 
                 Individuo individuo1= new Individuo1(celda,1,arbol,historial,ruta,individuosc) ;
-                ListaEnlazed<Individuo> lista= new ListaEnlazed<>();
-                lista.add(individuo1);
-                celda.setIndividuoListaEnlazed(lista);
-            System.out.println(" se añade");
+                celda.getIndividuoListaEnlazed().add(individuo1);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de individuos por casilla");
+            }
+
 
 
         }
 
         @FXML
         protected void onBotonIndividuo2() {
-            if (celdaControlador.IndividuosIsCompleto(celdaControlador) == Boolean.TRUE) {
-            } else {
-
-                System.out.println(" se añade");
-                Celdas celda= new Celdas(celdaControlador.getX(), celdaControlador.getY());
+            if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
                 Cola<String>mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+
+
                 Individuo individuo2= new Individuo2(celda,2,arbol,historial,ruta,individuosc) ;
-                celdaControlador.getIndividuoListaEnlazed().add(individuo2);
-
-
+                celda.getIndividuoListaEnlazed().add(individuo2);
+                System.out.println(" se añade");
             }
+            else{
+                System.out.println("Se ha excedido el limite de individuos por casilla");
+            }
+
 
         }
 
         @FXML
         protected void onBotonIndividuo3() {
-            if (celdaControlador.IndividuosIsCompleto(celdaControlador) == Boolean.TRUE) {
-            } else {
-
-                System.out.println(" se añade");
-                Celdas celda= new Celdas(celdaControlador.getX(), celdaControlador.getY());
+            if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
                 Cola<String>mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
-                Individuo individuo3= new Individuo3(celda,2,arbol,historial,ruta,individuosc) ;
-                celdaControlador.getIndividuoListaEnlazed().add(individuo3);
 
 
+                Individuo individuo3= new Individuo3(celda,3,arbol,historial,ruta,individuosc) ;
+                celda.getIndividuoListaEnlazed().add(individuo3);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de individuos por casilla");
             }
 
 
         }
         @FXML
         protected void onBotonAgua() {
-            if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-            } else {
-                celdaControlador.getRecursoListaEnlazed().add(agua);
-                agua.setDatos(recursosd);
+            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
+
+
+                Recurso recursoAgua= new RecursoAgua(celda,"Agua");
+                celda.getRecursoListaEnlazed().add(recursoAgua);
+                System.out.println(" se añade");
             }
+            else{
+                System.out.println("Se ha excedido el limite de recursos por casilla");
+            }
+
 
 
         }
         @FXML
         protected void onBotonBiblioteca () {
-            if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-            } else {
-                celdaControlador.getRecursoListaEnlazed().add(biblioteca);
-                biblioteca.setDatos(recursosd);
+            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
+
+                Recurso recursoBiblioteca= new RecursoBiblioteca(celda,"Biblioteca");
+                celda.getRecursoListaEnlazed().add(recursoBiblioteca);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de recursos por casilla");
             }
 
 
         }
         @FXML
         protected void onBotonComida() {
-            if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-            } else {
-                celdaControlador.getRecursoListaEnlazed().add(comida);
-                comida.setDatos(recursosd);
+            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
+
+
+                Recurso recursoComida= new RecursoComida(celda,"Comida");
+                celda.getRecursoListaEnlazed().add(recursoComida);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de recursos por casilla");
             }
 
 
@@ -169,30 +189,44 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonMontaña () {
-            if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-            } else {
-                celdaControlador.getRecursoListaEnlazed().add(montaña);
-                montaña.setDatos(recursosd);
-            }
+            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
+
+                Recurso recursoMontaña= new RecursoMontaña(celda,"Montaña");
+                celda.getRecursoListaEnlazed().add(recursoMontaña);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de recursos por casilla");
+            }
 
         }
         @FXML
         protected void onBotonPozo() {
-            if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-            } else {
-                celdaControlador.getRecursoListaEnlazed().add(pozo);
-                pozo.setDatos(recursosd);
+            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
+
+
+                Recurso recursoPozo= new RecursoPozo(celda,"Agua");
+                celda.getRecursoListaEnlazed().add(recursoPozo);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de recursos por casilla");
             }
 
 
         }
         @FXML
         protected void onBotonTesoro() {
-            if (celdaControlador.RecursosIsCompleto() == Boolean.TRUE) {
-            } else {
-                celdaControlador.getRecursoListaEnlazed().add(tesoro);
-                tesoro.setDatos(recursosd);
+            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
+
+
+                Recurso recursoTesoro= new RecursoAgua(celda,"Tesoro");
+                celda.getRecursoListaEnlazed().add(recursoTesoro);
+                System.out.println(" se añade");
+            }
+            else{
+                System.out.println("Se ha excedido el limite de recursos por casilla");
             }
 
 

@@ -122,6 +122,7 @@ public  class FuncionesBucle  {
 
         if (individuo.getTipo() == 1) {
             individuo.setRuta(individuo.getCamino(inicio, fin));
+
         } else if (individuo.getTipo() == 2) {
                 //aqui solo inicializo el camino, después en el bucle legit voy a tener que comporbar que no haya un camino ya creado y si lo hay usarlo
 
@@ -150,7 +151,7 @@ public  class FuncionesBucle  {
             }
             fin.setX(recursobuscado.getCelda().getX());
             fin.setY(recursobuscado.getCelda().getY());
-            if(individuo.getCamino(inicio,fin)!=null){
+            if(individuo.getRuta()!=null){
                 individuo.setRuta( individuo.getCamino(inicio, fin));
             }else{
                 throw (new Camino("El camino esta vacio"));
@@ -188,6 +189,8 @@ public  class FuncionesBucle  {
 
 
     }
+//Aqui falta hacer que me me ta en cada individuo su padre creo que le tengo que dar la vuelta a ña estructura deñ arbol
+    
 
     public void Reproduccion() throws ExistentID {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {

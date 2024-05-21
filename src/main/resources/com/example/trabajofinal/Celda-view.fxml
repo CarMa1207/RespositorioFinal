@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.ControladorCelda">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.ControladorCelda">
    <children>
       <Label layoutX="176.0" layoutY="38.0" prefHeight="17.0" prefWidth="228.0" text="Elija los parametros de las Celdas" />
       <Button fx:id="BotonIndividuo1" layoutX="57.0" layoutY="101.0" mnemonicParsing="false" onAction="#onBotonIndividuo1" text="Individuos1" />
       <Button fx:id="BotonIndividuo2" layoutX="57.0" layoutY="153.0" mnemonicParsing="false" onAction="#onBotonIndividuo2" text="Individuos2" />
       <Button fx:id="BotonIndividuo3" layoutX="56.0" layoutY="214.0" mnemonicParsing="false" onAction="#onBotonIndividuo3" prefHeight="25.0" prefWidth="85.0" text="Individuos 3" />
+      <ScrollBar orientation="VERTICAL" />
    </children>
 </AnchorPane>

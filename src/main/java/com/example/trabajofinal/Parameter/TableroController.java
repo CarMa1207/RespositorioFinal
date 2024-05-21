@@ -40,6 +40,10 @@ import java.util.ResourceBundle;
 public class TableroController implements Initializable{
 @FXML
     GridPane tableroDeJuego = new GridPane();
+@FXML
+private Button pauseboton;
+@FXML
+private Button iniciarboton;
     private TableroDataModelProperties modelTablero;
     private static TableroDataModel tableroDataModel;
     private  static  ParameterDataModelRecursos recusosDatamodel;

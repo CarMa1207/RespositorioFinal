@@ -8,15 +8,15 @@ import javafx.stage.Stage;
 
 
 public class Celdas extends Button {
-    private   static ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
-    private  static  ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
+    private    ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
+    private    ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
     int x;
     int y;
     private Stage escenaVentana;
 
 
 
-    public ParameterDataModel datos;
+    public static ParameterDataModel datos;
 
 
 
@@ -52,9 +52,6 @@ public class Celdas extends Button {
         return datos;
     }
 
-    public void setDatos(ParameterDataModel datos) {
-        this.datos = datos;
-    }
 
 
 

@@ -32,13 +32,22 @@ public class BucleDeControl  {
         this.celdas = celda;
     }
 
-    public ListaEnlazed<Celdas> ejecucion(ListaEnlazed<Celdas> celdas) throws Camino, ExistentID {
-
-
-
+    public ListaEnlazed<Celdas> ejecucion(ListaEnlazed<Celdas> celda) throws Camino, ExistentID {
 
         ListaEnlazed<ListaEnlazed<Individuo>> individuos = new ListaEnlazed<>();
         ListaEnlazed<ListaEnlazed<Recurso>> recursos = new ListaEnlazed<>();
+
+        for (int i = 0; i < celdas.getNumeroElementos(); i++) {
+            ListaEnlazed<Individuo> individuos2;
+            ListaEnlazed<Recurso> recursos2;
+            individuos2 = celdas.getElemento(i).getData().getIndividuoListaEnlazed();
+            individuos.add(individuos2);
+            recursos2 = celdas.getElemento(i).getData().getRecursoListaEnlazed();
+            recursos.add(recursos2);
+        }
+
+
+
 
         int probA = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadA();
         int probB = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadB();
@@ -52,15 +61,7 @@ public class BucleDeControl  {
         int probT = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadT();
 
 
-        for (int i = 0; i < celdas.getNumeroElementos(); i++) {
-            ListaEnlazed<Individuo> individuos2;
-            ListaEnlazed<Recurso> recursos2;
-            individuos2 = celdas.getElemento(i).getData().getIndividuoListaEnlazed();
-            individuos.add(individuos2);
-            recursos2 = celdas.getElemento(i).getData().getRecursoListaEnlazed();
-            recursos.add(recursos2);
-        }
-
+        ListaEnlazed<Celdas> celdas= celda;
         for (int j = 0; j < celdas.getNumeroElementos(); j++) {
             FuncionesBucle funcionesBucle = new FuncionesBucle(celdas.getElemento(j).getData().getRecursoListaEnlazed(), celdas.getElemento(j).getData().getIndividuoListaEnlazed());
 
@@ -142,34 +143,34 @@ public class BucleDeControl  {
                         int prob = random2.nextInt(101);
                         if (prob <= probA) {
 
-                            Celdas celda = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoAgua( celda, "Agua");
+                            Celdas celda1 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
+                            Recurso recurso = new RecursoAgua( celda1, "Agua");
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB) {
 
-                            Celdas celda = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoBiblioteca( celda, "Biblioteca");
+                            Celdas celda2 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
+                            Recurso recurso = new RecursoBiblioteca( celda2, "Biblioteca");
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB + probC) {
 
-                            Celdas celda = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoComida( celda, "Comida");
+                            Celdas celda3 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
+                            Recurso recurso = new RecursoComida( celda3, "Comida");
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
 
                         } else if (prob <= probA + probB + probC + probM) {
 
-                            Celdas celda = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoMontaña( celda, "Montaña");
+                            Celdas celda4 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
+                            Recurso recurso = new RecursoMontaña( celda4, "Montaña");
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB + probC + probM + probP) {
 
-                            Celdas celda = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoPozo( celda, "Pozo");
+                            Celdas celda5 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
+                            Recurso recurso = new RecursoPozo( celda5, "Pozo");
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB + probC + probM + probP + probT) {
 
-                            Celdas celda = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoTesoro( celda, "Tesoro");
+                            Celdas celda6 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
+                            Recurso recurso = new RecursoTesoro( celda6, "Tesoro");
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         }
 

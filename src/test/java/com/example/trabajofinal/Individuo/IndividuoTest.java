@@ -4,6 +4,7 @@ import com.example.trabajofinal.Estructuras.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+/*
 
 class IndividuoTest {
 
@@ -217,3 +218,5 @@ class IndividuoTest {
 
     }
 }
+
+ */

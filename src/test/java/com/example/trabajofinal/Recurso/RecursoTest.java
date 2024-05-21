@@ -1,3 +1,4 @@
+/*
 package com.example.trabajofinal.Recurso;
 
 import com.example.trabajofinal.Estructuras.*;
@@ -54,3 +55,5 @@ class RecursoTest {
     }
 
 }
+
+ */

@@ -48,15 +48,15 @@ public class Individuo1 extends Individuo {
         else if(dir==3){
             //dcha
 
-            celda2.setX(nuevoX++);
+            celda2.setX(nuevoX+1);
             celda2.setY(nuevoY);
 
         }
         else if(dir==4){
             //ariba+dcha
 
-            celda2.setY(nuevoY--);
-            celda2.setX(nuevoX++);
+            celda2.setY(nuevoY-1);
+            celda2.setX(nuevoX+1);
 
 
         }
@@ -64,21 +64,21 @@ public class Individuo1 extends Individuo {
             //abajo+dcha
 
 
-            celda2.setX(nuevoX++);
-            celda2.setY(nuevoY++);
+            celda2.setX(nuevoX+1);
+            celda2.setY(nuevoY+1);
 
         }
         else if(dir==6){
             //arriba+izq
-            celda2.setX(nuevoX--);
-            celda2.setY(nuevoY--);
+            celda2.setX(nuevoX-1);
+            celda2.setY(nuevoY-1);
 
         }
         else if(dir==7){
             //abajo+izq
 
-            celda2.setX(nuevoX--);
-            celda2.setY(nuevoY++);
+            celda2.setX(nuevoX-1);
+            celda2.setY(nuevoY+1);
 
         } else if (celda2.getX()<0 || celda2.getY()<0) {
             if(celda2.getX()<0){
