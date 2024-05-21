@@ -2,6 +2,7 @@ package com.example.trabajofinal.Recurso;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo2;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 
 import java.util.Random;
 
@@ -9,8 +10,8 @@ public class RecursoBiblioteca extends Recurso {
 
 
 
-    public RecursoBiblioteca( Celdas celda, String tipo)  {
-        super(celda,"Biblioteca");
+    public RecursoBiblioteca(Celdas celda, String tipo, ParameterDataModelRecursos datos)  {
+        super(celda,"Biblioteca",datos);
 
     }
 

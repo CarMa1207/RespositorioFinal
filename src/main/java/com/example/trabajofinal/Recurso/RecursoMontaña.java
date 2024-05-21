@@ -3,12 +3,13 @@ package com.example.trabajofinal.Recurso;
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo2;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 
 public class RecursoMontaña extends Recurso {
 
 
-    public RecursoMontaña( Celdas celda, String tipo)  {
-        super(celda,"Montaña");
+    public RecursoMontaña(Celdas celda, String tipo, ParameterDataModelRecursos datos)  {
+        super(celda,"Montaña",datos);
 
     }
 

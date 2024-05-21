@@ -5,13 +5,16 @@ import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Recurso.*;
 import com.example.trabajofinal.Parameter.TableroDataModel;
 
 import java.util.Random;
 
 public class BucleDeControl  {
-    private TableroDataModel tableroDataModel;
+    private static TableroDataModel tableroDataModel;
+
 
     public ListaEnlazed<Celdas> celdas;
 
@@ -32,7 +35,7 @@ public class BucleDeControl  {
         this.celdas = celda;
     }
 
-    public ListaEnlazed<Celdas> ejecucion(ListaEnlazed<Celdas> celda) throws Camino, ExistentID {
+    public ListaEnlazed<Celdas> ejecucion(ListaEnlazed<Celdas> celda,ParameterDataModel individuosdatos,ParameterDataModelRecursos recursosdatos) throws Camino, ExistentID {
 
         ListaEnlazed<ListaEnlazed<Individuo>> individuos = new ListaEnlazed<>();
         ListaEnlazed<ListaEnlazed<Recurso>> recursos = new ListaEnlazed<>();
@@ -74,7 +77,7 @@ public class BucleDeControl  {
 
         ListaEnlazed<Celdas> celdas= celda;
         for (int j = 0; j < celdas.getNumeroElementos(); j++) {
-            FuncionesBucle funcionesBucle = new FuncionesBucle(celdas.getElemento(j).getData().getRecursoListaEnlazed(), celdas.getElemento(j).getData().getIndividuoListaEnlazed());
+            FuncionesBucle funcionesBucle = new FuncionesBucle(celdas.getElemento(j).getData().getRecursoListaEnlazed(), celdas.getElemento(j).getData().getIndividuoListaEnlazed(),individuosdatos);
 
             funcionesBucle.Vida();
 
@@ -151,33 +154,33 @@ public class BucleDeControl  {
                         if (prob <= probA) {
 
                             Celdas celda1 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoAgua( celda1, "Agua");
+                            Recurso recurso = new RecursoAgua( celda1, "Agua",recursosdatos);
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB) {
 
                             Celdas celda2 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoBiblioteca( celda2, "Biblioteca");
+                            Recurso recurso = new RecursoBiblioteca( celda2, "Biblioteca",recursosdatos);
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB + probC) {
 
                             Celdas celda3 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoComida( celda3, "Comida");
+                            Recurso recurso = new RecursoComida( celda3, "Comida",recursosdatos);
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
 
                         } else if (prob <= probA + probB + probC + probM) {
 
                             Celdas celda4 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoMontaña( celda4, "Montaña");
+                            Recurso recurso = new RecursoMontaña( celda4, "Montaña",recursosdatos);
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB + probC + probM + probP) {
 
                             Celdas celda5 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoPozo( celda5, "Pozo");
+                            Recurso recurso = new RecursoPozo( celda5, "Pozo",recursosdatos);
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         } else if (prob <= probA + probB + probC + probM + probP + probT) {
 
                             Celdas celda6 = new Celdas(celdas.getElemento(j).getData().getX(), celdas.getElemento(j).getData().getY());
-                            Recurso recurso = new RecursoTesoro( celda6, "Tesoro");
+                            Recurso recurso = new RecursoTesoro( celda6, "Tesoro",recursosdatos);
                             celdas.getElemento(j).getData().getRecursoListaEnlazed().add(recurso);
                         }
 

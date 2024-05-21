@@ -146,7 +146,7 @@ public class ControladorCelda implements Initializable {
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoAgua= new RecursoAgua(celda,"Agua");
+                Recurso recursoAgua= new RecursoAgua(celda,"Agua",recursosd);
                 celda.getRecursoListaEnlazed().add(recursoAgua);
                 System.out.println(" se añade");
             }
@@ -162,7 +162,7 @@ public class ControladorCelda implements Initializable {
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoBiblioteca= new RecursoBiblioteca(celda,"Biblioteca");
+                Recurso recursoBiblioteca= new RecursoBiblioteca(celda,"Biblioteca",recursosd);
                 celda.getRecursoListaEnlazed().add(recursoBiblioteca);
                 System.out.println(" se añade");
             }
@@ -177,7 +177,7 @@ public class ControladorCelda implements Initializable {
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoComida= new RecursoComida(celda,"Comida");
+                Recurso recursoComida= new RecursoComida(celda,"Comida",recursosd);
                 celda.getRecursoListaEnlazed().add(recursoComida);
                 System.out.println(" se añade");
             }
@@ -193,7 +193,7 @@ public class ControladorCelda implements Initializable {
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoMontaña= new RecursoMontaña(celda,"Montaña");
+                Recurso recursoMontaña= new RecursoMontaña(celda,"Montaña",recursosd);
                 celda.getRecursoListaEnlazed().add(recursoMontaña);
                 System.out.println(" se añade");
             }
@@ -207,7 +207,7 @@ public class ControladorCelda implements Initializable {
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoTesoro= new RecursoAgua(celda,"Tesoro");
+                Recurso recursoTesoro= new RecursoAgua(celda,"Tesoro",recursosd);
                 celda.getRecursoListaEnlazed().add(recursoTesoro);
                 System.out.println(" se añade");
             }
@@ -234,12 +234,12 @@ public class ControladorCelda implements Initializable {
         System.out.print("Inicialización en ejecución del controlador\n");
 
     }
-
+    @FXML
     protected void OnBotonPozo() {
         if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-            Recurso recursoPozo= new RecursoPozo(celda,"Agua");
+            Recurso recursoPozo= new RecursoPozo(celda,"Agua",recursosd);
             celda.getRecursoListaEnlazed().add(recursoPozo);
             System.out.println(" se añade");
         }

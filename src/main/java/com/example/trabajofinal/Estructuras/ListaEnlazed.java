@@ -122,22 +122,7 @@ public class ListaEnlazed<T> {
         }
     }
 
-    public String toString() {
-        ElementoLe<T> actual = primero;
-        String salida="";
-        salida+=actual.getData();
-        if(primero==null){
-            return "El arbol esta vacio";
-        }
-        else{
 
-            while(primero.getSiguiente()!=null){
-                salida+=", "+actual.getData();
-                actual=actual.getSiguiente();
-            }
-        }
-        return salida;
-    }
 
 
 }

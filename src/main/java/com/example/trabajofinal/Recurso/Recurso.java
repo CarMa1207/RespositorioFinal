@@ -1,6 +1,7 @@
 package com.example.trabajofinal.Recurso;
 
 import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Estructuras.Celdas;
 
@@ -14,30 +15,40 @@ public abstract  class Recurso   {
 
     public String tipo;
 
-
-    public ParameterDataModelRecursos getDatos() {
-        return datos;
-    }
-
+    int tiempoAparicon;
+    int probabilidadAparicion;
+    int probabilidadAgua;
+    int probabilidadPozo;
+    int probabilidadComida;
+    int probabilidadBiblioteca;
+    int probabilidadTesoro;
+    int probabilidadMontaña;
     public ParameterDataModelRecursos datos;
     public void setDatos(ParameterDataModelRecursos datos) {
         this.datos = datos;
     }
-    int tiempoAparicon= datos.getTiempoAparicion();
-    int probabilidadAparicion= datos.getProbabilidadAparicion();
-    int probabilidadAgua= datos.getProbabilidadAgua();
-    int probabilidadComida= datos.getProbabilidadComida();
-    int probabilidadBiblioteca= datos.getProbabilidadBiblioteca();
-    int probabilidadPozo= datos.getProbabilidadPozo();
-    int probabilidadTesoro= datos.getProbabilidadTesoro();
-    int probabilidadMontaña= datos.getProbabilidadMontaña();
 
 
-    public Recurso( Celdas celda, String tipo)  {
+    public ParameterDataModelRecursos getDatos() {
+        return datos;
+    }
+    public Recurso(Celdas celda, String tipo, ParameterDataModelRecursos datos)  {
         this.celda=celda;
         this.tipo=tipo;
+         tiempoAparicon= datos.getTiempoAparicion();
+         probabilidadAparicion= datos.getProbabilidadAparicion();
+         probabilidadAgua= datos.getProbabilidadAgua();
+         probabilidadComida= datos.getProbabilidadComida();
+        probabilidadBiblioteca= datos.getProbabilidadBiblioteca();
+         probabilidadPozo= datos.getProbabilidadPozo();
+        probabilidadTesoro= datos.getProbabilidadTesoro();
+        probabilidadMontaña= datos.getProbabilidadMontaña();
 
     }
+
+
+
+
 
 
     public void setTipo(String tip){

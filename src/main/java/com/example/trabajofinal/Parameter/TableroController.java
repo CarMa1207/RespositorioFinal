@@ -139,31 +139,7 @@ protected void guardarPartida(){
     }
 
 
-    private void bucleDeControlIniciar(){
 
-        if(control==null){
-            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
-                if (!isPausa()) {
-                    BucleDeControl contronladorPatria = new BucleDeControl(celda);
-                    contronladorPatria.setTableroDataModel(tableroDataModel);
-                    try {
-                        celda = contronladorPatria.ejecucion(celda);
-                    } catch (Camino e) {
-                        throw new RuntimeException(e);
-                    } catch (ExistentID e) {
-                        throw new RuntimeException(e);
-                    }
-                } else {
-                    System.out.println("Se ha pausado el juego");
-                    control.stop();
-                }
-            }));
-            control.setCycleCount(Animation.INDEFINITE);
-            }else{
-            control.stop();
-        }
-        control.play();
-    }
     public Datos pantallaFinal(){
 
         int longevidad=0;
@@ -212,11 +188,7 @@ protected void guardarPartida(){
                     celditas.setX(i);
                     celditas.setY(j);;
                     celda.add(celditas);
-                    for (int x = 0; x < celditas.getIndividuoListaEnlazed().getNumeroElementos(); x++) {
-;
-                        celditas.getIndividuoListaEnlazed().getElemento(x).getData().getDatos().setID(ID);
-                        ID++;
-                    }
+
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -224,13 +196,48 @@ protected void guardarPartida(){
                             ButtonCelda(celditas,individuosDatamodel,recusosDatamodel);
                             celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));////
                         }});
-                    bucleDeControlIniciar();
+
 
 
                 }
             }
+
+
         }
 
+
+    }
+    private void bucleDeControlIniciar(){
+    int ID=0;
+        for (int x = 0; x < celda.getNumeroElementos(); x++) {
+            for(int w=0; w<celda.getElemento(x).getData().getIndividuoListaEnlazed().getNumeroElementos();w++){
+                celda.getElemento(x).getData().getIndividuoListaEnlazed().getElemento(w).getData().getDatos().setID(ID);
+                ID++;
+            }
+
+        }
+        if(control==null){
+            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
+                if (!isPausa()) {
+                    BucleDeControl contronladorPatria = new BucleDeControl(celda);
+                    contronladorPatria.setTableroDataModel(tableroDataModel);
+                    try {
+                        celda = contronladorPatria.ejecucion(celda,individuosDatamodel,recusosDatamodel);
+                    } catch (Camino e) {
+                        throw new RuntimeException(e);
+                    } catch (ExistentID e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    System.out.println("Se ha pausado el juego");
+                    control.stop();
+                }
+            }));
+            control.setCycleCount(Animation.INDEFINITE);
+        }else{
+            control.stop();
+        }
+        control.play();
     }
 }
 
