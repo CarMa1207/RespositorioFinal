@@ -101,6 +101,9 @@ public  class FuncionesBucle  {
         for (int i = 0; i < recursos.getNumeroElementos(); i++) {
             for (int j = 0; j < individuos.getNumeroElementos(); j++) {
                 if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
+                    if(recursos.getElemento(i).getData().getTipo()=="Biblioteca"){
+                        individuos.getElemento(j).getData().setRuta(null);
+                    }
                     recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
                     recursos.del(i);
                     individuos.getElemento(j).getData().getHistorial().getMov().push("Recurso: "+recursos.getElemento(i).getData().getTipo());

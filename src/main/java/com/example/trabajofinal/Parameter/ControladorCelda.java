@@ -11,6 +11,7 @@ import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Parameter.TableroDataModel;
 import com.example.trabajofinal.Recurso.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -202,21 +203,6 @@ public class ControladorCelda implements Initializable {
 
         }
         @FXML
-        protected void onBotonPozo() {
-            if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
-
-
-                Recurso recursoPozo= new RecursoPozo(celda,"Agua");
-                celda.getRecursoListaEnlazed().add(recursoPozo);
-                System.out.println(" se añade");
-            }
-            else{
-                System.out.println("Se ha excedido el limite de recursos por casilla");
-            }
-
-
-        }
-        @FXML
         protected void onBotonTesoro() {
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
@@ -247,6 +233,19 @@ public class ControladorCelda implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.print("Inicialización en ejecución del controlador\n");
 
+    }
+
+    protected void OnBotonPozo() {
+        if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
+
+
+            Recurso recursoPozo= new RecursoPozo(celda,"Agua");
+            celda.getRecursoListaEnlazed().add(recursoPozo);
+            System.out.println(" se añade");
+        }
+        else{
+            System.out.println("Se ha excedido el limite de recursos por casilla");
+        }
     }
 }
 

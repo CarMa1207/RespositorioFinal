@@ -47,7 +47,7 @@ public class BucleDeControl  {
         }
 
 
-
+/*
 
         int probA = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadA();
         int probB = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadB();
@@ -60,6 +60,17 @@ public class BucleDeControl  {
 
         int probT = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadT();
 
+ */
+
+
+        int probA =1;
+        int probB =1;
+        int probC = 1;
+        int probM = 1;
+        int probP = 1;
+        int probT = 1;
+
+
 
         ListaEnlazed<Celdas> celdas= celda;
         for (int j = 0; j < celdas.getNumeroElementos(); j++) {
@@ -70,11 +81,7 @@ public class BucleDeControl  {
             funcionesBucle.TiempoVidaRecurso();
 
             funcionesBucle.Propiedades();
-            for (int r = 0; r < celdas.getElemento(j).getData().getRecursoListaEnlazed().getNumeroElementos(); r++) {
-                if (celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(r).getData().getDatos().getID() == 0) {
-                    celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(r).getData().getDatos().setID(funcionesBucle.generarID());
-                }
-            }
+
 
 
             //funcion get camino para todos los individuos y la comprobacion de las coordenadas

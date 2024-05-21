@@ -224,6 +224,9 @@ protected void guardarPartida(){
                             ButtonCelda(celditas,individuosDatamodel,recusosDatamodel);
                             celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));////
                         }});
+                    bucleDeControlIniciar();
+
+
                 }
             }
         }
