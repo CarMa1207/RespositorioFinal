@@ -107,7 +107,28 @@ public class FuncionesBucle {
             for (int j = 0; j < individuos.getNumeroElementos(); j++) {
                 if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
                     if (recursos.getElemento(i).getData().getTipo() == "Biblioteca") {
-                        individuos.getElemento(j).getData().setRuta(null);
+                        if (individuos.getElemento(i).getData().getTipo() == 2) {
+                            ArbolAVL<Integer> arbol = individuos.getElemento(j).getData().getGeneracion();
+                            Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
+                            Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
+                            ListaEnlazed<Celdas> ruta =null;
+                            Individuo mutado = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
+                            individuos.del(i);
+                            individuos.add(mutado);
+
+                        }
+                        else if (individuos.getElemento(i).getData().getTipo() == 1) {
+                            ArbolAVL<Integer> arbol = individuos.getElemento(j).getData().getGeneracion();
+                            Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
+                            Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
+                            ListaEnlazed<Celdas> ruta =null;
+                            Individuo mutado = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
+                            individuos.del(i);
+                            individuos.add(mutado);
+
+                        }
+
+
                     }
                     recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
                     recursos.del(i);

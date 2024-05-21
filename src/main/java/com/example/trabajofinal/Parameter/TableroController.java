@@ -130,6 +130,14 @@ protected void guardarPartida(){
     protected void onPlayButtonClick(){
         tableroDeJuego.setDisable(true);
         System.out.println("Se ha pulsado el boton de play");
+        int ID=0;
+        for(int i=0; i<celda.getNumeroElementos();i++){
+            for(int j=0;j<celda.getElemento(i).getData().getIndividuoListaEnlazed().getNumeroElementos();j++){
+                celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData().getDatos().setID(ID);
+                ID++;
+            }
+        }
+        bucleDeControlIniciar();
     }
     @FXML
     protected void onPauseButtonClick(){
