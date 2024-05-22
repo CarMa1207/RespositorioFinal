@@ -15,6 +15,8 @@ public abstract  class Recurso   {
 
     public String tipo;
 
+
+
     int tiempoAparicon;
     int probabilidadAparicion;
     int probabilidadAgua;
@@ -24,12 +26,12 @@ public abstract  class Recurso   {
     int probabilidadTesoro;
     int probabilidadMontaña;
     public ParameterDataModelRecursos datos;
-    public void setDatos(ParameterDataModelRecursos datos) {
+    public void setDatosR(ParameterDataModelRecursos datos) {
         this.datos = datos;
     }
 
 
-    public ParameterDataModelRecursos getDatos() {
+    public ParameterDataModelRecursos getDatosR() {
         return datos;
     }
     public Recurso(Celdas celda, String tipo, ParameterDataModelRecursos datos)  {
@@ -43,9 +45,13 @@ public abstract  class Recurso   {
          probabilidadPozo= datos.getProbabilidadPozo();
         probabilidadTesoro= datos.getProbabilidadTesoro();
         probabilidadMontaña= datos.getProbabilidadMontaña();
+        this.datos=datos;
 
     }
 
+    public void setTiempoAparicon(int tiempoAparicon) {
+        this.tiempoAparicon = tiempoAparicon;
+    }
 
 
 

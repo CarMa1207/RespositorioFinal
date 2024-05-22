@@ -8,6 +8,7 @@ import com.example.trabajofinal.Estructuras.Celdas;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.Historial;
+import javafx.fxml.FXML;
 
 public abstract class Individuo  {
     public int tipo;

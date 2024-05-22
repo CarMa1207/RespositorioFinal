@@ -50,28 +50,13 @@ public class BucleDeControl  {
         }
 
 
-/*
-
-        int probA = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadA();
-        int probB = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadB();
-
-        int probC = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadC();
-
-        int probM = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadM();
-
-        int probP = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadP();
-
-        int probT = recursos.getPrimero().getData().getPrimero().getData().getProbabilidadT();
-
- */
 
 
-        int probA =1;
-        int probB =1;
-        int probC = 1;
-        int probM = 1;
-        int probP = 1;
-        int probT = 1;
+
+
+
+
+
 
 
 
@@ -81,17 +66,18 @@ public class BucleDeControl  {
 
             funcionesBucle.Vida();
 
+
+
+
+
             funcionesBucle.TiempoVidaRecurso();
-
             funcionesBucle.Propiedades();
-
-
 
             //funcion get camino para todos los individuos y la comprobacion de las coordenadas
 
             for (int x = 0; x < celdas.getElemento(j).getData().getIndividuoListaEnlazed().getNumeroElementos(); x++) {
                 //Primero compruebo que las rutas sean nulas, luego las genero y actualizo tanto la posicion como la lista para que se elimine la celda a la que lo he movido
-                if (celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta() == null || celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta().getUltimo().getData().getRecursoListaEnlazed() ==null) {
+                if (celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta().getUltimo().getData() == null ) {
                     Individuo individuo = celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData();
 
                     funcionesBucle.getCaminoIndividuos(individuo);
@@ -99,7 +85,20 @@ public class BucleDeControl  {
                     individuo.getCelda().setY(individuo.getRuta().getPrimero().getData().getY());
 
                     individuo.getRuta().del(0);
-                } else {
+
+
+                }
+
+                else if(celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData().getRuta().getUltimo().getData().getRecursoListaEnlazed() ==null){
+                    Individuo individuo = celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData();
+
+                    funcionesBucle.getCaminoIndividuos(individuo);
+                    individuo.getCelda().setX(individuo.getRuta().getPrimero().getData().getX());
+                    individuo.getCelda().setY(individuo.getRuta().getPrimero().getData().getY());
+
+                    individuo.getRuta().del(0);
+                }
+                else {
                     Individuo individuo = celdas.getElemento(j).getData().getIndividuoListaEnlazed().getElemento(x).getData();
 
                     individuo.getCelda().setX(individuo.getRuta().getPrimero().getData().getX());
@@ -146,8 +145,18 @@ public class BucleDeControl  {
             for (int q = 0; q < celdas.getElemento(j).getData().getRecursoListaEnlazed().getNumeroElementos(); q++) {
                 Random random = new Random();
                 int probabilidadAparicion = random.nextInt(101);
+                int probA = celda.getPrimero().getData().getRecursoListaEnlazed().getPrimero().getData().getProbabilidadA();
+                int probB =  celda.getPrimero().getData().getRecursoListaEnlazed().getPrimero().getData().getProbabilidadB();
 
-                if (probabilidadAparicion <= celdas.getElemento(j).getData().getRecursoListaEnlazed().getPrimero().getData().getDatos().getProbabilidadAparicion()) {
+                int probC =  celda.getPrimero().getData().getRecursoListaEnlazed().getPrimero().getData().getProbabilidadC();
+
+                int probM = celda.getPrimero().getData().getRecursoListaEnlazed().getPrimero().getData().getProbabilidadM();
+
+                int probP =  celda.getPrimero().getData().getRecursoListaEnlazed().getPrimero().getData().getProbabilidadP();
+
+                int probT =  celda.getPrimero().getData().getRecursoListaEnlazed().getPrimero().getData().getProbabilidadT();
+
+                if (probabilidadAparicion <= celdas.getElemento(j).getData().getRecursoListaEnlazed().getPrimero().getData().getDatosR().getProbabilidadAparicion()) {
                     if (celdas.getElemento(j).getData().getRecursoListaEnlazed().getNumeroElementos() < 3) {
                         Random random2 = new Random();
                         int prob = random2.nextInt(101);

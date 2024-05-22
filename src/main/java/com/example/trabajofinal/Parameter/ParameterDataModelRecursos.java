@@ -30,7 +30,7 @@ public class  ParameterDataModelRecursos {
     }
 
     public void setTiempoAparicion(int tiempoAparicion) {
-        TiempoAparicion = tiempoAparicion;
+        this.TiempoAparicion = tiempoAparicion;
     }
 
     public void setProbabilidadAparicion(int probabilidadAparicion) {

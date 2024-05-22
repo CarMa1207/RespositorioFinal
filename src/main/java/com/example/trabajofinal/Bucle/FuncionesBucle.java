@@ -16,6 +16,8 @@ import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.Recurso.*;
 
+import javax.security.auth.login.CredentialException;
+
 
 public class FuncionesBucle {
     //listas para recursos e individuos***
@@ -26,7 +28,7 @@ public class FuncionesBucle {
     //recursos***
 
 
-    public ListaEnlazed<Recurso> recursos;
+    public static ListaEnlazed<Recurso> recursos;
     public ListaEnlazed<Individuo> individuos;
 
     public ParameterDataModel datos;
@@ -40,10 +42,12 @@ public class FuncionesBucle {
 
     public void Vida() {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
+            Individuo siguiente2=individuos.getElemento(i).getData();
             try {
 
-                individuos.getElemento(i).getData().getDatos().setVida(individuos.getElemento(i).getData().getDatos().getVida() - 1);
-                individuos.getElemento(i).getData().getHistorial().añadirTurno();
+                siguiente2.getDatos().setVida(siguiente2.getDatos().getVida()-1);
+                siguiente2.getHistorial().añadirTurno();
+                siguiente2= individuos.getElemento(i).getData();
             } catch (NullPointerException exception) {
                 System.out.println("ERROR: El individuo que se busca no exsite");
             }
@@ -82,16 +86,15 @@ public class FuncionesBucle {
 
     public void TiempoVidaRecurso() {
         for (int i = 0; i < recursos.getNumeroElementos(); i++) {
-            try {
-                recursos.getElemento(i).getData().getDatos().setTiempoAparicion(recursos.getElemento(i).getData().getDatos().getTiempoAparicion() - 1);
+            Recurso siguiente2=recursos.getElemento(i).getData();
 
-            } catch (NullPointerException exception) {
-                System.out.println("ERROR: El recurso que se busca no exsite");
-            }
+            siguiente2.getDatosR().setTiempoAparicion(siguiente2.getDatosR().getTiempoAparicion()-1);
+
+            siguiente2= recursos.getElemento(i).getData();
         }
         for (int j = 0; j < recursos.getNumeroElementos(); j++) {
             try {
-                if (recursos.getElemento(j).getData().getDatos().getTiempoAparicion() <= 0) {
+                if (recursos.getElemento(j).getData().getDatosR().getTiempoAparicion() <= 0) {
                     recursos.del(j);
                 }
             } catch (NullPointerException exception) {
@@ -438,8 +441,8 @@ public class FuncionesBucle {
         Recurso sentenciado = null;
 
         for (int j = 0; j < enLaCelda.getNumeroElementos(); j++) {
-            if (vida < enLaCelda.getElemento(j).getData().getDatos().getTiempoAparicion()) {
-                vida = recursos.getElemento(j).getData().getDatos().getTiempoAparicion();
+            if (vida > enLaCelda.getElemento(j).getData().getDatosR().getTiempoAparicion()) {
+                vida = recursos.getElemento(j).getData().getDatosR().getTiempoAparicion();
                 sentenciado = recursos.getElemento(j).getData();
             } else {
                 Random random = new Random();

@@ -61,8 +61,8 @@ public class ControladorCelda implements Initializable {
         @FXML
         private Label titulo;
         private static  TableroDataModel tablero;
-        private static ParameterDataModel individuosc;
-        private static ParameterDataModelRecursos recursosd;
+        private  ParameterDataModel individuosc;
+        private  ParameterDataModelRecursos recursosd;
         private   static Celdas celda;
 
     public void setCelda(TableroDataModel tablero, Celdas celda, ParameterDataModel individuos , ParameterDataModelRecursos recursos) {
@@ -83,6 +83,7 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonIndividuo1() {
+            ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
                 Cola<String>mov= new Cola<>();
@@ -90,7 +91,7 @@ public class ControladorCelda implements Initializable {
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
-                Individuo individuo1= new Individuo1(celda,1,arbol,historial,ruta,individuosc) ;
+                Individuo individuo1= new Individuo1(celda,1,arbol,historial,ruta,datos) ;
                 celda.getIndividuoListaEnlazed().add(individuo1);
                 System.out.println(" se añade");
             }
@@ -104,6 +105,7 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonIndividuo2() {
+            ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
                 Cola<String>mov= new Cola<>();
@@ -111,7 +113,7 @@ public class ControladorCelda implements Initializable {
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
-                Individuo individuo2= new Individuo2(celda,2,arbol,historial,ruta,individuosc) ;
+                Individuo individuo2= new Individuo2(celda,2,arbol,historial,ruta,datos) ;
                 celda.getIndividuoListaEnlazed().add(individuo2);
                 System.out.println(" se añade");
             }
@@ -124,6 +126,7 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonIndividuo3() {
+            ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
                 Cola<String>mov= new Cola<>();
@@ -131,7 +134,7 @@ public class ControladorCelda implements Initializable {
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
-                Individuo individuo3= new Individuo3(celda,3,arbol,historial,ruta,individuosc) ;
+                Individuo individuo3= new Individuo3(celda,3,arbol,historial,ruta,datos) ;
                 celda.getIndividuoListaEnlazed().add(individuo3);
                 System.out.println(" se añade");
             }
@@ -143,10 +146,11 @@ public class ControladorCelda implements Initializable {
         }
         @FXML
         protected void onBotonAgua() {
+            ParameterDataModelRecursos datos= new ParameterDataModelRecursos(recursosd.getTiempoAparicion(),recursosd.getProbabilidadAparicion(),recursosd.getProbabilidadAgua(),recursosd.getProbabilidadComida(),recursosd.getProbabilidadBiblioteca(),recursosd.getProbabilidadMontaña(),recursosd.getProbabilidadPozo(),recursosd.getProbabilidadTesoro());
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoAgua= new RecursoAgua(celda,"Agua",recursosd);
+                Recurso recursoAgua= new RecursoAgua(celda,"Agua",datos);
                 celda.getRecursoListaEnlazed().add(recursoAgua);
                 System.out.println(" se añade");
             }
@@ -159,10 +163,12 @@ public class ControladorCelda implements Initializable {
         }
         @FXML
         protected void onBotonBiblioteca () {
+            ParameterDataModelRecursos datos= new ParameterDataModelRecursos(recursosd.getTiempoAparicion(),recursosd.getProbabilidadAparicion(),recursosd.getProbabilidadAgua(),recursosd.getProbabilidadComida(),recursosd.getProbabilidadBiblioteca(),recursosd.getProbabilidadMontaña(),recursosd.getProbabilidadPozo(),recursosd.getProbabilidadTesoro());
+
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoBiblioteca= new RecursoBiblioteca(celda,"Biblioteca",recursosd);
+                Recurso recursoBiblioteca= new RecursoBiblioteca(celda,"Biblioteca",datos);
                 celda.getRecursoListaEnlazed().add(recursoBiblioteca);
                 System.out.println(" se añade");
             }
@@ -174,10 +180,12 @@ public class ControladorCelda implements Initializable {
         }
         @FXML
         protected void onBotonComida() {
+            ParameterDataModelRecursos datos= new ParameterDataModelRecursos(recursosd.getTiempoAparicion(),recursosd.getProbabilidadAparicion(),recursosd.getProbabilidadAgua(),recursosd.getProbabilidadComida(),recursosd.getProbabilidadBiblioteca(),recursosd.getProbabilidadMontaña(),recursosd.getProbabilidadPozo(),recursosd.getProbabilidadTesoro());
+
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoComida= new RecursoComida(celda,"Comida",recursosd);
+                Recurso recursoComida= new RecursoComida(celda,"Comida",datos);
                 celda.getRecursoListaEnlazed().add(recursoComida);
                 System.out.println(" se añade");
             }
@@ -190,10 +198,12 @@ public class ControladorCelda implements Initializable {
 
         @FXML
         protected void onBotonMontaña () {
+            ParameterDataModelRecursos datos= new ParameterDataModelRecursos(recursosd.getTiempoAparicion(),recursosd.getProbabilidadAparicion(),recursosd.getProbabilidadAgua(),recursosd.getProbabilidadComida(),recursosd.getProbabilidadBiblioteca(),recursosd.getProbabilidadMontaña(),recursosd.getProbabilidadPozo(),recursosd.getProbabilidadTesoro());
+
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoMontaña= new RecursoMontaña(celda,"Montaña",recursosd);
+                Recurso recursoMontaña= new RecursoMontaña(celda,"Montaña",datos);
                 celda.getRecursoListaEnlazed().add(recursoMontaña);
                 System.out.println(" se añade");
             }
@@ -204,10 +214,12 @@ public class ControladorCelda implements Initializable {
         }
         @FXML
         protected void onBotonTesoro() {
+            ParameterDataModelRecursos datos= new ParameterDataModelRecursos(recursosd.getTiempoAparicion(),recursosd.getProbabilidadAparicion(),recursosd.getProbabilidadAgua(),recursosd.getProbabilidadComida(),recursosd.getProbabilidadBiblioteca(),recursosd.getProbabilidadMontaña(),recursosd.getProbabilidadPozo(),recursosd.getProbabilidadTesoro());
+
             if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-                Recurso recursoTesoro= new RecursoAgua(celda,"Tesoro",recursosd);
+                Recurso recursoTesoro= new RecursoAgua(celda,"Tesoro",datos);
                 celda.getRecursoListaEnlazed().add(recursoTesoro);
                 System.out.println(" se añade");
             }
@@ -236,10 +248,12 @@ public class ControladorCelda implements Initializable {
     }
     @FXML
     protected void OnBotonPozo() {
+        ParameterDataModelRecursos datos= new ParameterDataModelRecursos(recursosd.getTiempoAparicion(),recursosd.getProbabilidadAparicion(),recursosd.getProbabilidadAgua(),recursosd.getProbabilidadComida(),recursosd.getProbabilidadBiblioteca(),recursosd.getProbabilidadMontaña(),recursosd.getProbabilidadPozo(),recursosd.getProbabilidadTesoro());
+
         if(celda.getRecursoListaEnlazed().getNumeroElementos()<3){
 
 
-            Recurso recursoPozo= new RecursoPozo(celda,"Agua",recursosd);
+            Recurso recursoPozo= new RecursoPozo(celda,"Agua",datos);
             celda.getRecursoListaEnlazed().add(recursoPozo);
             System.out.println(" se añade");
         }
