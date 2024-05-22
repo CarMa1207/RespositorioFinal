@@ -118,6 +118,8 @@ public class FuncionesBucle {
                             Individuo mutado = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
                             individuos.del(i);
                             individuos.add(mutado);
+                            mutado.getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
+                            recursos.del(i);
 
                         }
                         else if (individuos.getElemento(i).getData().getTipo() == 1) {
@@ -128,14 +130,19 @@ public class FuncionesBucle {
                             Individuo mutado = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
                             individuos.del(i);
                             individuos.add(mutado);
+                            mutado.getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
+                            recursos.del(i);
 
                         }
 
 
+                    }else{
+                        recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
+                        individuos.getElemento(j).getData().getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
+                        recursos.del(i);
                     }
-                    recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
-                    recursos.del(i);
-                    individuos.getElemento(j).getData().getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
+
+
                 }
             }
         }
@@ -156,37 +163,53 @@ public class FuncionesBucle {
 
         } else if (individuo.getTipo() == 2) {
             //aqui solo inicializo el camino, después en el bucle legit voy a tener que comporbar que no haya un camino ya creado y si lo hay usarlo
+            if(recursos.getNumeroElementos()==0){
+                fin.setX(inicio.getX()+1);
+                fin.setY(inicio.getY()+1);
+            }else{
+                Random random = new Random();
+                int cual = random.nextInt(recursos.getNumeroElementos() + 1);
 
-            Random random = new Random();
-            int cual = random.nextInt(recursos.getNumeroElementos() + 1);
-            fin.setX(recursos.getElemento(cual).getData().getCelda().getX());
-            fin.setY(recursos.getElemento(cual).getData().getCelda().getY());
-            individuo.setRuta(individuo.getCamino(inicio, fin));
-        } else if (individuo.getTipo() == 3) {
-            Recurso recursobuscado = null;
-            double distanciaMinima = Double.MAX_VALUE;
-
-            for (int j = 0; j < recursos.getNumeroElementos(); j++) {
-                int x1 = individuo.getCelda().getX();
-                int y1 = individuo.getCelda().getY();
-
-                int x2 = recursos.getElemento(j).getData().getCelda().getX();
-                int y2 = recursos.getElemento(j).getData().getCelda().getY();
-
-                double distancia = Math.sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2);
-
-                if (distancia < distanciaMinima && distancia > 0) {
-                    distanciaMinima = distancia;
-                    recursobuscado = recursos.getElemento(j).getData();
-                }
-            }
-            fin.setX(recursobuscado.getCelda().getX());
-            fin.setY(recursobuscado.getCelda().getY());
-            if (individuo.getRuta() != null) {
+                fin.setX(recursos.getElemento(cual).getData().getCelda().getX());
+                fin.setY(recursos.getElemento(cual).getData().getCelda().getY());
                 individuo.setRuta(individuo.getCamino(inicio, fin));
-            } else {
-                throw (new Camino("El camino esta vacio"));
             }
+
+        } else if (individuo.getTipo() == 3) {
+
+            try{
+                double distanciaMinima = Double.MAX_VALUE;
+                if(recursos.getNumeroElementos()==0){
+                    fin.setX(inicio.getX()+1);
+                    fin.setY(inicio.getY()+1);
+                }else if(recursos.getNumeroElementos()!=0){
+                    Recurso recursobuscado = null;
+                    for (int j = 0; j < recursos.getNumeroElementos(); j++) {
+                        int x1 = individuo.getCelda().getX();
+                        int y1 = individuo.getCelda().getY();
+
+                        int x2 = recursos.getElemento(j).getData().getCelda().getX();
+                        int y2 = recursos.getElemento(j).getData().getCelda().getY();
+
+                        double distancia = Math.sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2);
+
+                        if (distancia < distanciaMinima && distancia > 0) {
+                            distanciaMinima = distancia;
+                            recursobuscado = recursos.getElemento(j).getData();
+                        }
+                    }
+                    fin.setX(recursobuscado.getCelda().getX());
+                    fin.setY(recursobuscado.getCelda().getY());
+                    if (individuo.getRuta() != null) {
+                        individuo.setRuta(individuo.getCamino(inicio, fin));
+                    } else {
+                        throw (new Camino("El camino esta vacio"));
+                    }
+                }
+            }catch (NullPointerException except){
+                System.out.println("No hay recursos que buscar");
+            }
+
 
         }
 

@@ -86,7 +86,7 @@ public class ControladorCelda implements Initializable {
             ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
                 ArbolAVL<Integer> arbol= new ArbolAVL<>();
-                Cola<String>mov= new Cola<>();
+                Cola<String> mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
