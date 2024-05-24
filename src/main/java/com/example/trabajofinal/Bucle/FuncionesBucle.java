@@ -103,7 +103,34 @@ public class FuncionesBucle {
 
         }
     }
+    public void BotonesDecolor(Celdas celda ){
+        int Individuos = celda.getIndividuoListaEnlazed().getNumeroElementos();
 
+        if(Individuos!=0 && Individuos<=3){
+            if(Individuos ==1 ){
+                celda.setStyle("-fx-background-color: #d22727 ; -fx-border-color:#d22727");
+            } else if (Individuos == 2) {
+                celda.setStyle("-fx-background-color: #ad4f28 ; -fx-border-color:#ad4f28 ");
+            } else if (Individuos==3) {
+                celda.setStyle("-fx-background-color: #77ea0b ; -fx-border-color:#77ea0b");
+
+            }
+        } else  for (int i=0 ; i<celda.getRecursoListaEnlazed().getNumeroElementos();i++){
+            if(celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoAgua.class){
+                celda.setStyle("-fx-background-color: #00fff7 ; -fx-border-color:#00fff7");
+            } else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoComida.class) {
+                celda.setStyle("-fx-background-color: #5a7227 ; -fx-border-color:#5a7227");
+            }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoBiblioteca.class){
+                celda.setStyle("-fx-background-color: #8a5928 ; -fx-border-color:#8a5928");
+            }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoMontaña.class){
+                celda.setStyle("-fx-background-color: #332820 ; -fx-border-color:#332820");
+            }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoTesoro.class){
+                celda.setStyle("-fx-background-color: #d7d70e ; -fx-border-color:#d7d70e");
+            }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoPozo.class){
+                celda.setStyle("-fx-background-color: #202062 ; -fx-border-color:#202062");
+            }
+        }
+    }
     public void Propiedades() {
 
         for (int i = 0; i < recursos.getNumeroElementos(); i++) {

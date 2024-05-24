@@ -14,6 +14,8 @@ import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import com.example.trabajofinal.json.Json;
 
  */
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -46,8 +48,9 @@ private Button pauseboton;
 private Button iniciarboton;
     private TableroDataModelProperties modelTablero;
     private static TableroDataModel tableroDataModel;
-    private  static  ParameterDataModelRecursos recusosDatamodel;
-    private   static ParameterDataModel individuosDatamodel;
+    private   static  ParameterDataModelRecursos recusosDatamodel;
+    private    static  ParameterDataModel individuosDatamodel;
+    private ParameterDataModelProperties modelo;
     private ParameterDataModelPropertiesRecursos modelrecursosproperties;
     private ParameterDataModelProperties modelindividuosproperties;
     private TableroDataModelProperties modeltablero;
@@ -116,7 +119,7 @@ protected void guardarPartida(){
         try {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(ControladorCelda.class.getResource("/com/example/trabajofinal/Celda-view.fxml"));;
-            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 700, 700);
             stage.setScene(scene);
            ControladorCelda controladorCelda = fxmlLoader.getController();
             stage.show();
@@ -178,6 +181,7 @@ protected void guardarPartida(){
         actualizado.setMaxAgua(agua);
         actualizado.setMaxMut(mutaciones);
         return actualizado;
+
     }
 
     @Override

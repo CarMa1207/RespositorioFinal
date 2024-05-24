@@ -112,6 +112,9 @@
                         <Label fx:id="labelValorProbabilidaPozoSlider" layoutX="513.0" layoutY="267.0" text="0" />
                         <Label fx:id="labelValorProbabilidaComidaSlider" layoutX="507.0" layoutY="301.0" text="0" />
                         <Label fx:id="labelValorTiempoAparicionSlider" layoutX="543.0" layoutY="344.0" text="0" />
+                        <Button fx:id="BotonGuardar" layoutX="27.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonGuardarClick" text="Guardar" />
+                        <Button fx:id="BotonCargar" layoutX="109.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonReiniciarClick" text="Reiniciar" />
+                        <Button fx:id="BotonCerrar" layoutX="208.0" layoutY="314.0" mnemonicParsing="false" onAction="#onBotonCerrarClick" text="Cerrar" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>

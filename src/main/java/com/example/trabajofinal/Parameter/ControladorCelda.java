@@ -55,6 +55,24 @@ public class ControladorCelda implements Initializable {
         private Button BotonPozo;
         @FXML
         private Button BotonTesoro;
+        @FXML
+        private Label labelCantidadAgua;
+        @FXML
+        private Label labelCantidadComida;
+        @FXML
+        private Label labelCantidadBiblioteca;
+        @FXML
+        private Label labelCantidadTesoro;
+        @FXML
+        private Label labelCantidadPozo;
+        @FXML
+        private Label labelCantidadMontaña;
+        @FXML
+        private Label labelCantidadIndividuos1;
+        @FXML
+        private Label labelCantidadIndividuos2;
+        @FXML
+        private Label labelCantidadIndividuos3;
 
 
 
@@ -64,6 +82,16 @@ public class ControladorCelda implements Initializable {
         private  ParameterDataModel individuosc;
         private  ParameterDataModelRecursos recursosd;
         private   static Celdas celda;
+        private int cantidadAgua=0;
+        private int cantidadComida=0;
+        private int cantidadMonataña=0;
+        private int cantidadBiblioteca=0;
+        private int cantidadMontaña=0;
+        private int cantidadTesoro=0;
+        private int cantidadPozo=0;
+        private int cantidadindividuos1=0;
+        private int cantidadindividuos2=0;
+        private int cantidadindividuos3=0;
 
     public void setCelda(TableroDataModel tablero, Celdas celda, ParameterDataModel individuos , ParameterDataModelRecursos recursos) {
         this.tablero = tablero;
@@ -260,6 +288,43 @@ public class ControladorCelda implements Initializable {
         else{
             System.out.println("Se ha excedido el limite de recursos por casilla");
         }
+    }
+    protected void Informacion(){
+         for (int i=0 ; i<celda.getRecursoListaEnlazed().getNumeroElementos();i++){
+             if(celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoAgua.class){
+                cantidadAgua++;
+             } else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoComida.class) {
+                 cantidadComida++;
+             }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoBiblioteca.class){
+                 cantidadMonataña++;
+             }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoMontaña.class){
+                 cantidadMontaña++;
+             }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoTesoro.class){
+                 cantidadTesoro++;
+             }else if (celda.getRecursoListaEnlazed().getElemento(i).getData().getClass()==RecursoPozo.class){
+                 cantidadPozo++;
+             }
+         }
+         for(int j =0; j<celda.getIndividuoListaEnlazed().getNumeroElementos();j++) {
+             if (celda.getIndividuoListaEnlazed().getElemento(j).getData().getTipo() == 1) {
+                 cantidadindividuos1++;
+             } else if (celda.getIndividuoListaEnlazed().getElemento(j).getData().getTipo() == 2) {
+                 cantidadindividuos2++;
+
+             } else if (celda.getIndividuoListaEnlazed().getElemento(j).getData().getTipo() == 3) {
+                 cantidadindividuos3++;
+
+             }
+         }
+         labelCantidadAgua.setText(String.valueOf(cantidadAgua));
+        labelCantidadComida.setText(String.valueOf(cantidadComida));
+        labelCantidadBiblioteca.setText(String.valueOf(cantidadBiblioteca));
+        labelCantidadTesoro.setText(String.valueOf(cantidadTesoro));
+        labelCantidadPozo.setText(String.valueOf(cantidadPozo));
+        labelCantidadMontaña.setText(String.valueOf(cantidadMontaña));
+        labelCantidadIndividuos1.setText(String.valueOf(cantidadindividuos1));
+        labelCantidadIndividuos2.setText(String.valueOf(cantidadindividuos2));
+        labelCantidadIndividuos3.setText(String.valueOf(cantidadindividuos3));
     }
 }
 

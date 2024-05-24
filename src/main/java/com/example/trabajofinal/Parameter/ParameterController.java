@@ -165,6 +165,7 @@ public class ParameterController implements Initializable {
         labelValorVidaSlider.textProperty().bind(medidaVida.asString());
         labelValorPorcentajeClonacionSlider.textProperty().bind(medidaPorcentajeclonacion.asString());
         labelValorPorcentajeReproduccionSlider.textProperty().bind(medidaPorcentajereproduccion.asString());
+        labelValorPorcentajeTipoHijoSlider.textProperty().bind(medidaPorcentahetipoHijo.asString());
         labelValorTiempoAparicionSlider.textProperty().bind(medidaTiempoAparicion.asString());
         labelValorProbabilidadAparicionSlider.textProperty().bind(medidaProbabilidadAparicion.asString());
         labelValorProbabilidaAguaSlider.textProperty().bind(medidaProbabilidadAgua.asString());
