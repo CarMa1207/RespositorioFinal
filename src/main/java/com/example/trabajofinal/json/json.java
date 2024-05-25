@@ -27,6 +27,7 @@ public class Json {
         }
     }
 
+    // Método para cargar un objeto desde un archivo JSON
     public static <T> T cargarObjetoDesdeArchivo(String rutaArchivo, Class<T> clase) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Individuo.class, new individuoJson())
@@ -41,5 +42,4 @@ public class Json {
             e.printStackTrace();
             return null;}
     }
-
 }

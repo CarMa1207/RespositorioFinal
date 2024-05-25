@@ -28,7 +28,145 @@ class Tablero{
 
 
 }
+class Bucle{
+-TableroDataModel
++ListaEnlazed<Celdas>
 
++getCelda()
++setCelda()
++ejecucion()
+}
+class Datos{
++mutaciones
++longevo
++reproduccionec
++MaxRep
++MaxMut
++MaxAgua
+
++getMutaciones()
++setMutaciones()
++getLongevo()
++setLongevo()
++getReproducciones()
++setReproducciones()
++getMaxRep()
++setMaxRep()
++getMaxMut
++setMaxMut()
++getMaxAgua()
++setMaxAgua()
+
+}
+class FuncionesBucle{
++ListaEnlazed<Recurso>
++ListaEnlazed<Individuo>
++ParameterDataModel
+
++FuncionesBucle(ListaEnlazed<Recurso>, ListaEnlazed<Individuo>, ParameterDataModel datos)
++Vida()
++TiempoVidaRecurso()
++BotonesDeColor(Celdas)
++Propiedades()
++getCaminoIndividuos(Individuo , ListaEnlazed<Recurso>)
++generarID()
++Reproduccion(Celdas)
++Clonacion(Celdas)
++getDescolocado(Celdas,int,int)
++getMaxVida()
+}
+class Celdas{
+-ListaEnlazed<Individuo>
+-ListaEnlazed<Recurso>
++int x
++int y
+-Stage
++ParameterDataModel
+
++Celdas(ListaEnlazed<Individuo>, ListaEnlazed<Recurso>)
++Celdas(int,int)
++getX():int
++getY():int
++setX(int)
++setY(int)
++getDatos():datos
++ListaEnlazed<Individuo>
++getIndividuoListaEnlazed():ListaEnlazed<Individuo>
++getRecursoListaEnlazed():ListaEnlazed<Recurso>
+}
+
+class Cola{
++data
++ListaEnlazed<data>
+
++Cola()
++push(data)
++pull(data)
++isVacia()
+}
+class ElementoLe{
++data
++ElementoLe<T>
++setData(data)
++getSiguiente():ElementoLe<data>
++setSiguiente(Elemento<T>)
++InsertarmeEl(ElementoLe<data>)
+
+}
+class ElementoMap{
++data
++ElementoMap<data,E>
+
++ElementoMap(data,E,ElementoMap<data,E>)
++getIndice():int
++setSiguiente(ElementoMap<data,E>)
++setDato(E)
++getDato():data
+}
+class Generacion{
+
+
++Individuo
++Individuo
++setPadre(Individuo)
++getMadre():Individuo
++setMadre(Individuo)
+
+}
+class Historial{
++int
++Cola<String>
+
++Historial(int,Cola<String>)
++getMov():Cola<String>
++getTurno():int
++setMov(Cola<String>)
++añadirTurno()
+
+}
+class ListaEnlazed{
++Elemento<data>
++isVacia()
++vaciar()
++add(data)
++getNumeroElementos():int
++getPrimero():ElementoLe<data>
++getPosicion(Elemento<data>)
++getUltimo():ElementoLe<data>
++getSiguiente(ElementoLe):ElementoLe
++getElemento(int):ElementoLe
++del(int)
+
+
+}
+class Mapa{
++ElementoMap<data,E>
++isVacia():boolean
++put(data,E)
++get(data):E
+
+
+}
 
 class Elementos{
 +agua
@@ -73,15 +211,15 @@ class celda{
 }
 
 class Individuo{
-
-
-+ID
-+vida
-+reproduccion
-+clonacion
-+mutacion
-+tipo
-+muete
++int
++Celdas
++ParameterDataModel
++Generacion
++Historial
++ListaEnlazed<Celdas>
++int
++int
++int
 +coord
 
 +getTipo()
@@ -93,15 +231,24 @@ class Individuo{
 +getMuerte()
 +getCoordenadas()
 
+
++Individuo(Celdas,int,Generacion,Historial,ListaEnlazed<Celdas>,ParameterDataModel)
++setDatos(ParameterDataModel)
++getDatos():ParameterDataModel
 +setTipo()
++getTipo():int
++getGeneracion():Generacion
++setGeneracion(Generacion)
+
 +setID()
 +setVida()
-+setRepro()
-+setClonacion()
-+setMutacion()
-+setMuerte()
-+setCoordenadas()
-+setParametros()
++Reproduccion()
++Clonacion()
++getCelda():int
++getHistorial(Historial)
++getRuta():ListaEnlazed<Celdas>
++setRuta(ListaEnlazed<Celdas>)
++getCamino(Celdas,Celdas)
 
 
 

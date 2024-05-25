@@ -22,8 +22,9 @@ public class RecursoTesoro extends Recurso {
 
         Random random= new Random();
         int Y= random.nextInt(101);
-        Y=Y/100;
-        individuo.getDatos().setPorcentajereproduccion(individuo.getDatos().getPorcentajereproduccion()+(individuo.getDatos().getPorcentajereproduccion()*Y));
+
+        int nuevo=individuo.getDatos().getPorcentajereproduccion()+Y;
+        individuo.getDatos().setPorcentajereproduccion(nuevo);
 
     }
 

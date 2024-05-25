@@ -89,13 +89,7 @@ public class Celdas extends Button {
             return Boolean.FALSE;
         }
     }
-    public Boolean RecursosIsCompleto(){
-        if (recursoListaEnlazed.getNumeroElementos()>3 ) {
-            return Boolean.TRUE;
-        }else {
-            return Boolean.FALSE;
-        }
-    }
+
     public void setStage(Stage escenaDada){
         this.escenaVentana= escenaDada;
     }

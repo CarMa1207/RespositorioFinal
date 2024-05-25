@@ -7,7 +7,7 @@ import com.example.trabajofinal.Parameter.ParameterDataModel;
 
 public class Individuo1 extends Individuo {
 
-    public Individuo1(Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> ruta, ParameterDataModel datos) {
+    public Individuo1(Celdas celda, int tipo, Generacion generacion, Historial longevity, ListaEnlazed<Celdas> ruta, ParameterDataModel datos) {
         super(celda,1,generacion,longevity,ruta,datos);
     }
     @Override

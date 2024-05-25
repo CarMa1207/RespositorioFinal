@@ -7,6 +7,7 @@ import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
+import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterController;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
@@ -39,6 +40,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TableroController implements Initializable{
@@ -49,7 +51,6 @@ public class TableroController implements Initializable{
 private Button pauseboton;
 @FXML
 private Button iniciarboton;
-
     private TableroDataModelProperties modelTablero;
     private static TableroDataModel tableroDataModel;
     private   static  ParameterDataModelRecursos recusosDatamodel;
@@ -129,6 +130,7 @@ private Button iniciarboton;
             controladorCelda.setCelda(tableroDataModel,celdota,individuosDatamodel,recusosDatamodel,celda);
             controladorCelda.Informacion();
             stage.show();
+            controladorCelda.setCelda(tableroDataModel,celdota,individuosDatamodel,recusosDatamodel);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -147,7 +149,6 @@ private Button iniciarboton;
         }
         bucleDeControlIniciar();
     }
-
     @FXML
     protected void onPauseButtonClick(){
         tableroDeJuego.setDisable(false);
@@ -157,12 +158,7 @@ private Button iniciarboton;
 
 
 
-    public Datos pantallaFinal(){
-
-        int longevidad=0;
-        int mutaciones=0;
-        int agua=0;
-
+    public Datos pantallaFinal(ListaEnlazed<Celdas> celda){
 
 
         for(int i=0; i<celda.getNumeroElementos(); i++){
@@ -197,6 +193,7 @@ private Button iniciarboton;
             for (int i = 0; i < tableroDataModel.getColumnas(); i++) {
 
                 for (int j = 0; j < tableroDataModel.getFilas(); j++) {
+
                     Button placeholder = new Button();
                     double ladox = (double) 400 /tableroDataModel.getFilas();
                     double ladoy = (double) 400 / tableroDataModel.getColumnas();
@@ -209,7 +206,6 @@ private Button iniciarboton;
                     celditas.setX(i);
                     celditas.setY(j);;
                     celda.add(celditas);
-
 
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -292,19 +288,22 @@ private Button iniciarboton;
 
         }
         if(control==null){
-            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> {
+            control= new Timeline(new KeyFrame(Duration.seconds(1),event -> { ListaEnlazed<Individuo> individuos2= new ListaEnlazed<>();
+
                 if (!isPausa()) {
                     BucleDeControl contronladorPatria = new BucleDeControl(celda);
                     contronladorPatria.setTableroDataModel(tableroDataModel);
-                    try {
-                        celda = contronladorPatria.ejecucion(celda,individuosDatamodel,recusosDatamodel);
 
-                    } catch (Camino e) {
-                        throw new RuntimeException(e);
-                    } catch (ExistentID e) {
-                        throw new RuntimeException(e);
+                    celda = contronladorPatria.ejecucion(celda, individuosDatamodel, recusosDatamodel);
+
+                }
+                for(int i=0; i<celda.getNumeroElementos();i++){
+                    for(int j=0; j<celda.getElemento(i).getData().getIndividuoListaEnlazed().getNumeroElementos();j++){
+                        individuos2.add(celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData());
                     }
-                } else {
+
+                }
+                if(isPausa() || individuos2.getNumeroElementos()<2 ){
                     System.out.println("Se ha pausado el juego");
                     control.stop();
                 }

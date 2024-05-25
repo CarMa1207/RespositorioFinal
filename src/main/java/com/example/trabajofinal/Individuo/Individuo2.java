@@ -6,50 +6,59 @@ import com.example.trabajofinal.Estructuras.*;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 
 public class Individuo2 extends Individuo {
-    public Individuo2(Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino, ParameterDataModel datos) {
+    public Individuo2(Celdas celda, int tipo,Generacion generacion, Historial longevity, ListaEnlazed<Celdas> camino, ParameterDataModel datos) {
         super(celda,2,generacion,longevity,camino,datos);
     }
 
     @Override
     public ListaEnlazed<Celdas> getCamino(Celdas inicio, Celdas fin){
         ListaEnlazed<Celdas> camino= new ListaEnlazed<>();
-        Celdas celda= new Celdas(0,0);
+        Celdas celda= new Celdas(inicio.getX(),inicio.getY());
 
-       if((fin.getX()-this.celda.getX())>0){
-           while(this.celda.getX()!=fin.getX()){
+            if(celda.getX()>fin.getX()){
+                while(celda.getX()!=fin.getX()){
+                    celda.setX(celda.getX() -1);
+                    celda.setY(celda.getY());
+                    camino.add(celda);
+                }
 
-                celda.setX(this.celda.getX() +1);
-                celda.setY(this.celda.getY());
-                camino.add(celda);
-           }
-       }
-       else if((fin.getX()-this.celda.getX())<0){
-           while(this.celda.getX()!= fin.getX()){
 
-               celda.setX(this.celda.getX()-1);
-               celda.setY(this.celda.getY());
-               camino.add(celda);
-           }
-       }
-
-        if((fin.getY()-this.celda.getY())>0){
-            while(this.celda.getY()!=fin.getY()){
-
-                celda.setX(this.celda.getX());
-                celda.setY(this.celda.getY()-1);
-                camino.add(celda);
             }
-        }
-        else if((fin.getY()-this.celda.getY())<0){
-            while(this.celda.getY()!=fin.getY()){
+            else if(celda.getX()<fin.getX()){
+                while(celda.getX()!=fin.getX()){
+                    celda.setX(celda.getX()+1);
+                    celda.setY(celda.getY());
+                    camino.add(celda);
+                }
 
-                celda.setX(this.celda.getX());
-                celda.setY(this.celda.getY()+1);
-                camino.add(celda);
+
             }
-        }
+
+            if(celda.getY()> fin.getY()){
+                while(celda.getY()!=fin.getY()){
+                    celda.setX(celda.getX());
+                    celda.setY(celda.getY()-1);
+                    camino.add(celda);
+                }
+
+
+            }
+            else if(celda.getY()< fin.getY()){
+                while(celda.getY()!=fin.getY()){
+                    celda.setX(celda.getX());
+                    celda.setY(celda.getY()+1);
+                    camino.add(celda);
+                }
+
+
+
+            }else{
+                camino.add(fin);
+            }
+
+
+
         return camino;
-
 
     }
 

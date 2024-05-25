@@ -2,6 +2,7 @@
 
 package com.example.trabajofinal.Bucle;
 
+import java.util.List;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.*;
@@ -42,12 +43,12 @@ public class FuncionesBucle {
 
     public void Vida() {
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            Individuo siguiente2=individuos.getElemento(i).getData();
+            Individuo siguiente2 = individuos.getElemento(i).getData();
             try {
 
-                siguiente2.getDatos().setVida(siguiente2.getDatos().getVida()-1);
+                siguiente2.getDatos().setVida(siguiente2.getDatos().getVida() - 1);
                 siguiente2.getHistorial().añadirTurno();
-                siguiente2= individuos.getElemento(i).getData();
+                siguiente2 = individuos.getElemento(i).getData();
             } catch (NullPointerException exception) {
                 System.out.println("ERROR: El individuo que se busca no exsite");
             }
@@ -86,11 +87,11 @@ public class FuncionesBucle {
 
     public void TiempoVidaRecurso() {
         for (int i = 0; i < recursos.getNumeroElementos(); i++) {
-            Recurso siguiente2=recursos.getElemento(i).getData();
+            Recurso siguiente2 = recursos.getElemento(i).getData();
 
-            siguiente2.getDatosR().setTiempoAparicion(siguiente2.getDatosR().getTiempoAparicion()-1);
+            siguiente2.getDatosR().setTiempoAparicion(siguiente2.getDatosR().getTiempoAparicion() - 1);
 
-            siguiente2= recursos.getElemento(i).getData();
+            siguiente2 = recursos.getElemento(i).getData();
         }
         for (int j = 0; j < recursos.getNumeroElementos(); j++) {
             try {
@@ -104,51 +105,58 @@ public class FuncionesBucle {
         }
     }
     public void Propiedades() {
-
+        ListaEnlazed<Integer> posiciones = new ListaEnlazed<>();
         for (int i = 0; i < recursos.getNumeroElementos(); i++) {
             for (int j = 0; j < individuos.getNumeroElementos(); j++) {
-                if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
-                    if (recursos.getElemento(i).getData().getTipo() == "Biblioteca") {
-                        if (individuos.getElemento(i).getData().getTipo() == 2) {
-                            ArbolAVL<Integer> arbol = individuos.getElemento(j).getData().getGeneracion();
-                            Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
-                            Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
-                            ListaEnlazed<Celdas> ruta =null;
-                            Individuo mutado = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
-                            individuos.del(i);
-                            individuos.add(mutado);
-                            mutado.getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
-                            recursos.del(i);
+                if (recursos.getNumeroElementos() != 0) {
+                    if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
+                        if (recursos.getElemento(i).getData().getTipo() == "Biblioteca") {
+                            if (individuos.getElemento(i).getData().getTipo() == 2) {
+                                Generacion arbol = individuos.getElemento(j).getData().getGeneracion();
+                                Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
+                                Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
+                                ListaEnlazed<Celdas> ruta = null;
+                                ParameterDataModel datosMut = new ParameterDataModel(individuos.getElemento(i).getData().getDatos().getVida(), individuos.getElemento(i).getData().getDatos().getPorcentajereproduccion(), individuos.getElemento(i).getData().getDatos().getPorcentajeclonacion(), individuos.getElemento(i).getData().getDatos().getPorcentajetipohijo(), individuos.getElemento(i).getData().getDatos().getID());
+                                Individuo mutado = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
+
+                                individuos.add(mutado);
+                                mutado.getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
+
+
+                            } else if (individuos.getElemento(i).getData().getTipo() == 1) {
+                                Generacion arbol = individuos.getElemento(j).getData().getGeneracion();
+                                Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
+                                Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
+                                ListaEnlazed<Celdas> ruta = null;
+                                Individuo mutado = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
+                                individuos.del(i);
+                                individuos.add(mutado);
+                                mutado.getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
+
+
+                            }
+
+
+                        } else {
+                            recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
+                            individuos.getElemento(j).getData().getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
 
                         }
-                        else if (individuos.getElemento(i).getData().getTipo() == 1) {
-                            ArbolAVL<Integer> arbol = individuos.getElemento(j).getData().getGeneracion();
-                            Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
-                            Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
-                            ListaEnlazed<Celdas> ruta =null;
-                            Individuo mutado = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
-                            individuos.del(i);
-                            individuos.add(mutado);
-                            mutado.getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
-                            recursos.del(i);
 
-                        }
-
-
-                    }else{
-                        recursos.getElemento(i).getData().Propiedad(individuos.getElemento(j).getData());
-                        individuos.getElemento(j).getData().getHistorial().getMov().push("Recurso: " + recursos.getElemento(i).getData().getTipo());
-                        recursos.del(i);
+                        posiciones.add(i);
                     }
 
 
                 }
             }
         }
+        for (int w = 0; w < posiciones.getNumeroElementos(); w++) {
+            recursos.del(posiciones.getElemento(w).getData());
+        }
     }
 
 
-    public void getCaminoIndividuos(Individuo individuo) throws Camino {
+    public void getCaminoIndividuos(Individuo individuo,ListaEnlazed<Recurso> recursos)  {
 
 
         Celdas inicio = new Celdas(0, 0);
@@ -162,12 +170,19 @@ public class FuncionesBucle {
 
         } else if (individuo.getTipo() == 2) {
             //aqui solo inicializo el camino, después en el bucle legit voy a tener que comporbar que no haya un camino ya creado y si lo hay usarlo
-            if(recursos.getNumeroElementos()==0){
-                fin.setX(inicio.getX()+1);
-                fin.setY(inicio.getY()+1);
-            }else{
+            if (recursos.getNumeroElementos() == 0) {
+                ListaEnlazed<Celdas> camino = new ListaEnlazed<>();
+                Random random2 = new Random();
+                double randomNumero2 = -1 + 2 * random2.nextDouble();
+
+                Random random1 = new Random();
+                double randomNumero1 = -1 + 2 * random1.nextDouble();
+                Celdas x = new Celdas((individuo.getCelda().getX() + (int) randomNumero1), (individuo.getCelda().getY() + (int) randomNumero2));
+                camino.add(x);
+                individuo.setRuta(camino);
+            } else {
                 Random random = new Random();
-                int cual = random.nextInt(recursos.getNumeroElementos() + 1);
+                int cual = random.nextInt(recursos.getNumeroElementos());
 
                 fin.setX(recursos.getElemento(cual).getData().getCelda().getX());
                 fin.setY(recursos.getElemento(cual).getData().getCelda().getY());
@@ -176,12 +191,20 @@ public class FuncionesBucle {
 
         } else if (individuo.getTipo() == 3) {
 
-            try{
-                double distanciaMinima = Double.MAX_VALUE;
-                if(recursos.getNumeroElementos()==0){
-                    fin.setX(inicio.getX()+1);
-                    fin.setY(inicio.getY()+1);
-                }else if(recursos.getNumeroElementos()!=0){
+            try {
+                int coordX = Integer.MAX_VALUE;
+                int coordY= Integer.MAX_VALUE;
+                if (recursos.getNumeroElementos() == 0) {
+                    ListaEnlazed<Celdas> camino = new ListaEnlazed<>();
+                    Random random2 = new Random();
+                    double randomNumero2 = -1 + 2 * random2.nextDouble();
+
+                    Random random1 = new Random();
+                    double randomNumero1 = -1 + 2 * random1.nextDouble();
+                    Celdas x = new Celdas((individuo.getCelda().getX() + (int) randomNumero1), (individuo.getCelda().getY() + (int) randomNumero2));
+                    camino.add(x);
+                    individuo.setRuta(camino);
+                } else if (recursos.getNumeroElementos() != 0) {
                     Recurso recursobuscado = null;
                     for (int j = 0; j < recursos.getNumeroElementos(); j++) {
                         int x1 = individuo.getCelda().getX();
@@ -189,12 +212,15 @@ public class FuncionesBucle {
 
                         int x2 = recursos.getElemento(j).getData().getCelda().getX();
                         int y2 = recursos.getElemento(j).getData().getCelda().getY();
+                        int newX= x1-x2;
+                        int newY=y1-y2;
 
                         double distancia = Math.sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2);
 
-                        if (distancia < distanciaMinima && distancia > 0) {
-                            distanciaMinima = distancia;
-                            recursobuscado = recursos.getElemento(j).getData();
+                        if ( newX<coordX && newY<coordY) {
+                            coordX=x2;
+                            coordY=y2;
+                            recursobuscado=recursos.getElemento(j).getData();
                         }
                     }
                     fin.setX(recursobuscado.getCelda().getX());
@@ -202,10 +228,10 @@ public class FuncionesBucle {
                     if (individuo.getRuta() != null) {
                         individuo.setRuta(individuo.getCamino(inicio, fin));
                     } else {
-                        throw (new Camino("El camino esta vacio"));
+
                     }
                 }
-            }catch (NullPointerException except){
+            } catch (NullPointerException except) {
                 System.out.println("No hay recursos que buscar");
             }
 
@@ -215,7 +241,7 @@ public class FuncionesBucle {
 
     }
 
-    public int generarID() throws ExistentID {
+    public int generarID() {
         int id = 0;
         for (int i = 0; i < individuos.getNumeroElementos(); i++) {
             if (individuos.getElemento(i).getData().getDatos().getID() > id) {
@@ -231,224 +257,132 @@ public class FuncionesBucle {
                 }
             }
         }
-        if (!esta) {
-            return id;
-        } else {
-            throw (new ExistentID("El ID generado ya existe"));
 
-        }
+
+        return id;
 
 
     }
 //Aqui falta hacer que me me ta en cada individuo su padre creo que le tengo que dar la vuelta a ña estructura deñ arbol
 
     //En esta funcion nacen nuevos hijos con la vida del padre
-    public void Reproduccion() throws ExistentID {
-        for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            for (int j = 0; j < individuos.getNumeroElementos(); j++)
-                if (individuos.getElemento(i).getData().getCelda().getX() == individuos.getElemento(j).getData().getCelda().getX() && individuos.getElemento(i).getData().getCelda().getY() == individuos.getElemento(j).getData().getCelda().getY()) {
-                    if (individuos.getElemento(i).getData().Reproduccion()) {
-                        if (individuos.getElemento(i).getData().getTipo() == individuos.getElemento(j).getData().getTipo()) {
-                            if (individuos.getElemento(i).getData().getTipo() == 1) {
-                                ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                Cola<String> cola = new Cola<>();
-                                Historial hist = new Historial(0, cola);
-                                ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                Individuo hijo = new Individuo1(individuos.getElemento(i).getData().getCelda(), 1, arbol, hist, ruta, datos);
-                                hijo.getDatos().setID(generarID());
-                                individuos.add(hijo);
-                                String mov = "Se reprodujo";
-                                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                            } else if (individuos.getElemento(i).getData().getTipo() == 2) {
-                                ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                Cola<String> cola = new Cola<>();
-                                Historial hist = new Historial(0, cola);
-                                ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                Individuo hijo = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
-                                hijo.getDatos().setID(generarID());
-                                individuos.add(hijo);
-                                String mov = "Se reprodujo";
-                                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
+    public Celdas Reproduccion(Celdas celda) {
+        if (celda.getIndividuoListaEnlazed().getNumeroElementos() >= 2) {
+            Individuo ind1 = celda.getIndividuoListaEnlazed().getElemento(0).getData();
+            Individuo ind2 = celda.getIndividuoListaEnlazed().getElemento(1).getData();
 
-                            } else if (individuos.getElemento(i).getData().getTipo() == 3) {
-                                ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                Cola<String> cola = new Cola<>();
-                                Historial hist = new Historial(0, cola);
-                                ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                Individuo hijo = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
-                                hijo.getDatos().setID(generarID());
-                                individuos.add(hijo);
-                                String mov = "Se reprodujo";
-                                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                            }
-
-                        } else {
-                            Random random = new Random();
-                            int probabilidad = random.nextInt(101);
-                            if (probabilidad <= individuos.getElemento(i).getData().getDatos().getPorcentajetipohijo()) {
-                                if (individuos.getElemento(i).getData().getTipo() < individuos.getElemento(j).getData().getTipo()) {
-                                    if (individuos.getElemento(j).getData().getTipo() == 1) {
-                                        ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                        Cola<String> cola = new Cola<>();
-                                        Historial hist = new Historial(0, cola);
-                                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                        Individuo hijo = new Individuo1(individuos.getElemento(i).getData().getCelda(), 1, arbol, hist, ruta, datos);
-                                        hijo.getDatos().setID(generarID());
-                                        individuos.add(hijo);
-                                        String mov = "Se reprodujo";
-                                        individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                        individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                    } else if (individuos.getElemento(j).getData().getTipo() == 2) {
-                                        ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                        Cola<String> cola = new Cola<>();
-                                        Historial hist = new Historial(0, cola);
-                                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                        Individuo hijo = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
-                                        hijo.getDatos().setID(generarID());
-                                        individuos.add(hijo);
-                                        String mov = "Se reprodujo";
-                                        individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                        individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-
-                                    } else if (individuos.getElemento(j).getData().getTipo() == 3) {
-                                        ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                        Cola<String> cola = new Cola<>();
-                                        Historial hist = new Historial(0, cola);
-                                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                        Individuo hijo = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
-                                        hijo.getDatos().setID(generarID());
-                                        individuos.add(hijo);
-                                        String mov = "Se reprodujo";
-                                        individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                        individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-
-                                    } else {
-                                        //ojo que puede ser que los if no filtren vien el criterio  prque hay mucho else
-                                        if (individuos.getElemento(i).getData().getTipo() == 1) {
-                                            ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                            Cola<String> cola = new Cola<>();
-                                            Historial hist = new Historial(0, cola);
-                                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                            Individuo hijo = new Individuo1(individuos.getElemento(i).getData().getCelda(), 1, arbol, hist, ruta, datos);
-                                            hijo.getDatos().setID(generarID());
-                                            individuos.add(hijo);
-                                            String mov = "Se reprodujo";
-                                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                        } else if (individuos.getElemento(i).getData().getTipo() == 2) {
-                                            ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                            Cola<String> cola = new Cola<>();
-                                            Historial hist = new Historial(0, cola);
-                                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                            Individuo hijo = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
-                                            hijo.getDatos().setID(generarID());
-                                            individuos.add(hijo);
-                                            String mov = "Se reprodujo";
-                                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-
-                                        } else if (individuos.getElemento(i).getData().getTipo() == 3) {
-                                            ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                            Cola<String> cola = new Cola<>();
-                                            Historial hist = new Historial(0, cola);
-                                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                            Individuo hijo = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
-                                            hijo.getDatos().setID(generarID());
-                                            individuos.add(hijo);
-                                            String mov = "Se reprodujo";
-                                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                        }
-
-                                    }
-                                } else {
-                                    if (individuos.getElemento(i).getData().getTipo() > individuos.getElemento(j).getData().getTipo()) {
-                                        if (individuos.getElemento(j).getData().getTipo() == 1) {
-                                            ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                            Cola<String> cola = new Cola<>();
-                                            Historial hist = new Historial(0, cola);
-                                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                            Individuo hijo = new Individuo1(individuos.getElemento(i).getData().getCelda(), 1, arbol, hist, ruta, datos);
-                                            hijo.getDatos().setID(generarID());
-                                            individuos.add(hijo);
-                                            String mov = "Se reprodujo";
-                                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                        } else if (individuos.getElemento(j).getData().getTipo() == 2) {
-                                            ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                            Cola<String> cola = new Cola<>();
-                                            Historial hist = new Historial(0, cola);
-                                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                            Individuo hijo = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
-                                            hijo.getDatos().setID(generarID());
-                                            individuos.add(hijo);
-                                            String mov = "Se reprodujo";
-                                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-
-                                        } else if (individuos.getElemento(j).getData().getTipo() == 3) {
-                                            ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                            Cola<String> cola = new Cola<>();
-                                            Historial hist = new Historial(0, cola);
-                                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                            Individuo hijo = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
-                                            hijo.getDatos().setID(generarID());
-                                            individuos.add(hijo);
-                                            String mov = "Se reprodujo";
-                                            individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                            individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                        } else {
-                                            if (individuos.getElemento(i).getData().getTipo() == 1) {
-                                                ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                                Cola<String> cola = new Cola<>();
-                                                Historial hist = new Historial(0, cola);
-                                                ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                                Individuo hijo = new Individuo1(individuos.getElemento(i).getData().getCelda(), 1, arbol, hist, ruta, datos);
-                                                hijo.getDatos().setID(generarID());
-                                                individuos.add(hijo);
-                                                String mov = "Se reprodujo";
-                                                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                                individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                            } else if (individuos.getElemento(i).getData().getTipo() == 2) {
-                                                ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                                Cola<String> cola = new Cola<>();
-                                                Historial hist = new Historial(0, cola);
-                                                ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                                Individuo hijo = new Individuo2(individuos.getElemento(i).getData().getCelda(), 2, arbol, hist, ruta, datos);
-                                                hijo.getDatos().setID(generarID());
-                                                individuos.add(hijo);
-                                                String mov = "Se reprodujo";
-                                                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                                individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-
-                                            } else if (individuos.getElemento(i).getData().getTipo() == 3) {
-                                                ArbolAVL<Integer> arbol = new ArbolAVL<>();
-                                                Cola<String> cola = new Cola<>();
-                                                Historial hist = new Historial(0, cola);
-                                                ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
-                                                Individuo hijo = new Individuo3(individuos.getElemento(i).getData().getCelda(), 3, arbol, hist, ruta, datos);
-                                                hijo.getDatos().setID(generarID());
-                                                individuos.add(hijo);
-                                                String mov = "Se reprodujo";
-                                                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                                                individuos.getElemento(i).getData().getGeneracion().add(hijo.getDatos().getID());
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                        //Atento a la funcion longevidad y a la generacion porque pueden dar fallos
+            if (ind1.Reproduccion()) {
+                if (ind1.getTipo() == ind2.getTipo()) {
+                    if (ind1.getTipo() == 1) {
+                        int turno = 0;
+                        Cola<String> cola = new Cola<>();
+                        Historial hist = new Historial(turno, cola);
+                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                        ruta=null;
+                        Individuo hijo = new Individuo1(ind1.getCelda(), 1, ind1.getGeneracion(), hist, ruta, datos);
+                        hijo.getGeneracion().setPadre(ind1);
+                        hijo.getGeneracion().setMadre(ind2);
+                        celda.getIndividuoListaEnlazed().add(hijo);
+                    }
+                    if (ind1.getTipo() == 2) {
+                        int turno = 0;
+                        Cola<String> cola = new Cola<>();
+                        Historial hist = new Historial(turno, cola);
+                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                        ruta=null;
+                        Individuo hijo = new Individuo2(ind1.getCelda(), 1, ind1.getGeneracion(), hist, ruta, datos);
+                        hijo.getGeneracion().setPadre(ind1);
+                        hijo.getGeneracion().setMadre(ind2);
+                        celda.getIndividuoListaEnlazed().add(hijo);
 
                     }
+                    if (ind1.getTipo() == 3) {
+                        int turno = 0;
+                        Cola<String> cola = new Cola<>();
+                        Historial hist = new Historial(turno, cola);
+                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                        ruta=null;
+                        Generacion arbol = ind1.getGeneracion();
+
+                        Individuo hijo = new Individuo3(ind1.getCelda(), 1, arbol, hist, ruta, datos);
+                        hijo.getGeneracion().setPadre(ind1);
+                        hijo.getGeneracion().setMadre(ind2);
+                        celda.getIndividuoListaEnlazed().add(hijo);
 
 
+                    }
+                } else if (ind1.getTipo() < ind2.getTipo()) {
+                    Random random = new Random();
+                    int prob = random.nextInt(101);
+                    if (prob <= ind1.getDatos().getPorcentajetipohijo()) {
+                        if (ind2.getTipo() == 2) {
+                            int turno = 0;
+                            Cola<String> cola = new Cola<>();
+                            Historial hist = new Historial(turno, cola);
+                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                            ruta=null;
+                            Individuo hijo = new Individuo2(ind1.getCelda(), 1, ind2.getGeneracion(), hist, ruta, datos);
+                            hijo.getGeneracion().setPadre(ind1);
+                            hijo.getGeneracion().setMadre(ind2);
+                            celda.getIndividuoListaEnlazed().add(hijo);
+
+                        }
+                        if (ind2.getTipo() == 3) {
+                            int turno = 0;
+                            Cola<String> cola = new Cola<>();
+                            Historial hist = new Historial(turno, cola);
+                            ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                            ruta=null;
+                            Generacion arbol = ind1.getGeneracion();
+
+                            Individuo hijo = new Individuo3(ind2.getCelda(), 1, arbol, hist, ruta, datos);
+                            hijo.getGeneracion().setPadre(ind1);
+                            hijo.getGeneracion().setMadre(ind2);
+                            celda.getIndividuoListaEnlazed().add(hijo);
+
+
+                        }
+                    }
+
+                } else if (ind1.getTipo() > ind2.getTipo()) {
+                    if (ind1.getTipo() == 2) {
+                        int turno = 0;
+                        Cola<String> cola = new Cola<>();
+                        Historial hist = new Historial(turno, cola);
+                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                        ruta=null;
+                        Individuo hijo = new Individuo2(ind1.getCelda(), 1, ind1.getGeneracion(), hist, ruta, datos);
+                        hijo.getGeneracion().setPadre(ind1);
+                        hijo.getGeneracion().setMadre(ind2);
+                        celda.getIndividuoListaEnlazed().add(hijo);
+
+                    }
+                    if (ind1.getTipo() == 3) {
+                        int turno = 0;
+                        Cola<String> cola = new Cola<>();
+                        Historial hist = new Historial(turno, cola);
+                        ListaEnlazed<Celdas> ruta = new ListaEnlazed<>();
+                        ruta=null;
+                        Generacion arbol = ind1.getGeneracion();
+
+                        Individuo hijo = new Individuo3(ind1.getCelda(), 1, arbol, hist, ruta, datos);
+                        hijo.getGeneracion().setPadre(ind1);
+                        hijo.getGeneracion().setMadre(ind2);
+                        celda.getIndividuoListaEnlazed().add(hijo);
+
+
+                    }
                 }
+            }else{
+                individuos.del(0);
+                individuos.del(1);
+            }
+
+
         }
+        return celda;
+
+
     }
 
     public Recurso ElMatadorRecursos(Celdas celda) {
@@ -477,21 +411,24 @@ public class FuncionesBucle {
     }
 
 
-    public void Clonacion() throws ExistentID {
-        for (int i = 0; i < individuos.getNumeroElementos(); i++) {
-            Random random = new Random();
-            int prob = random.nextInt(101);
+    public Celdas Clonacion(Celdas celda) {
+        Random random = new Random();
+        int prob = random.nextInt(101);
 
-            if (prob <= individuos.getElemento(i).getData().getDatos().getPorcentajeclonacion()) {
-                Individuo clonado = individuos.getElemento(i).getData();
-                clonado.getDatos().setID(generarID());
-                individuos.add(clonado);
-                String mov = "Se clonó";
-                individuos.getElemento(i).getData().getHistorial().getMov().push(mov);
-                individuos.getElemento(i).getData().getGeneracion().add(clonado.getDatos().getID());
 
-            }
+        if (prob <= celda.getIndividuoListaEnlazed().getElemento(0).getData().getDatos().getPorcentajeclonacion()) {
+
+            Individuo clonado = celda.getIndividuoListaEnlazed().getElemento(0).getData();
+            clonado.getDatos().setID(generarID());
+            celda.getIndividuoListaEnlazed().add(clonado);
+            String mov = "Se clonó";
+            celda.getIndividuoListaEnlazed().getElemento(0).getData().getHistorial().getMov().push(mov);
+            clonado.getGeneracion().setPadre(celda.getIndividuoListaEnlazed().getElemento(0).getData());
+
+
         }
+        return celda;
+
     }
 
     public void getDescolodado(Celdas celda, int filas, int columnas) {

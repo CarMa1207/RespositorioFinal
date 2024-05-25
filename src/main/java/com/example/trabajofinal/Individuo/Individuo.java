@@ -1,9 +1,6 @@
 package com.example.trabajofinal.Individuo;
-import com.example.trabajofinal.Estructuras.Historial;
-import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Estructuras.*;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
-import com.example.trabajofinal.Estructuras.ArbolAVL;
-import com.example.trabajofinal.Estructuras.Celdas;
 
 import java.util.Random;
 
@@ -21,7 +18,7 @@ public abstract class Individuo  {
 
     public   ParameterDataModel datos;
 
-    ArbolAVL<Integer> generacion;
+    Generacion generacion;
     Historial longevidad;
 
 
@@ -36,7 +33,7 @@ public abstract class Individuo  {
     @Expose
     int ID;
 
-    public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino,ParameterDataModel datos)
+    public Individuo(Celdas celda, int tipo,Generacion generacion, Historial longevity, ListaEnlazed<Celdas> camino,ParameterDataModel datos)
     {
 
 
@@ -74,11 +71,11 @@ public abstract class Individuo  {
     }
 
 
-    public ArbolAVL<Integer> getGeneracion() {
+    public Generacion getGeneracion() {
         return generacion;
     }
 
-    public void setGeneracion(ArbolAVL<Integer> generacion) {
+    public void setGeneracion(Generacion generacion) {
         this.generacion = generacion;
     }
 

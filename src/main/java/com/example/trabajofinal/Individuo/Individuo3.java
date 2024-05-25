@@ -4,7 +4,7 @@ import com.example.trabajofinal.Estructuras.*;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 
 public class Individuo3 extends Individuo {
-    public Individuo3(Celdas celda, int tipo, ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino, ParameterDataModel datos) {
+    public Individuo3(Celdas celda, int tipo, Generacion generacion, Historial longevity, ListaEnlazed<Celdas> camino, ParameterDataModel datos) {
         super(celda,3,generacion,longevity,camino,datos);
     }
 
@@ -32,6 +32,7 @@ public class Individuo3 extends Individuo {
             }
 
         }
+        ruta.add(fin);
 
         return camino;
 

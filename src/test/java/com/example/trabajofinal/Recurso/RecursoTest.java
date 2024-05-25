@@ -1,28 +1,31 @@
-/*
+
 package com.example.trabajofinal.Recurso;
 
 import com.example.trabajofinal.Estructuras.*;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Individuo.Individuo1;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RecursoTest {
 
-    Celdas celda= new Celdas();
-    ArbolAVL<Integer> gen= new ArbolAVL<>();
+    Celdas celda= new Celdas(0,0);
+    Generacion gen= new Generacion();
     Cola<String> mov= new Cola<>();
     Historial longevidad= new Historial(1,mov);
     ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+    ParameterDataModelRecursos datos= new ParameterDataModelRecursos(1,1,1,1,1,1,1,1);
+    ParameterDataModel datosI= new ParameterDataModel(1,1,1,1,1);
+    Recurso recurso2= new RecursoPozo(celda,"Pozo",datos);
 
-    Recurso recurso2= new RecursoPozo(celda,"Pozo");
-
-    Recurso recurso1= new RecursoAgua(celda,"Agua");
-    Recurso recurso3= new RecursoMontaña(celda,"Montaña");
-    Recurso recurso4= new RecursoTesoro(celda,"Tesoro");
-    Recurso recurso5= new RecursoBiblioteca(celda,"Biblioteca");
-    Recurso recurso6= new RecursoComida(celda,"Comida");
+    Recurso recurso1= new RecursoAgua(celda,"Agua",datos);
+    Recurso recurso3= new RecursoMontaña(celda,"Montaña",datos);
+    Recurso recurso4= new RecursoTesoro(celda,"Tesoro",datos);
+    Recurso recurso5= new RecursoBiblioteca(celda,"Biblioteca",datos);
+    Recurso recurso6= new RecursoComida(celda,"Comida",datos);
     ListaEnlazed<Recurso> recursos= new ListaEnlazed<>();
 
 
@@ -37,7 +40,7 @@ class RecursoTest {
     @Test
     void getCelda() {
 
-        Celdas celda = new Celdas();
+        Celdas celda = new Celdas(0,0);
         celda.setY(1);
         celda.setX(1);
         recurso1.getCelda().setY(1);
@@ -48,7 +51,7 @@ class RecursoTest {
 
     @Test
     void propiedad() {
-        Individuo individuo1= new Individuo1(celda,1,gen,longevidad,ruta);
+        Individuo individuo1= new Individuo1(celda,1,gen,longevidad,ruta,datosI);
         assertEquals(1,individuo1.getDatos().getVida());
         recurso1.Propiedad(individuo1);
         assertEquals(2,individuo1.getDatos().getVida());
@@ -56,4 +59,3 @@ class RecursoTest {
 
 }
 
- */

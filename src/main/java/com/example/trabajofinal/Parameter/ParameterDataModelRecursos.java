@@ -66,6 +66,7 @@ public class  ParameterDataModelRecursos {
     }
 
     public void setProbabilidadMontaña(int probabilidadMontaña) {
+
         ProbabilidadMontaña = probabilidadMontaña;
     }
 

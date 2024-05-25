@@ -1,28 +1,32 @@
 package com.example.trabajofinal.Individuo;
 
 import com.example.trabajofinal.Estructuras.*;
+import com.example.trabajofinal.Parameter.ParameterDataModel;
+import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
 import org.junit.jupiter.api.Test;
 
+import java.lang.management.ManagementPermission;
+
 import static org.junit.jupiter.api.Assertions.*;
-/*
+
 
 class IndividuoTest {
-
 
     @Test
     void setTipo() {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -37,15 +41,17 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -53,6 +59,7 @@ class IndividuoTest {
         assertEquals(1,invdividuos.getElemento(1).getData().getDatos().getID());
         invdividuos.getElemento(1).getData().getDatos().setID(33);
         assertEquals(33,invdividuos.getElemento(1).getData().getDatos().getID());
+
     }
 
 
@@ -61,24 +68,26 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
         invdividuos.add(individuo3);
 
-        gen.add(1);
-        gen.add(1);
+        gen.setMadre(individuo1);
+        gen.setPadre(individuo2);
         invdividuos.getPrimero().getData().setGeneracion(gen);
-        assertEquals(1,invdividuos.getPrimero().getData().getGeneracion().getAlturaArbol());
+        assertEquals(individuo1.getDatos().getID(),gen.getMadre());
+        assertEquals(individuo2.getDatos().getID(),gen.getPadre());
 
     }
 
@@ -87,15 +96,17 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -112,15 +123,17 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -136,15 +149,17 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
         invdividuos.add(individuo2);
@@ -160,15 +175,17 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
 
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
@@ -179,6 +196,7 @@ class IndividuoTest {
         assertEquals(1,invdividuos.getUltimo().getData().getHistorial().getTurno());
         assertEquals(null,invdividuos.getUltimo().getData().getHistorial().getMov().pull());
 
+
     }
 
     @Test
@@ -186,15 +204,17 @@ class IndividuoTest {
         Celdas celda1= new Celdas(2,2);
         Celdas celda2= new Celdas(1,4);
         Celdas celda3= new Celdas(3,3);
-        ArbolAVL<Integer> gen= new ArbolAVL<>();
+        Generacion gen= new Generacion();
         Cola<String> mov= new Cola<>();
         Historial longevidad= new Historial(1,mov);
         ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
+        ParameterDataModel datos= new ParameterDataModel(1,1,1,1,1);
 
 
-        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta);
-        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta);
-        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta);
+
+        Individuo individuo1= new Individuo1(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo2= new Individuo2(celda2,1,gen,longevidad,ruta,datos);
+        Individuo individuo3= new Individuo3(celda3,1,gen,longevidad,ruta,datos);
 
         ListaEnlazed<Individuo> invdividuos= new ListaEnlazed<>();
         invdividuos.add(individuo1);
@@ -217,6 +237,6 @@ class IndividuoTest {
 
 
     }
+
 }
 
- */

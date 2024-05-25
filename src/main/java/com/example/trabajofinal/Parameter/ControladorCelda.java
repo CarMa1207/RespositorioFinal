@@ -289,13 +289,16 @@ public class ControladorCelda implements Initializable {
         protected void onBotonIndividuo1() {
             ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
-                ArbolAVL<Integer> arbol= new ArbolAVL<>();
+                Generacion arbol= new Generacion();
+
                 Cola<String> mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
                 Individuo individuo1= new Individuo1(celda,1,arbol,historial,ruta,datos) ;
+                arbol.setMadre(null);
+                arbol.setPadre(null);
                 celda.getIndividuoListaEnlazed().add(individuo1);
                 Informacion();
                 System.out.println(" se añade");
@@ -312,13 +315,15 @@ public class ControladorCelda implements Initializable {
         protected void onBotonIndividuo2() {
             ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
-                ArbolAVL<Integer> arbol= new ArbolAVL<>();
+                Generacion arbol= new Generacion();
                 Cola<String>mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
                 Individuo individuo2= new Individuo2(celda,2,arbol,historial,ruta,datos) ;
+                arbol.setMadre(null);
+                arbol.setPadre(null);
                 celda.getIndividuoListaEnlazed().add(individuo2);
                 Informacion();
                 System.out.println(" se añade");
@@ -334,13 +339,15 @@ public class ControladorCelda implements Initializable {
         protected void onBotonIndividuo3() {
             ParameterDataModel datos= new ParameterDataModel(individuosc.getVida(),individuosc.getPorcentajereproduccion(),individuosc.getPorcentajeclonacion(),individuosc.getPorcentajetipohijo(), individuosc.getID());
             if(celda.getIndividuoListaEnlazed().getNumeroElementos()<3){
-                ArbolAVL<Integer> arbol= new ArbolAVL<>();
+                Generacion arbol= new Generacion();
                 Cola<String>mov= new Cola<>();
                 Historial historial= new Historial(0,mov);
                 ListaEnlazed<Celdas> ruta= new ListaEnlazed<>();
 
 
                 Individuo individuo3= new Individuo3(celda,3,arbol,historial,ruta,datos) ;
+                arbol.setMadre(null);
+                arbol.setPadre(null);
                 celda.getIndividuoListaEnlazed().add(individuo3);
                 Informacion();
                 System.out.println(" se añade");
@@ -430,11 +437,12 @@ public class ControladorCelda implements Initializable {
             if (celda.getRecursoListaEnlazed().getNumeroElementos() < 3) {
 
 
-                Recurso recursoTesoro = new RecursoAgua(celda, "Tesoro", datos);
+                Recurso recursoTesoro= new RecursoTesoro(celda,"Tesoro",datos);
                 celda.getRecursoListaEnlazed().add(recursoTesoro);
                 Informacion();
                 System.out.println(" se añade");
-            } else {
+            }
+            else{
                 System.out.println("Se ha excedido el limite de recursos por casilla");
             }
 
