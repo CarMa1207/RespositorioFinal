@@ -2,8 +2,10 @@ package com.example.trabajofinal.Estructuras;//Hecho con el grupo de Marcos
 
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Recurso.Recurso;
+import com.google.gson.annotations.Expose;
 
 public class ListaEnlazed<T> {
+    @Expose
     private ElementoLe<T> primero;
 
     public boolean isVacia() {

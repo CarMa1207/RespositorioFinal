@@ -1,5 +1,9 @@
-package com.example.trabajofinal.Individuo;
+package com.example.trabajofinal.json;
 
+import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Individuo.Individuo1;
+import com.example.trabajofinal.Individuo.Individuo2;
+import com.example.trabajofinal.Individuo.Individuo3;
 import com.google.gson.*;
 import javafx.fxml.FXML;
 
@@ -10,11 +14,11 @@ public class individuoJson implements JsonDeserializer<Individuo>, JsonSerialize
     public Individuo deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) {
         //log.info("Deserializadno json a individuo");
         JsonObject individuoNuevo = jsonElement.getAsJsonObject();
-        if (individuoNuevo.get("Tipo").getAsString().contains("Individuo1")) {
+        if (individuoNuevo.get("Tipo").getAsString().contains("Lcom/example/trabajofinal/Individuo/Individuo1;")) {
             return jsonDeserializationContext.deserialize(individuoNuevo.get("Data"), Individuo1.class);
-        } else if (individuoNuevo.get("Tipo").getAsString().contains("Individuo2")) {
+        } else if (individuoNuevo.get("Tipo").getAsString().contains("Lcom/example/trabajofinal/Individuo/Individuo2;")) {
             return jsonDeserializationContext.deserialize(individuoNuevo.get("Data"), Individuo2.class);
-        } else if (individuoNuevo.get("Tipo").getAsString().contains("Individuo3")) {
+        } else if (individuoNuevo.get("Tipo").getAsString().contains("Lcom/example/trabajofinal/Individuo/Individuo3;")) {
             return jsonDeserializationContext.deserialize(individuoNuevo.get("Data"), Individuo3.class);
         }else{
            // log.fatal("error al encontrar el tipo de individuo");
@@ -26,7 +30,7 @@ public class individuoJson implements JsonDeserializer<Individuo>, JsonSerialize
     public JsonElement serialize(Individuo individuo , Type type , JsonSerializationContext jsonSerializationContext){
        // log.info("serializando individuo a json");
         JsonObject individuoNuevo = new JsonObject();
-        individuoNuevo.addProperty("Tipo",individuoNuevo.getClass().descriptorString());
+        individuoNuevo.addProperty("Tipo",individuo.getClass().descriptorString());
         individuoNuevo.add("Data",jsonSerializationContext.serialize(individuo));
         //log.info("individuo a json ");
         return individuoNuevo;

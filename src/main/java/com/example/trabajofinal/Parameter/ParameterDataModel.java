@@ -1,10 +1,10 @@
 package com.example.trabajofinal.Parameter;
 
 public class ParameterDataModel {
-    private int vida;
-    private int porcentajereproduccion;
-    private int porcentajeclonacion;
-    private int porcentajetipohijo;
+   public int vida;
+    public int porcentajereproduccion;
+    public int porcentajeclonacion;
+    public int porcentajetipohijo;
 
 
 

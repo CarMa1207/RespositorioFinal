@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ParameterController implements Initializable {
+
     @FXML
     public Slider sliderFilas;
     @FXML

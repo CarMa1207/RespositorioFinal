@@ -17,14 +17,14 @@ public abstract  class Recurso   {
 
 
 
-    int tiempoAparicon;
-    int probabilidadAparicion;
-    int probabilidadAgua;
-    int probabilidadPozo;
-    int probabilidadComida;
-    int probabilidadBiblioteca;
-    int probabilidadTesoro;
-    int probabilidadMontaña;
+    public int tiempoAparicon;
+   public  int probabilidadAparicion;
+   public  int probabilidadAgua;
+   public  int probabilidadPozo;
+   public  int probabilidadComida;
+    public int probabilidadBiblioteca;
+    public int probabilidadTesoro;
+    public int probabilidadMontaña;
     public ParameterDataModelRecursos datos;
     public void setDatosR(ParameterDataModelRecursos datos) {
         this.datos = datos;

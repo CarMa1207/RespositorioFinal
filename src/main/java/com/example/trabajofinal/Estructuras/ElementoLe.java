@@ -1,8 +1,11 @@
 package com.example.trabajofinal.Estructuras;
 
+import com.google.gson.annotations.Expose;
+
 public class ElementoLe<T> {
-    private T dato;
-    private ElementoLe <T> siguiente;
+
+    @Expose private T dato;
+    @Expose private ElementoLe <T> siguiente;
 
     public T getData() {
         return dato;
@@ -12,7 +15,7 @@ public class ElementoLe<T> {
         this.dato = dato;
     }
 
-    protected ElementoLe<T> getSiguiente() {
+    public ElementoLe<T> getSiguiente() {
         return siguiente;
     }
 

@@ -8,9 +8,11 @@ import com.example.trabajofinal.Estructuras.Celdas;
 import java.util.Random;
 
 import com.example.trabajofinal.Estructuras.Historial;
+import com.google.gson.annotations.Expose;
 import javafx.fxml.FXML;
 
 public abstract class Individuo  {
+    @Expose
     public int tipo;
     //Estas coordenadas de individuo son temporales, cuando este hecho el tablero se cambian por las reales
     public Celdas celda;
@@ -27,9 +29,11 @@ public abstract class Individuo  {
 
 
 
-
+    @Expose
     int porcentajeclonacion;
+    @Expose
     int porcentajereproduccion;
+    @Expose
     int ID;
 
     public Individuo(Celdas celda, int tipo,ArbolAVL<Integer> generacion, Historial longevity, ListaEnlazed<Celdas> camino,ParameterDataModel datos)

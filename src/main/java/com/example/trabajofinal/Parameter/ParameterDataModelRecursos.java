@@ -1,14 +1,14 @@
 package com.example.trabajofinal.Parameter;
 
 public class  ParameterDataModelRecursos {
-    private int TiempoAparicion;
-    private int ProbabilidadAparicion;
-    private int ProbabilidadAgua;
-    private int ProbabilidadComida;
-    private int ProbabilidadBiblioteca;
-    private int ProbabilidadMontaña;
-    private int ProbabilidadPozo;
-    private int ProbabilidadTesoro;
+    public int TiempoAparicion;
+    public int ProbabilidadAparicion;
+    public int ProbabilidadAgua;
+    public int ProbabilidadComida;
+    public int ProbabilidadBiblioteca;
+    public int ProbabilidadMontaña;
+    public int ProbabilidadPozo;
+    public int ProbabilidadTesoro;
 
     public ParameterDataModelRecursos(int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro) {
         TiempoAparicion = tiempoAparicion;

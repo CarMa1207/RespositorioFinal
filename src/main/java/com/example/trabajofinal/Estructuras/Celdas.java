@@ -3,22 +3,30 @@ package com.example.trabajofinal.Estructuras;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Recurso.Recurso;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
 public class Celdas extends Button {
-    private    ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
-    private    ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
-    int x;
-    int y;
+    @Expose
+    public    ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
+    @Expose
+    public   ListaEnlazed<Recurso> recursoListaEnlazed= new ListaEnlazed<>();
+    @Expose
+    public int x;
+    @Expose
+   public  int y;
+
     private Stage escenaVentana;
 
 
+    //NO PONER EXPOSE EN ESTO
 
-    public static ParameterDataModel datos;
 
 
+   public static ParameterDataModel datos;
 
     public Celdas(ListaEnlazed<Individuo> individuoListaEnlazed, ListaEnlazed<Recurso> recursoListaEnlazed) {
         this.individuoListaEnlazed = individuoListaEnlazed;
@@ -48,7 +56,7 @@ public class Celdas extends Button {
     public void setY(int y) {
         this.y = y;
     }
-    public ParameterDataModel getDatos() {
+  public ParameterDataModel getDatos() {
         return datos;
     }
 
