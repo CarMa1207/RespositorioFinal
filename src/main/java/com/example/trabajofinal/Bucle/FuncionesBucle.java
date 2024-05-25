@@ -111,7 +111,7 @@ public class FuncionesBucle {
                 if (recursos.getNumeroElementos() != 0) {
                     if (recursos.getElemento(i).getData().getCelda() == individuos.getElemento(j).getData().getCelda()) {
                         if (recursos.getElemento(i).getData().getTipo() == "Biblioteca") {
-                            if (individuos.getElemento(i).getData().getTipo() == 2) {
+                            if (individuos.getElemento(j).getData().getTipo() == 2) {
                                 Generacion arbol = individuos.getElemento(j).getData().getGeneracion();
                                 Cola<String> cola = individuos.getElemento(j).getData().getHistorial().getMov();
                                 Historial hist = new Historial(individuos.getElemento(j).getData().getHistorial().getTurno(), cola);
@@ -225,11 +225,9 @@ public class FuncionesBucle {
                     }
                     fin.setX(recursobuscado.getCelda().getX());
                     fin.setY(recursobuscado.getCelda().getY());
-                    if (individuo.getRuta() != null) {
-                        individuo.setRuta(individuo.getCamino(inicio, fin));
-                    } else {
+                    individuo.setRuta(individuo.getCamino(inicio, fin));
 
-                    }
+
                 }
             } catch (NullPointerException except) {
                 System.out.println("No hay recursos que buscar");

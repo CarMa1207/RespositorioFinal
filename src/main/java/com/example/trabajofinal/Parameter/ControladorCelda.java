@@ -117,6 +117,7 @@ public class ControladorCelda implements Initializable {
         this.recursosd=recursos;
         this.celda=celda;
         this.celdasListaEnlazed=celdasListaEnlazed;
+
     }
 
 

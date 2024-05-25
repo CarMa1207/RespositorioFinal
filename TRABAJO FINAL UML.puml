@@ -1,11 +1,10 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-celdas*-left-Elementos
+Celdas*-left-Recursos
+Celdas*-left-Individuo
+Individuo*-right-FuncionesBucle
 Tablero*-left-GameOver
-Menú*-left-Tablero
-celdas*-left-Individuo
-celdas*-left-celda
 Tablero*-left-celdas
 
 class Menú{

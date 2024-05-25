@@ -10,20 +10,18 @@ import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Recurso.Recurso;
 import com.example.trabajofinal.json.DatosPartida;
-import com.example.trabajofinal.json.Json;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-    private static Logger log = LogManager.getLogger(HelloController.class);
     @FXML
     private Button nuevaPartida;
     @FXML
@@ -39,7 +37,7 @@ public class HelloController implements Initializable {
     private TableroDataModel tableroData = new TableroDataModel(7,7);
     private TableroDataModelProperties modeloParaGuiCompartidoTablero = new TableroDataModelProperties(tableroData);
 
-
+/*
     @FXML
     protected void cargarPartidaClick() {
         try {
@@ -80,6 +78,10 @@ public class HelloController implements Initializable {
             log.error("No se ha podido iniciar");
         }
     }
+
+
+ */
+
     @FXML
     protected void nuevaPartidaClick() {
         Stage stage = new Stage();
@@ -104,5 +106,4 @@ public class HelloController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.print("Inicialización en ejecución del controlador\n");
     }
-
 }

@@ -29,6 +29,9 @@ public class Celdas  {
     @Expose
    public  int y;
 
+
+    private Button boton;
+
     private Stage escenaVentana;
 
 
@@ -37,6 +40,14 @@ public class Celdas  {
 
 
    public static ParameterDataModel datos;
+    public Button getBoton() {
+        return boton;
+    }
+
+    public void setBoton(Button boton) {
+        this.boton = boton;
+    }
+
 
     public Celdas(ListaEnlazed<Individuo> individuoListaEnlazed, ListaEnlazed<Recurso> recursoListaEnlazed) {
         this.individuoListaEnlazed = individuoListaEnlazed;
