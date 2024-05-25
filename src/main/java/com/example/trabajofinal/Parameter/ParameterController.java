@@ -9,6 +9,8 @@ import com.example.trabajofinal.json.Json;
  */
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,8 +18,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,6 +35,8 @@ public class ParameterController implements Initializable {
     public Label laberValorColumnas;
     @FXML
     public Label labelValorPorcentajeTipoHijoSlider;
+
+    public Tab tab;
     @FXML
     private Slider sliderPorcentajereproduccion;
     @FXML
@@ -102,25 +109,32 @@ public class ParameterController implements Initializable {
     public static  TableroDataModel tablero;
     public  ParameterDataModel individuos;
     public ParameterDataModelRecursos recursos;
+    public Celdas celda;
     public ListaEnlazed<Celdas> celdasListaEnlazed;
     private Stage scene;
 
+    private static Logger log = LogManager.getLogger(ParameterController.class);
 
     @FXML
     protected void onBotonGuardarClick() {
-       if(model!= null && modelRecursos!= null) {
+        log.info("Iniciando los commit");
+
+        if(model!= null && modelRecursos!= null) {
            model.commit();
            modelRecursos.commit();
        }
+        log.error("Ha dado fallo en el commit");
 
     }
 
     @FXML
     protected void onBotonReiniciarClick() {
+        log.info("Iniciando los rollback");
         if(model!= null && modelRecursos!= null) {
             model.rollback();
             modelRecursos.rollback();
         }
+        log.error("Ha dado fallo en el commit");
     }
 
 
@@ -140,16 +154,11 @@ public class ParameterController implements Initializable {
     protected IntegerProperty medidaProbabilidadPozo = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadMontaña = new SimpleIntegerProperty(0);
     protected IntegerProperty medidaProbabilidadTesoro = new SimpleIntegerProperty(0);
-    @FXML
 
-    protected void onTableroButtonClick() { ////// " mirar esta funcion , del modelo del tablero porque puede estar mal y en vez de eso es con el tablero data model "
-        TableroController tableroController = new TableroController();
-        tableroController.setTableroDeJuego(modelRecursos.getOriginal(), modelTablero.getTableroOriginal(), model.getOriginal());
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.print("Inicialización en ejecución del controlador de parámetros\n");
+        log.info("Inicialización en ejecución del controlador de parámetros\n");
         sliderVida.valueProperty().bindBidirectional(medidaVida);
         sliderPorcentajeclonacion.valueProperty().bindBidirectional(medidaPorcentajeclonacion);
         sliderFilas.valueProperty().bindBidirectional(medidaFilas);
@@ -208,19 +217,23 @@ public class ParameterController implements Initializable {
         this.modelRecursos = parametrosDataRecurso;
         this.modelTablero=parametrosTablero;
         this.updateGUIwithModel();
-        }
+    }
+
 
     @FXML
     protected void onBotonGuardarTableroClick() {
+       log.info("Guardar tablero");
         if (modelTablero!= null ) {
 
 
             modelTablero.commit();
         }
+
     }
 
     @FXML
     protected void onBotonReiniciarTableroClick() {
+        log.info("Reiniciar Tablero");
        if (modelTablero!= null) {
            modelTablero.rollback();
        }
@@ -230,5 +243,9 @@ public class ParameterController implements Initializable {
         this.scene = s;
     }
 
-
+@FXML
+    public void onTableroButtonClick() {
+       TableroController tableroController = new TableroController();
+        tableroController.setTableroDeJuego(modelRecursos.getOriginal(), modelTablero.getTableroOriginal(), model.getOriginal());
+    }
 }

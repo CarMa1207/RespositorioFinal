@@ -2,17 +2,80 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.TableroController">
+<AnchorPane prefHeight="387.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trabajofinal.Parameter.TableroController">
    <children>
-      <GridPane fx:id="tableroDeJuego" layoutX="55.0" layoutY="53.0" prefHeight="262.0" prefWidth="262.0">
+      <GridPane fx:id="tableroDeJuego" layoutX="19.0" layoutY="53.0" prefHeight="328.0" prefWidth="395.0">
 
       </GridPane>
       <Label layoutX="19.0" layoutY="22.0" prefHeight="17.0" prefWidth="246.0" text="El juego de la vida . " />
-      <Button fx:id="iniciarboton" layoutX="553.0" layoutY="158.0" mnemonicParsing="false" onAction="#onPlayButtonClick" text="Iniciar" />
-      <Button fx:id="pauseboton" layoutX="551.0" layoutY="225.0" mnemonicParsing="false" onAction="#onPauseButtonClick" text="Pausar" />
-      <Button fx:id="guardar" layoutX="542.0" layoutY="76.0" mnemonicParsing="false" onAction="#guardarPartida" prefHeight="47.0" prefWidth="83.0" text="Guardar Partida" wrapText="true" />
+      <Button fx:id="iniciarboton" cache="true" cacheHint="SPEED" layoutX="553.0" layoutY="98.0" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="25.0" prefWidth="65.0" text="Iniciar" />
+      <Button fx:id="pauseboton" cache="true" cacheHint="SPEED" layoutX="553.0" layoutY="139.0" mnemonicParsing="false" onAction="#onPauseButtonClick" prefHeight="25.0" prefWidth="65.0" text="Pausar" />
+      <Button fx:id="guardar" cache="true" cacheHint="SPEED" layoutX="536.0" layoutY="53.0" mnemonicParsing="false" onAction="#guardarPartida" prefHeight="25.0" prefWidth="101.0" text="Guardar Partida" wrapText="true" />
+      <Label layoutX="459.0" layoutY="200.0" text="------------------------------------------------" />
+      <Button fx:id="volver" layoutX="518.0" layoutY="181.0" mnemonicParsing="false" onAction="#VolveraParametrosClick" prefHeight="25.0" prefWidth="136.0" text="Volver a Parametros" />
+      <Label layoutX="445.0" layoutY="220.0" text="Individuo1" />
+      <Label layoutX="445.0" layoutY="254.0" text="Individuo2" />
+      <Label layoutX="445.0" layoutY="294.0" text="Individuo3" />
+      <Label layoutX="515.0" layoutY="176.0" prefHeight="17.0" prefWidth="6.0" text="·" textFill="#d22727">
+         <font>
+            <Font size="72.0" />
+         </font>
+      </Label>
+      <Label layoutX="514.0" layoutY="200.0" text="·" textFill="#ad4f28">
+         <font>
+            <Font size="86.0" />
+         </font>
+      </Label>
+      <Label layoutX="514.0" layoutY="243.0" text="·" textFill="#77ea0b">
+         <font>
+            <Font size="82.0" />
+         </font>
+      </Label>
+      <Label layoutX="546.0" layoutY="220.0" text="Comida" />
+      <Label layoutX="546.0" layoutY="255.0" text="Tesoro" />
+      <Label layoutX="543.0" layoutY="285.0" text="Montaña" />
+      <Label layoutX="541.0" layoutY="317.0" text="Biblioteca" />
+      <Label layoutX="624.0" layoutY="220.0" text="Agua" />
+      <Label layoutX="624.0" layoutY="255.0" text="Pozo" />
+      <Label layoutX="591.0" layoutY="184.0" text="·" textFill="#5a7227">
+         <font>
+            <Font size="62.0" />
+         </font>
+      </Label>
+      <Label layoutX="590.0" layoutY="208.0" text="·" textFill="#d7d70e">
+         <font>
+            <Font size="76.0" />
+         </font>
+      </Label>
+      <Label layoutX="609.0" layoutY="237.0" text="·" textFill="#332820">
+         <font>
+            <Font size="79.0" />
+         </font>
+      </Label>
+      <Label layoutX="609.0" layoutY="269.0" text="·" textFill="#8a5928">
+         <font>
+            <Font size="79.0" />
+         </font>
+      </Label>
+      <Label layoutX="662.0" layoutY="172.0" text="·" textFill="#00fff7">
+         <font>
+            <Font size="79.0" />
+         </font>
+      </Label>
+      <Label layoutX="662.0" layoutY="209.0" text="·" textFill="#202062">
+         <font>
+            <Font size="75.0" />
+         </font>
+      </Label>
+      <Button fx:id="finalizar" layoutX="560.0" layoutY="18.0" mnemonicParsing="false" onAction="#FinalizarClick" text="Finalizar">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

@@ -9,7 +9,17 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-public class Celdas extends Button {
+public class Celdas  {
+    private Button boton;
+
+    public Button getBoton() {
+        return boton;
+    }
+
+    public void setBoton(Button boton) {
+        this.boton = boton;
+    }
+
     @Expose
     public    ListaEnlazed<Individuo> individuoListaEnlazed = new ListaEnlazed<>();
     @Expose

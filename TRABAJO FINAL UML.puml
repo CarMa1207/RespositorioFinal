@@ -221,6 +221,20 @@ class Individuo{
 +int
 +int
 +coord
++agua
++comida
++montaña
++tesoro
++biblioteca
++pozo
++TasaEvolucion
+
++getAgua():int
++getComida():int
++getMontaña():int
++getTesoro():int
++getBiblioteca():int
++getPozo():int
 
 +getTipo()
 +getID()
@@ -249,6 +263,9 @@ class Individuo{
 +getRuta():ListaEnlazed<Celdas>
 +setRuta(ListaEnlazed<Celdas>)
 +getCamino(Celdas,Celdas)
++DatosPartida(int vida, int porcentajereproduccion, int porcentajeclonacion, int porcentajetipohijo, int tiempoAparicion, int probabilidadAparicion, int probabilidadAgua, int probabilidadComida, int probabilidadBiblioteca, int probabilidadMontaña, int probabilidadPozo, int probabilidadTesoro, int filas, int columnas, ListaEnlazed<Celdas> celda) {
+                      this.vida = vida)
+
 
 
 
@@ -256,14 +273,30 @@ class Individuo{
 
 }
 
-class Simulador(){
-+widht
-+height
-+board
-+data
-+Contructor de Simulador
-+printeartablero
-+bucle
+
+
+class DatosPartida {
++int
++Celdas
++ParameterDataModel
++Generacion
++Historial
++ListaEnlazed<Celdas>
++int
++int
++int
++coord
+
++getFilas()
++getColumnas()
+
++getID()
++getVida()
++getRepro()
++getClonacion()
++getMutacion()
++getMuerte()
++getCoordenadas()
 
 }
 

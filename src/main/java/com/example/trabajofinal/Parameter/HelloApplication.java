@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/trabajofinal/hello-viewtrabajofinal.fxml"));
-            Scene escenainicial = new Scene(fxmlLoader.load(), 1000, 1000);
+            Scene escenainicial = new Scene(fxmlLoader.load(), 700, 700);
             stage.setScene(escenainicial);
             stage.show();}catch (IOException e){e.printStackTrace();}
 

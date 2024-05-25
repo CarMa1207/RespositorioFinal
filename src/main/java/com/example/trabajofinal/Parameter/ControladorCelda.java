@@ -20,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.Objects;
@@ -301,10 +303,10 @@ public class ControladorCelda implements Initializable {
                 arbol.setPadre(null);
                 celda.getIndividuoListaEnlazed().add(individuo1);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de individuos por casilla");
+                log.info("Se ha excedido el limite de individuos por casilla");
             }
 
 
@@ -326,14 +328,16 @@ public class ControladorCelda implements Initializable {
                 arbol.setPadre(null);
                 celda.getIndividuoListaEnlazed().add(individuo2);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de individuos por casilla");
+                log.info("Se ha excedido el limite de individuos por casilla");
             }
 
 
         }
+
+
 
         @FXML
         protected void onBotonIndividuo3() {
@@ -350,10 +354,10 @@ public class ControladorCelda implements Initializable {
                 arbol.setPadre(null);
                 celda.getIndividuoListaEnlazed().add(individuo3);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de individuos por casilla");
+                log.info("Se ha excedido el limite de individuos por casilla");
             }
 
 
@@ -367,10 +371,10 @@ public class ControladorCelda implements Initializable {
                 Recurso recursoAgua= new RecursoAgua(celda,"Agua",datos);
                 celda.getRecursoListaEnlazed().add(recursoAgua);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de recursos por casilla");
+                log.info("Se ha excedido el limite de recursos por casilla");
             }
 
 
@@ -386,10 +390,10 @@ public class ControladorCelda implements Initializable {
                 Recurso recursoBiblioteca= new RecursoBiblioteca(celda,"Biblioteca",datos);
                 celda.getRecursoListaEnlazed().add(recursoBiblioteca);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de recursos por casilla");
+                log.info("Se ha excedido el limite de recursos por casilla");
             }
 
 
@@ -404,10 +408,10 @@ public class ControladorCelda implements Initializable {
                 Recurso recursoComida= new RecursoComida(celda,"Comida",datos);
                 celda.getRecursoListaEnlazed().add(recursoComida);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de recursos por casilla");
+                log.info("Se ha excedido el limite de recursos por casilla");
             }
 
 
@@ -423,10 +427,10 @@ public class ControladorCelda implements Initializable {
                 Recurso recursoMontaña= new RecursoMontaña(celda,"Montaña",datos);
                 celda.getRecursoListaEnlazed().add(recursoMontaña);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de recursos por casilla");
+                log.info("Se ha excedido el limite de recursos por casilla");
             }
 
         }
@@ -440,10 +444,10 @@ public class ControladorCelda implements Initializable {
                 Recurso recursoTesoro= new RecursoTesoro(celda,"Tesoro",datos);
                 celda.getRecursoListaEnlazed().add(recursoTesoro);
                 Informacion();
-                System.out.println(" se añade");
+                log.info(" se añade");
             }
             else{
-                System.out.println("Se ha excedido el limite de recursos por casilla");
+                log.info("Se ha excedido el limite de recursos por casilla");
             }
 
 
@@ -495,10 +499,10 @@ public class ControladorCelda implements Initializable {
         this.celdaControlador = celdaControlador;
     }
 
-
+    private static Logger log = LogManager.getLogger(ControladorCelda.class);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.print("Inicialización en ejecución del controlador\n");
+        log.info("Inicialización en ejecución del controlador\n");
 
     }
     @FXML
@@ -510,10 +514,10 @@ public class ControladorCelda implements Initializable {
 
             Recurso recursoPozo= new RecursoPozo(celda,"Agua",datos);
             celda.getRecursoListaEnlazed().add(recursoPozo);
-            System.out.println(" se añade");
+            log.info(" se añade");
         }
         else{
-            System.out.println("Se ha excedido el limite de recursos por casilla");
+            log.info("Se ha excedido el limite de recursos por casilla");
         }
     }
     protected void Informacion(){

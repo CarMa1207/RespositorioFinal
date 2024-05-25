@@ -8,6 +8,9 @@ import com.example.trabajofinal.Estructuras.ListaEnlazed;
 import com.example.trabajofinal.Excepciones.Camino;
 import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Individuo.Individuo1;
+import com.example.trabajofinal.Individuo.Individuo2;
+import com.example.trabajofinal.Individuo.Individuo3;
 import com.example.trabajofinal.Parameter.HelloApplication;
 import com.example.trabajofinal.Parameter.ParameterController;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
@@ -32,11 +35,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,21 +57,30 @@ public class TableroController implements Initializable{
 private Button pauseboton;
 @FXML
 private Button iniciarboton;
-
-    private TableroDataModelProperties modelTablero;
+@FXML
+        private Button volver;
+@FXML
+        private Button finalizar;
+    int turno=0;
+    private ParameterDataModel parametrosData = new ParameterDataModel(7, 10, 5,8,0);
+    private ParameterDataModelProperties modeloParaGUICompartido = new ParameterDataModelProperties(parametrosData);
+    private ParameterDataModelRecursos parametrosDataRecursos = new ParameterDataModelRecursos(4,5,6,7,8,9,1,3);
+    private ParameterDataModelPropertiesRecursos modeloParaGuiCompartidoRecursos = new ParameterDataModelPropertiesRecursos(parametrosDataRecursos);
+    private TableroDataModel tableroData = new TableroDataModel(10,10);
+    private TableroDataModelProperties modeloParaGuiCompartidoTablero = new TableroDataModelProperties(tableroData);
     private static TableroDataModel tableroDataModel;
     private   static  ParameterDataModelRecursos recusosDatamodel;
     private    static  ParameterDataModel individuosDatamodel;
-    private ParameterDataModelProperties modelo;
-    private ParameterDataModelPropertiesRecursos modelrecursosproperties;
-    private ParameterDataModelProperties modelindividuosproperties;
-    private TableroDataModelProperties modeltablero;
     private   Celdas celdota;
     public Timeline control;
     public boolean Pausa;
     int vidaMax;
     public  ListaEnlazed<Celdas> celda = new ListaEnlazed();
+    private static Logger log = LogManager.getLogger(TableroController.class);
 
+    public void setTableroDeJuegoGrid(GridPane tableroDeJuego) {
+        this.tableroDeJuego = tableroDeJuego;
+    }
 
     public void guardarPartida(){
         DatosPartida x = new DatosPartida(individuosDatamodel.getVida(), individuosDatamodel.getPorcentajereproduccion(), individuosDatamodel.getPorcentajeclonacion(), individuosDatamodel.getPorcentajetipohijo(), recusosDatamodel.getTiempoAparicion(),recusosDatamodel.getProbabilidadAparicion(), recusosDatamodel.getProbabilidadAgua(),recusosDatamodel.getProbabilidadComida(), recusosDatamodel.getProbabilidadBiblioteca(), recusosDatamodel.getProbabilidadMontaña(), recusosDatamodel.getProbabilidadPozo(), recusosDatamodel.getProbabilidadTesoro(), tableroDataModel.getFilas(),tableroDataModel.getColumnas(),celda);
@@ -94,21 +109,63 @@ private Button iniciarboton;
         this.tableroDataModel=tablero;
         this.recusosDatamodel=recursos;
         this.individuosDatamodel=individuosD;
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(TableroController.class.getResource("/com/example/trabajofinal/tablero-view.fxml"));
         try {
-            Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(TableroController.class.getResource("/com/example/trabajofinal/tablero-view.fxml"));
+            log.info("Iniciando el tablero de juego");
             Scene escena = new Scene(fxmlLoader.load(), 800, 800);
-
-
-
             stage.setTitle("Establezca parámetros: ");
             stage.setScene(escena);
             stage.show();
         } catch (Exception e) {
+            log.error("No se ha podido hacer");
             e.printStackTrace();
+
 
         }
 
+    }
+    @FXML
+    protected void VolveraParametrosClick(){
+        log.info("has entrado a parameter controller");
+        boolean pausa=isPausa() ;
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(TableroController.class.getResource("/com/example/trabajofinal/nuevaPartida-view.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), 820, 640);
+            stage.setTitle("Establezca parámetros: ");
+            stage.setScene(scene);
+            ParameterController p = fxmlLoader.getController();
+            p.loadUserData(this.modeloParaGUICompartido,this.modeloParaGuiCompartidoRecursos,this.modeloParaGuiCompartidoTablero);
+            p.tab.setDisable(true);
+            p.setStage(stage);
+            stage.show();
+            log.info("terminando la pestaña de nueva partida ");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("No se ha podido iniciar");
+        }
+
+
+
+    }
+
+    @FXML
+    protected void FinalizarClick(){
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(TableroController.class.getResource("/com/example/trabajofinal/Finalizarpartida-view.fxml"));
+        try {
+            log.info("Iniciando el tablero de juego");
+            Scene escena = new Scene(fxmlLoader.load(), 800, 800);
+            stage.setTitle("Establezca parámetros: ");
+            stage.setScene(escena);
+            stage.show();
+        } catch (Exception e) {
+            log.error("No se ha podido hacer");
+            e.printStackTrace();
+
+
+        }
     }
     public ListaEnlazed<Celdas> getCelda() {
         return celda;
@@ -123,6 +180,7 @@ private Button iniciarboton;
     @FXML
     protected void ButtonCelda (Celdas celdota,ParameterDataModel individuosDatamodel,ParameterDataModelRecursos recusosDatamodel, ListaEnlazed<Celdas>celda ){
         try {
+            log.info("Iniciando La celda del juego");
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(ControladorCelda.class.getResource("/com/example/trabajofinal/Celda-view.fxml"));;
             Scene scene = new Scene(fxmlLoader.load(), 800, 800);
@@ -132,6 +190,7 @@ private Button iniciarboton;
             controladorCelda.Informacion();
             stage.show();
         } catch (Exception e) {
+            log.error("No se ha podido hacer");
             e.printStackTrace();
         }
     }
@@ -139,7 +198,7 @@ private Button iniciarboton;
     @FXML
     protected void onPlayButtonClick(){
         tableroDeJuego.setDisable(true);
-        System.out.println("Se ha pulsado el boton de play");
+        log.info("Se ha pulsado el boton de play");
         int ID=0;
         for(int i=0; i<celda.getNumeroElementos();i++){
             for(int j=0;j<celda.getElemento(i).getData().getIndividuoListaEnlazed().getNumeroElementos();j++){
@@ -147,13 +206,14 @@ private Button iniciarboton;
                 ID++;
             }
         }
+
         bucleDeControlIniciar();
     }
 
     @FXML
     protected void onPauseButtonClick(){
         tableroDeJuego.setDisable(false);
-        System.out.println("Se ha pulsado el boton de pausa");
+        log.info("Se ha pulsado el boton de pausa");
         setPausa(true);
     }
 
@@ -194,6 +254,7 @@ private Button iniciarboton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+       log.info("Inicializando el tablero");
         if (tableroDataModel != null) {
             int ID = 0;
             for (int i = 0; i < tableroDataModel.getColumnas(); i++) {
@@ -211,6 +272,7 @@ private Button iniciarboton;
                     celditas.setX(i);
                     celditas.setY(j);;
                     celda.add(celditas);
+                    celditas.setBoton(placeholder);
 
 
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
@@ -218,7 +280,8 @@ private Button iniciarboton;
                         @Override
                         public void handle(ActionEvent actionEvent) {
                             ButtonCelda(celditas,individuosDatamodel,recusosDatamodel,celda);
-                            celditas.setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));////
+
+                            celditas.getBoton().setBackground(new Background(new BackgroundFill(Color.AQUA, CornerRadii.EMPTY, Insets.EMPTY)));////
                         }
                     });
 
@@ -230,62 +293,10 @@ private Button iniciarboton;
 
 
     }
-    public void BotonesDecolor( ) {
-        Celdas celdi = null;
-        for (int i = 0; i < celda.getNumeroElementos(); i++) {
-            celdi = celda.getElemento(i).getData();
-        }
-        int Individuos = celdi.getIndividuoListaEnlazed().getNumeroElementos();
 
-        if (Individuos != 0 && Individuos <= 3) {
-            if (Individuos == 1) {
-                celdi.setStyle("-fx-background-color: #d22727 ; -fx-border-color:#d22727");
-            } else if (Individuos == 2) {
-                celdi.setStyle("-fx-background-color: #ad4f28 ; -fx-border-color:#ad4f28 ");
-            } else if (Individuos == 3) {
-                celdi.setStyle("-fx-background-color: #77ea0b ; -fx-border-color:#77ea0b");
-
-            }
-        } else for (int i = 0; i < celdi.getRecursoListaEnlazed().getNumeroElementos(); i++) {
-            if (celdi.getRecursoListaEnlazed().getElemento(i).getData().getClass() == RecursoAgua.class) {
-                celdi.setStyle("-fx-background-color: #00fff7 ; -fx-border-color:#00fff7");
-            } else if (celdi.getRecursoListaEnlazed().getElemento(i).getData().getClass() == RecursoComida.class) {
-                celdi.setStyle("-fx-background-color: #5a7227 ; -fx-border-color:#5a7227");
-            } else if (celdi.getRecursoListaEnlazed().getElemento(i).getData().getClass() == RecursoBiblioteca.class) {
-                celdi.setStyle("-fx-background-color: #8a5928 ; -fx-border-color:#8a5928");
-            } else if (celdi.getRecursoListaEnlazed().getElemento(i).getData().getClass() == RecursoMontaña.class) {
-                celdi.setStyle("-fx-background-color: #332820 ; -fx-border-color:#332820");
-            } else if (celdi.getRecursoListaEnlazed().getElemento(i).getData().getClass() == RecursoTesoro.class) {
-                celdi.setStyle("-fx-background-color: #d7d70e ; -fx-border-color:#d7d70e");
-            } else if (celdi.getRecursoListaEnlazed().getElemento(i).getData().getClass() == RecursoPozo.class) {
-                celdi.setStyle("-fx-background-color: #202062 ; -fx-border-color:#202062");
-            }
-        }
-    }
-
-    public void dividirYColorearStackPane(StackPane stackPane, double width, double height) {
-
-        GridPane gridPane = new GridPane();
-        gridPane.setMaxWidth(width);
-        gridPane.setMaxHeight(height);
-        gridPane.setMinWidth(width);
-        gridPane.setMinHeight(height);
-
-
-
-
-        Color[] colores = { Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.PURPLE };
-
-        for (int i = 0; i < 6; i++) {
-            Circle circle = new Circle(7, Color.BLUE);
-            gridPane.add(circle, i % 2, i / 2);
-        }
-        stackPane.getChildren().add(gridPane);
-
-
-    }
     private void bucleDeControlIniciar(){
     int ID=0;
+
         for (int x = 0; x < celda.getNumeroElementos(); x++) {
             for(int w=0; w<celda.getElemento(x).getData().getIndividuoListaEnlazed().getNumeroElementos();w++){
                 celda.getElemento(x).getData().getIndividuoListaEnlazed().getElemento(w).getData().getDatos().setID(ID);
@@ -302,7 +313,10 @@ private Button iniciarboton;
 
                     celda = contronladorPatria.ejecucion(celda, individuosDatamodel, recusosDatamodel);
 
-                }
+                    System.out.println(turno);
+                    turno++;
+                    }
+
                 for(int i=0; i<celda.getNumeroElementos();i++){
                     for(int j=0; j<celda.getElemento(i).getData().getIndividuoListaEnlazed().getNumeroElementos();j++){
                         individuos2.add(celda.getElemento(i).getData().getIndividuoListaEnlazed().getElemento(j).getData());
@@ -310,7 +324,7 @@ private Button iniciarboton;
 
                 }
                 if(isPausa() || individuos2.getNumeroElementos()<2 ){
-                    System.out.println("Se ha pausado el juego");
+                    log.info("Se ha pausado el juego");
                     control.stop();
                 }
             }));
@@ -319,7 +333,7 @@ private Button iniciarboton;
             control.stop();
         }
         control.play();
-        BotonesDecolor();
+
     }
 }
 

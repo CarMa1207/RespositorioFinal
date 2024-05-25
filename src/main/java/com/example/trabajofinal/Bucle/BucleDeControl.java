@@ -7,6 +7,7 @@ import com.example.trabajofinal.Excepciones.ExistentID;
 import com.example.trabajofinal.Individuo.Individuo;
 import com.example.trabajofinal.Parameter.ParameterDataModel;
 import com.example.trabajofinal.Parameter.ParameterDataModelRecursos;
+import com.example.trabajofinal.Parameter.TableroController;
 import com.example.trabajofinal.Recurso.*;
 import com.example.trabajofinal.Parameter.TableroDataModel;
 import javafx.scene.control.skin.SliderSkin;
@@ -16,6 +17,7 @@ import java.util.Random;
 public class BucleDeControl {
     private static TableroDataModel tableroDataModel;
 
+    public TableroController tableroController;
 
     public ListaEnlazed<Celdas> celdas;
 
@@ -250,6 +252,7 @@ public class BucleDeControl {
                     celdas.getElemento(j).getData().getRecursoListaEnlazed().del(r);
                 }
             }
+            ;
 
         }
         return celdas;
