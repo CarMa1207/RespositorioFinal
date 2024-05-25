@@ -7,6 +7,8 @@ import com.example.trabajofinal.json.Json;
  */
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Recurso.Recurso;
 import com.example.trabajofinal.json.DatosPartida;
 import com.example.trabajofinal.json.Json;
 import javafx.fxml.FXML;
@@ -60,7 +62,12 @@ public class HelloController implements Initializable {
            modeloParaGUICompartido.setOriginal(parametrosData);
 
            TableroController tableroController = new TableroController();
+            if (cargado.getCelda() == null || cargado.getCelda().isVacia()) {
+                System.out.println("No se han cargado las celdas correctamente.");
+            } else {
+                tableroController.setCelda(cargado.getCelda());
 
+            }
            tableroController.setTableroDeJuego(modeloParaGuiCompartidoRecursos.getOriginal(), modeloParaGuiCompartidoTablero.getTableroOriginal(), modeloParaGUICompartido.getOriginal());
 
 

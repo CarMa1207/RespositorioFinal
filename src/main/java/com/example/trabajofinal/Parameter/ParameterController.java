@@ -102,6 +102,7 @@ public class ParameterController implements Initializable {
     public static  TableroDataModel tablero;
     public  ParameterDataModel individuos;
     public ParameterDataModelRecursos recursos;
+    public ListaEnlazed<Celdas> celdasListaEnlazed;
     private Stage scene;
 
 

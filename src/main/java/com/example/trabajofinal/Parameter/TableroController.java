@@ -51,6 +51,7 @@ public class TableroController implements Initializable{
 private Button pauseboton;
 @FXML
 private Button iniciarboton;
+
     private TableroDataModelProperties modelTablero;
     private static TableroDataModel tableroDataModel;
     private   static  ParameterDataModelRecursos recusosDatamodel;
@@ -59,11 +60,11 @@ private Button iniciarboton;
     private ParameterDataModelPropertiesRecursos modelrecursosproperties;
     private ParameterDataModelProperties modelindividuosproperties;
     private TableroDataModelProperties modeltablero;
-    private  static Celdas celdota;
+    private   Celdas celdota;
     public Timeline control;
     public boolean Pausa;
     int vidaMax;
-    public ListaEnlazed<Celdas> celda = new ListaEnlazed();
+    public  ListaEnlazed<Celdas> celda = new ListaEnlazed();
 
 
     public void guardarPartida(){
@@ -130,7 +131,6 @@ private Button iniciarboton;
             controladorCelda.setCelda(tableroDataModel,celdota,individuosDatamodel,recusosDatamodel,celda);
             controladorCelda.Informacion();
             stage.show();
-            controladorCelda.setCelda(tableroDataModel,celdota,individuosDatamodel,recusosDatamodel);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,6 +149,7 @@ private Button iniciarboton;
         }
         bucleDeControlIniciar();
     }
+
     @FXML
     protected void onPauseButtonClick(){
         tableroDeJuego.setDisable(false);
@@ -158,7 +159,12 @@ private Button iniciarboton;
 
 
 
-    public Datos pantallaFinal(ListaEnlazed<Celdas> celda){
+    public Datos pantallaFinal(){
+
+        int longevidad=0;
+        int mutaciones=0;
+        int agua=0;
+
 
 
         for(int i=0; i<celda.getNumeroElementos(); i++){
@@ -193,7 +199,6 @@ private Button iniciarboton;
             for (int i = 0; i < tableroDataModel.getColumnas(); i++) {
 
                 for (int j = 0; j < tableroDataModel.getFilas(); j++) {
-
                     Button placeholder = new Button();
                     double ladox = (double) 400 /tableroDataModel.getFilas();
                     double ladoy = (double) 400 / tableroDataModel.getColumnas();
@@ -206,6 +211,7 @@ private Button iniciarboton;
                     celditas.setX(i);
                     celditas.setY(j);;
                     celda.add(celditas);
+
 
                     placeholder.setOnAction(new EventHandler<ActionEvent>() {
 

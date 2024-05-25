@@ -2,6 +2,8 @@ package com.example.trabajofinal.json;
 
 import com.example.trabajofinal.Estructuras.Celdas;
 import com.example.trabajofinal.Estructuras.ListaEnlazed;
+import com.example.trabajofinal.Individuo.Individuo;
+import com.example.trabajofinal.Recurso.Recurso;
 import com.google.gson.annotations.Expose;
 
 public class DatosPartida {
@@ -23,8 +25,14 @@ public class DatosPartida {
     @Expose private int ProbabilidadTesoro;
     @Expose private int filas;
     @Expose private int columnas;
-    @Expose private ListaEnlazed<Celdas> celda;
+    @Expose private  ListaEnlazed<Celdas> celda;
+    private ListaEnlazed<Individuo> individuoListaEnlazed;
+    private ListaEnlazed<Recurso> recursoListaEnlazed;
 
+
+    public void setCelda(ListaEnlazed<Celdas> celda) {
+        this.celda = celda;
+    }
 
     public int getVida() {
         return vida;
